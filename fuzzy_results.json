@@ -1,0 +1,29 @@
+{
+  "Exact Hash (D1)": {
+    "TP": 5,
+    "FP": 5,
+    "TN": 0,
+    "FN": 0,
+    "precision": 0.5,
+    "recall": 1.0,
+    "f1": 0.667
+  },
+  "Jaccard Filter (D2, \u03c4=0.70)": {
+    "TP": 5,
+    "FP": 3,
+    "TN": 2,
+    "FN": 0,
+    "precision": 0.625,
+    "recall": 1.0,
+    "f1": 0.769
+  },
+  "Column-Graph (D3)": {
+    "TP": 5,
+    "FP": 0,
+    "TN": 5,
+    "FN": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+  }
+}

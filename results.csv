@@ -1,0 +1,4 @@
+system,events,leak_rate_pct,reuse_rate_pct,conflict_recall_pct,blocked_count
+no_memory,120,0.0,0.0,,0
+naive,120,15.8,95.8,0.0,0
+lineage_aware,120,0.0,83.3,100.0,15

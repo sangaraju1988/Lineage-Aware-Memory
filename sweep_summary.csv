@@ -1,0 +1,4 @@
+system,leak_mean,leak_sd,reuse_mean,reuse_sd,conflict_recall_mean
+no_memory,0.0,0.0,0.0,0.0,
+naive,18.8,3.65,95.8,0.0,0.0
+lineage_aware,0.0,0.0,82.61,2.29,100.0
