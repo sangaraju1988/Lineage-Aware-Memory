@@ -2,7 +2,7 @@
 
 > **Paper:** *Lineage-Aware Memory Governance for Enterprise AI Agents — A Derivation-Gated Approach to Privacy Isolation and Metric-Definition Consistency in Multi-Department Analytics*
 > **Authors:** Venkata Sangaraju · Sudhir Vissa (SAGE7 AI)
-> **Date:** June 2026 | **arXiv categories:** cs.AI · cs.DB · cs.CR
+> **Date:** June 2026 
 
 ---
 
