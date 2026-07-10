@@ -79,12 +79,12 @@ for key, ylabel, subtitle, ax in panels:
         ax.text(bar.get_x() + bar.get_width() / 2, m + sd + 4,
                 label_val, ha="center", va="bottom", fontsize=8.5, fontweight="bold")
 
-fig.suptitle("Figure 1: Lineage-Aware vs. Existing Memory Systems\n(30-seed synthetic workload, mean ± std dev)",
+fig.suptitle("Lineage-Aware vs. Existing Memory Systems\n(30-seed synthetic workload, mean ± std dev)",
              fontsize=11, fontweight="bold", y=1.01)
 plt.tight_layout()
-plt.savefig("/sessions/cool-awesome-faraday/mnt/outputs/fig1_comparison_bars.pdf",
+plt.savefig("Lineage-Aware-Memory-paper/fig1_comparison_bars.pdf",
             bbox_inches="tight", format="pdf")
-plt.savefig("/sessions/cool-awesome-faraday/mnt/outputs/fig1_comparison_bars.png",
+plt.savefig("Lineage-Aware-Memory-paper/fig1_comparison_bars.png",
             bbox_inches="tight", dpi=200)
 plt.close()
 print("Saved fig1_comparison_bars")
@@ -154,12 +154,12 @@ ax.text(5.35, 3.7, "safe", fontsize=7.5, color=GREEN, ha="left")
 ax.text(5.35, 2.85, "blocked", fontsize=7.5, color=RED, ha="left")
 ax.text(8.9, 3.35, "write\nnew AMU", fontsize=7.5, color=GRAY, ha="center")
 
-ax.set_title("Figure 2: AMU Architecture — Lineage-Gated Retrieval and Conflict Detection",
+ax.set_title("AMU Architecture — Lineage-Gated Retrieval and Conflict Detection",
              fontsize=11, fontweight="bold", pad=8)
 plt.tight_layout()
-plt.savefig("/sessions/cool-awesome-faraday/mnt/outputs/fig2_architecture.pdf",
+plt.savefig("Lineage-Aware-Memory-paper/fig2_architecture.pdf",
             bbox_inches="tight", format="pdf")
-plt.savefig("/sessions/cool-awesome-faraday/mnt/outputs/fig2_architecture.png",
+plt.savefig("Lineage-Aware-Memory-paper/fig2_architecture.png",
             bbox_inches="tight", dpi=200)
 plt.close()
 print("Saved fig2_architecture")
@@ -182,7 +182,7 @@ ax.scatter([0], [0], color=GRAY, s=80, marker="D", label="No Memory (status quo)
 
 ax.set_xlabel("Memory Reuse Rate (%)", fontsize=10)
 ax.set_ylabel("Leak Rate (%)", fontsize=10)
-ax.set_title("Figure 3: Governance–Efficiency Tradeoff\n(each point = one of 30 random seeds)", fontsize=10.5)
+ax.set_title("Governance–Efficiency Tradeoff\n(each point = one of 30 random seeds)", fontsize=10.5)
 ax.legend(fontsize=9, framealpha=0.85)
 ax.set_xlim(-5, 105)
 ax.set_ylim(-2, 30)
@@ -194,11 +194,117 @@ ax.annotate("Ideal:\nhigh reuse +\nzero leakage",
             fontsize=8.5, color=GREEN)
 
 plt.tight_layout()
-plt.savefig("/sessions/cool-awesome-faraday/mnt/outputs/fig3_tradeoff.pdf",
+plt.savefig("Lineage-Aware-Memory-paper/fig3_tradeoff.pdf",
             bbox_inches="tight", format="pdf")
-plt.savefig("/sessions/cool-awesome-faraday/mnt/outputs/fig3_tradeoff.png",
+plt.savefig("Lineage-Aware-Memory-paper/fig3_tradeoff.png",
             bbox_inches="tight", dpi=200)
 plt.close()
 print("Saved fig3_tradeoff")
 
+
+# ── Figure 4: TPC-H vs Synthetic schema comparison ────────────────────────
+# (Hardcoded from sweep results — generated separately by tpch_experiment.py)
+fig, axes = plt.subplots(1, 2, figsize=(10, 4.2))
+
+schemas = ["Synthetic\n5-Table", "TPC-H\n8-Table"]
+naive_leaks  = [18.8, 25.5]
+naive_leak_sd = [3.65, 4.49]
+la_leaks     = [0.0, 0.0]
+
+naive_reuse  = [95.8, 95.8]
+la_reuse     = [82.6, 81.5]
+la_reuse_sd  = [2.29, 4.77]
+
+x = np.arange(len(schemas))
+w = 0.32
+
+ax = axes[0]
+b1 = ax.bar(x - w/2, naive_leaks,  width=w, label="Naive Shared",   color=RED,   edgecolor="white")
+b2 = ax.bar(x + w/2, la_leaks,     width=w, label="Lineage-Aware",  color=GREEN, edgecolor="white")
+ax.errorbar(x - w/2, naive_leaks,  yerr=naive_leak_sd, fmt="none", ecolor="#374151", capsize=4, elinewidth=1.5)
+ax.set_xticks(x); ax.set_xticklabels(schemas)
+ax.set_ylabel("Leak Rate (%)"); ax.set_ylim(0, 38)
+ax.set_title("Leak Rate by Schema", style="italic", fontsize=9)
+ax.legend(fontsize=8)
+for bar, v in zip(b1, naive_leaks):
+    ax.text(bar.get_x() + bar.get_width()/2, v + 1.2, f"{v:.1f}%",
+            ha="center", fontsize=8, fontweight="bold")
+ax.text(x[0]+w/2+0.02, 1.5, "0%", ha="center", fontsize=8, fontweight="bold", color=GREEN)
+ax.text(x[1]+w/2+0.02, 1.5, "0%", ha="center", fontsize=8, fontweight="bold", color=GREEN)
+
+ax = axes[1]
+b3 = ax.bar(x - w/2, naive_reuse, width=w, label="Naive Shared",  color=RED,   edgecolor="white")
+b4 = ax.bar(x + w/2, la_reuse,    width=w, label="Lineage-Aware", color=GREEN, edgecolor="white")
+ax.errorbar(x + w/2, la_reuse, yerr=la_reuse_sd, fmt="none", ecolor="#374151", capsize=4, elinewidth=1.5)
+ax.set_xticks(x); ax.set_xticklabels(schemas)
+ax.set_ylabel("Memory Reuse Rate (%)"); ax.set_ylim(0, 112)
+ax.set_title("Reuse Rate by Schema", style="italic", fontsize=9)
+ax.legend(fontsize=8)
+for bar, v in zip(list(b3) + list(b4), naive_reuse + la_reuse):
+    ax.text(bar.get_x() + bar.get_width()/2, v + 2, f"{v:.1f}%",
+            ha="center", fontsize=8, fontweight="bold")
+
+fig.suptitle("Synthetic vs. TPC-H Schema Comparison (30 seeds each)",
+             fontsize=11, fontweight="bold", y=1.01)
+plt.tight_layout()
+plt.savefig("Lineage-Aware-Memory-paper/fig4_tpch_comparison.pdf",
+            bbox_inches="tight", format="pdf")
+plt.savefig("Lineage-Aware-Memory-paper/fig4_tpch_comparison.png",
+            bbox_inches="tight", dpi=200)
+plt.close()
+print("Saved fig4_tpch_comparison")
+
+
+# ── Figure 5: Lineage-Completeness Degradation ───────────────────────────
+import json as _json, os as _os
+
+_deg_path = "degradation_results.json"
+if _os.path.exists(_deg_path):
+    with open(_deg_path) as _f:
+        _deg = _json.load(_f)
+
+    completeness_levels = [0.50, 0.75, 0.90, 0.95, 1.00]
+
+    fig, ax = plt.subplots(figsize=(7.5, 4.5))
+
+    for schema_key, label, marker, color in [
+        ("synthetic", "Synthetic 5-Table", "o", "#1D4ED8"),
+        ("tpch",      "TPC-H 8-Table",     "s", "#9333EA"),
+    ]:
+        means = [_deg[schema_key][str(c)]["leak_mean"] for c in completeness_levels]
+        sds   = [_deg[schema_key][str(c)]["leak_sd"]   for c in completeness_levels]
+
+        ax.plot(completeness_levels, means, marker=marker, color=color,
+                linewidth=2, markersize=7, label=label, zorder=3)
+        ax.fill_between(
+            completeness_levels,
+            [m - s for m, s in zip(means, sds)],
+            [m + s for m, s in zip(means, sds)],
+            color=color, alpha=0.15,
+        )
+
+    ax.axhline(y=0, color=GREEN, linestyle="--", linewidth=1.2, alpha=0.8,
+               label="Ideal (0% leak)")
+    ax.set_xlabel("Lineage Completeness (fraction of columns reported)", fontsize=10)
+    ax.set_ylabel("Leak Rate (%)", fontsize=10)
+    ax.set_title(
+        "Leak Rate vs. Lineage Completeness\n"
+        "(mean ± std dev, 30 seeds each; completeness=1.0 is honest reporting)",
+        fontsize=10.5,
+    )
+    ax.set_xticks(completeness_levels)
+    ax.set_xticklabels([f"{c:.2f}" for c in completeness_levels])
+    ax.set_ylim(-1, None)
+    ax.legend(fontsize=9)
+
+    plt.tight_layout()
+    plt.savefig("Lineage-Aware-Memory-paper/fig5_degradation.pdf", bbox_inches="tight", format="pdf")
+    plt.savefig("Lineage-Aware-Memory-paper/fig5_degradation.png", bbox_inches="tight", dpi=200)
+    plt.close()
+    print("Saved fig5_degradation")
+else:
+    print("Skipping fig5 — degradation_results.json not found. Run degradation_experiment.py first.")
+
+
 print("\nAll figures generated successfully.")
+

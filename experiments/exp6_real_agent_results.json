@@ -1,0 +1,209 @@
+{
+  "experiment": "Experiment 6: Real-Agent Integration",
+  "timestamp": "2026-06-29T04:12:24.545701",
+  "mode": "demo",
+  "llm_model": null,
+  "db": "Northwind SQLite (jpwhite3/northwind-SQLite3 schema, local synthetic data)",
+  "sensitive_registry": ["birthdate", "freight", "homephone", "unitprice"],
+  "departments": ["Finance", "Sales", "Operations", "HR"],
+  "scenarios": [
+    {
+      "id": "A",
+      "name": "Revenue by category",
+      "sensitive_col": "unitprice",
+      "expected": "Finance writes; Sales reuses; Operations blocked → conflict"
+    },
+    {
+      "id": "B",
+      "name": "Employee directory",
+      "sensitive_col": "homephone",
+      "expected": "HR writes; Finance reuses; Sales blocked → conflict"
+    },
+    {
+      "id": "C",
+      "name": "Orders by country",
+      "sensitive_col": "none",
+      "expected": "Finance writes; Operations reuses; Sales reuses"
+    }
+  ],
+  "round_trips": [
+    {
+      "label": "A1",
+      "scenario": "revenue_by_category",
+      "department": "Finance",
+      "action": "compute+write",
+      "blocked": false,
+      "blocking_tags": [],
+      "source_dept": "Finance",
+      "sql": "SELECT c.CategoryName, ROUND(SUM(od.UnitPrice * od.Quantity * (1.0 - od.Discount)), 2) AS TotalRevenue FROM Categories c JOIN Products p ON c.CategoryID = p.CategoryID JOIN \"Order Details\" od ON p.ProductID = od.ProductID GROUP BY c.CategoryName ORDER BY TotalRevenue DESC",
+      "lineage_steps": [
+        {"table": "categories",    "columns": ["categoryid", "categoryname"]},
+        {"table": "order_details", "columns": ["discount", "productid", "quantity", "unitprice"]},
+        {"table": "products",      "columns": ["categoryid", "productid"]}
+      ],
+      "sensitivity_tags": ["unitprice"],
+      "definition_hash": "3ec6aa3f6517",
+      "conflict": false,
+      "elapsed_ms": 2.687,
+      "question": "What is the total revenue for each product category?",
+      "result_preview": "Confections: 106658.35 | Condiments: 96452.89 | Grains/Cereals: 82212.44 | Seafood: 66324.17 | ..."
+    },
+    {
+      "label": "A2",
+      "scenario": "revenue_by_category",
+      "department": "Sales",
+      "action": "reuse",
+      "blocked": false,
+      "blocking_tags": [],
+      "source_dept": "Finance",
+      "sql": null,
+      "lineage_steps": [],
+      "sensitivity_tags": [],
+      "definition_hash": "3ec6aa3f6517",
+      "conflict": false,
+      "elapsed_ms": 0.009,
+      "question": "What is the total revenue for each product category?",
+      "result_preview": "[Retrieved from Finance AMU in memory]"
+    },
+    {
+      "label": "A3",
+      "scenario": "revenue_by_category",
+      "department": "Operations",
+      "action": "compute+write",
+      "blocked": true,
+      "blocking_tags": ["unitprice"],
+      "source_dept": "Operations",
+      "sql": "SELECT c.CategoryName, SUM(od.Quantity) AS TotalUnitsSold FROM Categories c JOIN Products p ON c.CategoryID = p.CategoryID JOIN \"Order Details\" od ON p.ProductID = od.ProductID GROUP BY c.CategoryName ORDER BY TotalUnitsSold DESC",
+      "lineage_steps": [
+        {"table": "categories",    "columns": ["categoryid", "categoryname"]},
+        {"table": "order_details", "columns": ["productid", "quantity"]},
+        {"table": "products",      "columns": ["categoryid", "productid"]}
+      ],
+      "sensitivity_tags": [],
+      "definition_hash": "520e3423b37a",
+      "conflict": true,
+      "elapsed_ms": 0.826,
+      "question": "What is the unit volume (quantity sold) by product category?",
+      "result_preview": "Confections: 3705 units | Condiments: 2846 units | Seafood: 2819 units | ..."
+    },
+    {
+      "label": "B1",
+      "scenario": "employee_directory",
+      "department": "HR",
+      "action": "compute+write",
+      "blocked": false,
+      "blocking_tags": [],
+      "source_dept": "HR",
+      "sql": "SELECT e.FirstName, e.LastName, e.Title, e.HomePhone, e.City, e.Country FROM Employees e ORDER BY e.LastName",
+      "lineage_steps": [
+        {"table": "employees", "columns": ["city", "country", "firstname", "homephone", "lastname", "title"]}
+      ],
+      "sensitivity_tags": ["homephone"],
+      "definition_hash": "fec16cf0fc1a",
+      "conflict": false,
+      "elapsed_ms": 0.47,
+      "question": "What are the employees' names, titles, and contact phone numbers?",
+      "result_preview": "Buchanan, Steven — Sales Manager — (71) 555-4848 — London | Davolio, Nancy — Sales Rep — (206) 555-9857 — Seattle | ..."
+    },
+    {
+      "label": "B2",
+      "scenario": "employee_directory",
+      "department": "Finance",
+      "action": "reuse",
+      "blocked": false,
+      "blocking_tags": [],
+      "source_dept": "HR",
+      "sql": null,
+      "lineage_steps": [],
+      "sensitivity_tags": [],
+      "definition_hash": "fec16cf0fc1a",
+      "conflict": false,
+      "elapsed_ms": 0.004,
+      "question": "What are the employees' names, titles, and contact phone numbers?",
+      "result_preview": "[Retrieved from HR AMU in memory]"
+    },
+    {
+      "label": "B3",
+      "scenario": "employee_directory",
+      "department": "Sales",
+      "action": "compute+write",
+      "blocked": true,
+      "blocking_tags": ["homephone"],
+      "source_dept": "Sales",
+      "sql": "SELECT e.FirstName, e.LastName, e.Title, e.HireDate, e.City FROM Employees e ORDER BY e.LastName",
+      "lineage_steps": [
+        {"table": "employees", "columns": ["city", "firstname", "hiredate", "lastname", "title"]}
+      ],
+      "sensitivity_tags": [],
+      "definition_hash": "80dca2bdc37f",
+      "conflict": true,
+      "elapsed_ms": 0.411,
+      "question": "What are the employee names and titles (no personal contact info)?",
+      "result_preview": "Buchanan, Steven — Sales Manager — 1993-10-17 — London | Davolio, Nancy — Sales Rep — 1992-05-01 — Seattle | ..."
+    },
+    {
+      "label": "C1",
+      "scenario": "orders_by_country",
+      "department": "Finance",
+      "action": "compute+write",
+      "blocked": false,
+      "blocking_tags": [],
+      "source_dept": "Finance",
+      "sql": "SELECT o.ShipCountry, COUNT(o.OrderID) AS OrderCount FROM Orders o GROUP BY o.ShipCountry ORDER BY OrderCount DESC",
+      "lineage_steps": [
+        {"table": "orders", "columns": ["orderid", "shipcountry"]}
+      ],
+      "sensitivity_tags": [],
+      "definition_hash": "f427f4dc64c9",
+      "conflict": false,
+      "elapsed_ms": 0.652,
+      "question": "How many orders were placed from each ship-to country?",
+      "result_preview": "UK: 24 | Brazil: 24 | USA: 21 | France: 21 | Mexico: 20 | ..."
+    },
+    {
+      "label": "C2",
+      "scenario": "orders_by_country",
+      "department": "Operations",
+      "action": "reuse",
+      "blocked": false,
+      "blocking_tags": [],
+      "source_dept": "Finance",
+      "sql": null,
+      "lineage_steps": [],
+      "sensitivity_tags": [],
+      "definition_hash": "f427f4dc64c9",
+      "conflict": false,
+      "elapsed_ms": 0.003,
+      "question": "How many orders were placed from each ship-to country?",
+      "result_preview": "[Retrieved from Finance AMU in memory]"
+    },
+    {
+      "label": "C3",
+      "scenario": "orders_by_country",
+      "department": "Sales",
+      "action": "reuse",
+      "blocked": false,
+      "blocking_tags": [],
+      "source_dept": "Finance",
+      "sql": null,
+      "lineage_steps": [],
+      "sensitivity_tags": [],
+      "definition_hash": "f427f4dc64c9",
+      "conflict": false,
+      "elapsed_ms": 0.003,
+      "question": "How many orders were placed from each ship-to country?",
+      "result_preview": "[Retrieved from Finance AMU in memory]"
+    }
+  ],
+  "aggregate": {
+    "total_round_trips": 9,
+    "reuse_count": 4,
+    "compute_count": 5,
+    "blocked_count": 2,
+    "conflict_count": 2,
+    "leaked_count": 0,
+    "reuse_rate": 0.444,
+    "leak_rate": 0.0
+  },
+  "elapsed_seconds": 0.005
+}

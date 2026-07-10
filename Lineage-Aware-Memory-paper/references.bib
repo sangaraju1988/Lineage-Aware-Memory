@@ -3,13 +3,13 @@
 %  All entries verified against arXiv / official sources, June 2026.
 % =============================================================================
 
-@inproceedings{packer2023memgpt,
+@article{packer2023memgpt,
   author    = {Charles Packer and Sarah Wooders and Kevin Lin and
-               Vivian Fang and Shishir G.\ Patil and Joseph E.\ Gonzalez},
+               Vivian Fang and Shishir G.\ Patil and Ion Stoica and
+               Joseph E.\ Gonzalez},
   title     = {{MemGPT}: Towards {LLM}s as Operating Systems},
-  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  journal   = {arXiv preprint arXiv:2310.08560},
   year      = {2023},
-  note      = {arXiv:2310.08560},
   url       = {https://arxiv.org/abs/2310.08560}
 }
 
@@ -146,4 +146,165 @@
   pages   = {881--906},
   year    = {2017},
   doi     = {10.1007/s00778-017-0486-1}
+}
+
+% ── Experiment 6: Real-agent / sqlglot references ─────────────────────────
+
+@misc{sqlglot2023,
+  author  = {Tobias Mao and contributors},
+  title   = {{sqlglot}: {SQL} Parser and Transpiler},
+  year    = {2023},
+  howpublished = {\url{https://github.com/tobymao/sqlglot}},
+  note    = {MIT Licence. Version 23+ used in this work}
+}
+
+@manual{northwind2000,
+  author  = {{Microsoft Corporation}},
+  title   = {Northwind Traders Sample Database},
+  year    = {2000},
+  note    = {Canonical fictional business dataset. Open-source {SQLite} port:
+             \url{https://github.com/jpwhite3/northwind-SQLite3}}
+}
+
+@misc{langchain2023,
+  author  = {Harrison Chase and contributors},
+  title   = {{LangChain}: Building Applications with {LLM}s through Composability},
+  year    = {2023},
+  howpublished = {\url{https://github.com/langchain-ai/langchain}},
+  note    = {MIT Licence}
+}
+
+@misc{ollama2024,
+  author  = {{Ollama contributors}},
+  title   = {Ollama: Run {LLM}s Locally},
+  year    = {2024},
+  howpublished = {\url{https://github.com/ollama/ollama}},
+  note    = {MIT Licence. Local {LLM} server used in Experiment~6}
+}
+
+% ── Added for IEEE Access revision: enterprise adoption / risk context ────
+
+@techreport{ibm2025breach,
+  author       = {{IBM Security}},
+  title        = {Cost of a Data Breach Report 2025},
+  institution  = {IBM},
+  year         = {2025},
+  url          = {https://www.ibm.com/reports/data-breach}
+}
+
+@misc{digitalapplied2026adoption,
+  author       = {{Digital Applied}},
+  title        = {{AI} Agent Adoption 2026: 120+ Enterprise Data Points},
+  howpublished = {Technical Report, aggregating Gartner and
+                  S\&P Global Market Intelligence / McKinsey survey data},
+  year         = {2026},
+  url          = {https://www.digitalapplied.com/blog/ai-agent-adoption-2026-enterprise-data-points}
+}
+
+@misc{snowflake2025osi,
+  author       = {{Snowflake, Salesforce, dbt Labs, BlackRock, and RelationalAI}},
+  title        = {Open Semantic Interchange ({OSI}): A Vendor-Neutral Semantic
+                  Layer Specification for {AI} and {BI}},
+  howpublished = {Industry Standard Initiative},
+  month        = {September},
+  year         = {2025},
+  url          = {https://www.snowflake.com/en/news/press-releases/snowflake-salesforce-dbt-labs-and-more-revolutionize-data-readiness-for-ai-with-open-semantic-interchange-initiative/}
+}
+
+% ── Added for IEEE Access revision: agent security / provenance-authorization ──
+
+@article{summers2026dataflow,
+  author  = {Charlie Summers and Eugene Wu},
+  title   = {Data Flow Control: Data Safety Policies for {AI} Agents},
+  journal = {arXiv preprint arXiv:2606.05679},
+  year    = {2026},
+  url     = {https://arxiv.org/abs/2606.05679}
+}
+
+@article{nguyen2026security,
+  author  = {Tam Nguyen and Moses Ndebugre and Dheeraj Arremsetty},
+  title   = {Security Considerations for Multi-Agent Systems},
+  journal = {arXiv preprint arXiv:2603.09002},
+  year    = {2026},
+  url     = {https://arxiv.org/abs/2603.09002}
+}
+
+@article{dehghantanha2026sok,
+  author  = {Ali Dehghantanha and Sajad Homayoun},
+  title   = {{SoK}: The Attack Surface of Agentic {AI} --- Tools, and Autonomy},
+  journal = {arXiv preprint arXiv:2603.22928},
+  year    = {2026},
+  url     = {https://arxiv.org/abs/2603.22928}
+}
+
+@article{wang2026landscape,
+  author  = {Peiran Wang and Xinfeng Li and Chong Xiang and Jinghuai Zhang and
+             Ying Li and Lixia Zhang and Xiaofeng Wang and Yuan Tian},
+  title   = {The Landscape of Prompt Injection Threats in {LLM} Agents:
+             From Taxonomy to Analysis},
+  journal = {arXiv preprint arXiv:2602.10453},
+  year    = {2026},
+  url     = {https://arxiv.org/abs/2602.10453}
+}
+
+@article{wang2026authgraph,
+  author  = {Peiran Wang and Ying Li and Yuan Tian},
+  title   = {Aligning Provenance with Authorization: A Dual-Graph Defense
+             for {LLM} Agents},
+  journal = {arXiv preprint arXiv:2605.26497},
+  year    = {2026},
+  url     = {https://arxiv.org/abs/2605.26497}
+}
+
+@inproceedings{naseh2025riddle,
+  author    = {Ali Naseh and Yuefeng Peng and Anshuman Suri and
+               Harsh Chaudhari and Alina Oprea and Amir Houmansadr},
+  title     = {Riddle Me This! Stealthy Membership Inference for
+               Retrieval-Augmented Generation},
+  booktitle = {Proceedings of the ACM Conference on Computer and
+               Communications Security (CCS)},
+  year      = {2025},
+  note      = {arXiv:2502.00306},
+  url       = {https://arxiv.org/abs/2502.00306}
+}
+
+@article{alizadeh2025leak,
+  author  = {Meysam Alizadeh and Zeynab Samei and Daria Stetsenko and
+             Fabrizio Gilardi},
+  title   = {Simple Prompt Injection Attacks Can Leak Personal Data
+             Observed by {LLM} Agents During Task Execution},
+  journal = {arXiv preprint arXiv:2506.01055},
+  year    = {2025},
+  url     = {https://arxiv.org/abs/2506.01055}
+}
+
+@article{abaev2026agentguardian,
+  author  = {Nadya Abaev and Denis Klimov and Gerard Levinov and
+             David Mimran and Yuval Elovici and Asaf Shabtai},
+  title   = {{AgentGuardian}: Learning Access Control Policies to
+             Govern {AI} Agent Behavior},
+  journal = {arXiv preprint arXiv:2601.10440},
+  year    = {2026},
+  url     = {https://arxiv.org/abs/2601.10440}
+}
+
+@article{zhou2025llmxdata,
+  author  = {Xuanhe Zhou and Junxuan He and Wei Zhou and Haodong Chen and
+             Zirui Tang and Haoyu Zhao and Xin Tong and Guoliang Li and
+             Youmin Chen and Jun Zhou and Zhaojun Sun and Binyuan Hui and
+             Shuo Wang and Conghui He and Zhiyuan Liu and Jingren Zhou and
+             Fan Wu},
+  title   = {A Survey of {LLM} $\times$ {DATA}},
+  journal = {arXiv preprint arXiv:2505.18458},
+  year    = {2025},
+  url     = {https://arxiv.org/abs/2505.18458}
+}
+
+@article{subramaniam2024deploi,
+  author  = {Pranav Subramaniam and Sanjay Krishnan},
+  title   = {{DePLOI}: Applying {NL2SQL} to Synthesize and Audit
+             Database Access Control},
+  journal = {arXiv preprint arXiv:2402.07332},
+  year    = {2024},
+  url     = {https://arxiv.org/abs/2402.07332}
 }

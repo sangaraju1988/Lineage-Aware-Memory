@@ -24,3 +24,10 @@ env/
 .vscode/
 .idea/
 *.swp
+
+# Generated/runtime databases (recreated by setup scripts)
+*.db
+*.db-journal
+
+# Stray archives / scratch files
+*.zip

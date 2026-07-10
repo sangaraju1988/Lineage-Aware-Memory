@@ -1,0 +1,196 @@
+{
+  "synthetic_leak": {
+    "mean_naive": 18.8,
+    "sd_naive": 3.6513,
+    "mean_la": 0.0,
+    "sd_la": 0.0,
+    "n_seeds": 30,
+    "mann_whitney_U": 900.0,
+    "p_two_sided": 0.0,
+    "p_one_sided": 0.0,
+    "bootstrap_diff": {
+      "observed_diff": 18.8,
+      "ci_lo": 17.4467,
+      "ci_hi": 20.11,
+      "p_bootstrap": 0.0
+    }
+  },
+  "synthetic_reuse": {
+    "mean_naive": 95.8,
+    "sd_naive": 0.0,
+    "mean_la": 82.6133,
+    "sd_la": 2.2891,
+    "n_seeds": 30,
+    "mann_whitney_U": 900.0,
+    "p_two_sided": 0.0,
+    "p_one_sided": 0.0,
+    "bootstrap_diff": {
+      "observed_diff": 13.1867,
+      "ci_lo": 12.3733,
+      "ci_hi": 13.9933,
+      "p_bootstrap": 0.0
+    }
+  },
+  "tpch_leak": {
+    "mean_naive": 25.4633,
+    "sd_naive": 4.4864,
+    "mean_la": 0.0,
+    "sd_la": 0.0,
+    "n_seeds": 30,
+    "mann_whitney_U": 900.0,
+    "p_two_sided": 0.0,
+    "p_one_sided": 0.0,
+    "bootstrap_diff": {
+      "observed_diff": 25.4633,
+      "ci_lo": 23.7967,
+      "ci_hi": 27.02,
+      "p_bootstrap": 0.0
+    }
+  },
+  "tpch_reuse": {
+    "mean_naive": 95.8,
+    "sd_naive": 0.0,
+    "mean_la": 81.5533,
+    "sd_la": 4.7686,
+    "n_seeds": 30,
+    "mann_whitney_U": 900.0,
+    "p_two_sided": 0.0,
+    "p_one_sided": 0.0,
+    "bootstrap_diff": {
+      "observed_diff": 14.2467,
+      "ci_lo": 12.5567,
+      "ci_hi": 15.9433,
+      "p_bootstrap": 0.0
+    }
+  },
+  "degradation": {
+    "synthetic_0.5_vs_1.0": {
+      "mean_c=0.5": 16.2773,
+      "sd_c=0.5": 3.3042,
+      "mean_c=1.0": 0.0,
+      "sd_c=1.0": 0.0,
+      "n_seeds": 30,
+      "mann_whitney_U": 900.0,
+      "p_two_sided": 0.0,
+      "p_one_sided": 0.0,
+      "bootstrap_diff": {
+        "observed_diff": 16.2773,
+        "ci_lo": 15.082,
+        "ci_hi": 17.4443,
+        "p_bootstrap": 0.0
+      }
+    },
+    "synthetic_0.75_vs_1.0": {
+      "mean_c=0.75": 0.0,
+      "sd_c=0.75": 0.0,
+      "mean_c=1.0": 0.0,
+      "sd_c=1.0": 0.0,
+      "n_seeds": 30,
+      "mann_whitney_U": 450.0,
+      "p_two_sided": 1.0,
+      "p_one_sided": 1.0,
+      "bootstrap_diff": {
+        "observed_diff": 0.0,
+        "ci_lo": 0.0,
+        "ci_hi": 0.0,
+        "p_bootstrap": 1.0
+      }
+    },
+    "synthetic_0.9_vs_1.0": {
+      "mean_c=0.9": 0.0,
+      "sd_c=0.9": 0.0,
+      "mean_c=1.0": 0.0,
+      "sd_c=1.0": 0.0,
+      "n_seeds": 30,
+      "mann_whitney_U": 450.0,
+      "p_two_sided": 1.0,
+      "p_one_sided": 1.0,
+      "bootstrap_diff": {
+        "observed_diff": 0.0,
+        "ci_lo": 0.0,
+        "ci_hi": 0.0,
+        "p_bootstrap": 1.0
+      }
+    },
+    "synthetic_0.95_vs_1.0": {
+      "mean_c=0.95": 0.0,
+      "sd_c=0.95": 0.0,
+      "mean_c=1.0": 0.0,
+      "sd_c=1.0": 0.0,
+      "n_seeds": 30,
+      "mann_whitney_U": 450.0,
+      "p_two_sided": 1.0,
+      "p_one_sided": 1.0,
+      "bootstrap_diff": {
+        "observed_diff": 0.0,
+        "ci_lo": 0.0,
+        "ci_hi": 0.0,
+        "p_bootstrap": 1.0
+      }
+    },
+    "tpch_0.5_vs_1.0": {
+      "mean_c=0.5": 10.2787,
+      "sd_c=0.5": 4.6522,
+      "mean_c=1.0": 0.0,
+      "sd_c=1.0": 0.0,
+      "n_seeds": 30,
+      "mann_whitney_U": 885.0,
+      "p_two_sided": 0.0,
+      "p_one_sided": 0.0,
+      "bootstrap_diff": {
+        "observed_diff": 10.2787,
+        "ci_lo": 8.6117,
+        "ci_hi": 12.0007,
+        "p_bootstrap": 0.0
+      }
+    },
+    "tpch_0.75_vs_1.0": {
+      "mean_c=0.75": 0.8613,
+      "sd_c=0.75": 1.0869,
+      "mean_c=1.0": 0.0,
+      "sd_c=1.0": 0.0,
+      "n_seeds": 30,
+      "mann_whitney_U": 690.0,
+      "p_two_sided": 5e-06,
+      "p_one_sided": 3e-06,
+      "bootstrap_diff": {
+        "observed_diff": 0.8613,
+        "ci_lo": 0.5003,
+        "ci_hi": 1.278,
+        "p_bootstrap": 0.0
+      }
+    },
+    "tpch_0.9_vs_1.0": {
+      "mean_c=0.9": 0.0,
+      "sd_c=0.9": 0.0,
+      "mean_c=1.0": 0.0,
+      "sd_c=1.0": 0.0,
+      "n_seeds": 30,
+      "mann_whitney_U": 450.0,
+      "p_two_sided": 1.0,
+      "p_one_sided": 1.0,
+      "bootstrap_diff": {
+        "observed_diff": 0.0,
+        "ci_lo": 0.0,
+        "ci_hi": 0.0,
+        "p_bootstrap": 1.0
+      }
+    },
+    "tpch_0.95_vs_1.0": {
+      "mean_c=0.95": 0.0,
+      "sd_c=0.95": 0.0,
+      "mean_c=1.0": 0.0,
+      "sd_c=1.0": 0.0,
+      "n_seeds": 30,
+      "mann_whitney_U": 450.0,
+      "p_two_sided": 1.0,
+      "p_one_sided": 1.0,
+      "bootstrap_diff": {
+        "observed_diff": 0.0,
+        "ci_lo": 0.0,
+        "ci_hi": 0.0,
+        "p_bootstrap": 1.0
+      }
+    }
+  }
+}

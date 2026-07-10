@@ -4,7 +4,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 
-with open("/home/claude/lineage_playground/sweep_raw.json") as f:
+with open("sweep_raw.json") as f:
     all_rows = json.load(f)
 
 systems = ["no_memory", "naive", "lineage_aware"]
@@ -46,5 +46,5 @@ for key, title, ax in metrics:
 fig.suptitle("Lineage-Aware Memory Governance vs. Existing Approaches\n(30-seed synthetic workload, mean \u00b1 std dev)",
              fontsize=12, fontweight="bold")
 plt.tight_layout(rect=[0, 0, 1, 0.90])
-plt.savefig("/home/claude/lineage_playground/results_chart.png", dpi=160)
+plt.savefig("results_chart.png", dpi=160)
 print("Saved results_chart.png")

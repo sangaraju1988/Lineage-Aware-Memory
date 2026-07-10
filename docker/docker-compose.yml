@@ -1,0 +1,65 @@
+version: "3.9"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Lineage-Aware Memory Governance — Docker Stack
+# ─────────────────────────────────────────────────────────────────────────────
+#
+# Services:
+#   ollama   — local LLM server (llama3.2:3b, ~2 GB download on first run)
+#   agent    — Python experiment container (real_agent/experiment.py)
+#
+# Quick start (demo mode — no LLM, instant):
+#   docker compose run --rm agent
+#
+# Full LLM mode (Ollama generates SQL):
+#   docker compose up ollama -d          # start Ollama in background
+#   docker compose run --rm agent --llm  # run experiment with LLM
+#
+# ─────────────────────────────────────────────────────────────────────────────
+
+services:
+
+  # ── Ollama: local LLM server ──────────────────────────────────────────────
+  ollama:
+    image: ollama/ollama:latest
+    container_name: lineage_ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      # Persist downloaded models across container restarts
+      - ollama_models:/root/.ollama
+    restart: unless-stopped
+    # Ollama will pull the model on first use.
+    # To pre-pull: docker compose exec ollama ollama pull llama3.2:3b
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:11434/api/tags"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  # ── Agent: Python experiment container ───────────────────────────────────
+  agent:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: lineage_agent
+    depends_on:
+      ollama:
+        condition: service_healthy
+    environment:
+      - OLLAMA_BASE_URL=http://ollama:11434
+      - OLLAMA_MODEL=${OLLAMA_MODEL:-llama3.2:3b}
+      - PYTHONUNBUFFERED=1
+    volumes:
+      # Mount the entire project so results are written to host filesystem
+      - ..:/workspace
+    working_dir: /workspace
+    # Default: demo mode (no Ollama needed). Override with:
+    #   docker compose run --rm agent --llm
+    entrypoint: ["python", "-m", "real_agent.experiment"]
+    command: []
+
+volumes:
+  ollama_models:
+    name: lineage_ollama_models

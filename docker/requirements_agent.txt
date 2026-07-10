@@ -1,0 +1,21 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Requirements for real_agent/ — Experiment 6: sqlglot + Northwind + Ollama
+# ─────────────────────────────────────────────────────────────────────────────
+
+# SQL parsing and lineage extraction (core dependency)
+sqlglot>=23.0.0
+
+# HTTP download (Northwind DB setup)
+requests>=2.31.0
+
+# ── LLM / Agent dependencies (optional — required only for --llm mode) ──────
+# Comment these out if running in demo mode only to save space.
+langchain>=0.2.0
+langchain-community>=0.2.0
+langchain-ollama>=0.1.0
+
+# ── Existing paper experiment dependencies ────────────────────────────────────
+matplotlib>=3.7.0
+numpy>=1.24.0
+scipy>=1.11.0
+pandas>=2.0.0

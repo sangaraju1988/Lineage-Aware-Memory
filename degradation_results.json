@@ -1,0 +1,2196 @@
+{
+  "synthetic": {
+    "0.5": {
+      "completeness": 0.5,
+      "leak_mean": 16.28,
+      "leak_sd": 3.3,
+      "reuse_mean": 95.17,
+      "reuse_sd": 0.69,
+      "per_seed": [
+        {
+          "leak_rate": 19.17,
+          "reuse_rate": 94.17,
+          "leaked": 23,
+          "reused": 113,
+          "total": 120
+        },
+        {
+          "leak_rate": 22.5,
+          "reuse_rate": 95.0,
+          "leaked": 27,
+          "reused": 114,
+          "total": 120
+        },
+        {
+          "leak_rate": 16.67,
+          "reuse_rate": 95.83,
+          "leaked": 20,
+          "reused": 115,
+          "total": 120
+        },
+        {
+          "leak_rate": 18.33,
+          "reuse_rate": 95.0,
+          "leaked": 22,
+          "reused": 114,
+          "total": 120
+        },
+        {
+          "leak_rate": 10.83,
+          "reuse_rate": 95.0,
+          "leaked": 13,
+          "reused": 114,
+          "total": 120
+        },
+        {
+          "leak_rate": 17.5,
+          "reuse_rate": 95.0,
+          "leaked": 21,
+          "reused": 114,
+          "total": 120
+        },
+        {
+          "leak_rate": 13.33,
+          "reuse_rate": 95.0,
+          "leaked": 16,
+          "reused": 114,
+          "total": 120
+        },
+        {
+          "leak_rate": 15.83,
+          "reuse_rate": 95.83,
+          "leaked": 19,
+          "reused": 115,
+          "total": 120
+        },
+        {
+          "leak_rate": 10.83,
+          "reuse_rate": 94.17,
+          "leaked": 13,
+          "reused": 113,
+          "total": 120
+        },
+        {
+          "leak_rate": 17.5,
+          "reuse_rate": 95.0,
+          "leaked": 21,
+          "reused": 114,
+          "total": 120
+        },
+        {
+          "leak_rate": 12.5,
+          "reuse_rate": 94.17,
+          "leaked": 15,
+          "reused": 113,
+          "total": 120
+        },
+        {
+          "leak_rate": 20.83,
+          "reuse_rate": 95.0,
+          "leaked": 25,
+          "reused": 114,
+          "total": 120
+        },
+        {
+          "leak_rate": 14.17,
+          "reuse_rate": 95.83,
+          "leaked": 17,
+          "reused": 115,
+          "total": 120
+        },
+        {
+          "leak_rate": 10.0,
+          "reuse_rate": 95.83,
+          "leaked": 12,
+          "reused": 115,
+          "total": 120
+        },
+        {
+          "leak_rate": 15.0,
+          "reuse_rate": 95.0,
+          "leaked": 18,
+          "reused": 114,
+          "total": 120
+        },
+        {
+          "leak_rate": 20.83,
+          "reuse_rate": 95.0,
+          "leaked": 25,
+          "reused": 114,
+          "total": 120
+        },
+        {
+          "leak_rate": 13.33,
+          "reuse_rate": 95.83,
+          "leaked": 16,
+          "reused": 115,
+          "total": 120
+        },
+        {
+          "leak_rate": 20.83,
+          "reuse_rate": 95.83,
+          "leaked": 25,
+          "reused": 115,
+          "total": 120
+        },
+        {
+          "leak_rate": 10.83,
+          "reuse_rate": 94.17,
+          "leaked": 13,
+          "reused": 113,
+          "total": 120
+        },
+        {
+          "leak_rate": 17.5,
+          "reuse_rate": 95.83,
+          "leaked": 21,
+          "reused": 115,
+          "total": 120
+        },
+        {
+          "leak_rate": 16.67,
+          "reuse_rate": 94.17,
+          "leaked": 20,
+          "reused": 113,
+          "total": 120
+        },
+        {
+          "leak_rate": 19.17,
+          "reuse_rate": 95.83,
+          "leaked": 23,
+          "reused": 115,
+          "total": 120
+        },
+        {
+          "leak_rate": 15.0,
+          "reuse_rate": 93.33,
+          "leaked": 18,
+          "reused": 112,
+          "total": 120
+        },
+        {
+          "leak_rate": 15.83,
+          "reuse_rate": 95.83,
+          "leaked": 19,
+          "reused": 115,
+          "total": 120
+        },
+        {
+          "leak_rate": 16.67,
+          "reuse_rate": 95.0,
+          "leaked": 20,
+          "reused": 114,
+          "total": 120
+        },
+        {
+          "leak_rate": 19.17,
+          "reuse_rate": 95.83,
+          "leaked": 23,
+          "reused": 115,
+          "total": 120
+        },
+        {
+          "leak_rate": 16.67,
+          "reuse_rate": 95.83,
+          "leaked": 20,
+          "reused": 115,
+          "total": 120
+        },
+        {
+          "leak_rate": 17.5,
+          "reuse_rate": 95.0,
+          "leaked": 21,
+          "reused": 114,
+          "total": 120
+        },
+        {
+          "leak_rate": 13.33,
+          "reuse_rate": 95.83,
+          "leaked": 16,
+          "reused": 115,
+          "total": 120
+        },
+        {
+          "leak_rate": 20.0,
+          "reuse_rate": 95.83,
+          "leaked": 24,
+          "reused": 115,
+          "total": 120
+        }
+      ]
+    },
+    "0.75": {
+      "completeness": 0.75,
+      "leak_mean": 0.0,
+      "leak_sd": 0.0,
+      "reuse_mean": 82.61,
+      "reuse_sd": 2.28,
+      "per_seed": [
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 80.83,
+          "leaked": 0,
+          "reused": 97,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 77.5,
+          "leaked": 0,
+          "reused": 93,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 80.83,
+          "leaked": 0,
+          "reused": 97,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 80.0,
+          "leaked": 0,
+          "reused": 96,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 85.83,
+          "leaked": 0,
+          "reused": 103,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 80.0,
+          "leaked": 0,
+          "reused": 96,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 83.33,
+          "leaked": 0,
+          "reused": 100,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 83.33,
+          "leaked": 0,
+          "reused": 100,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 83.33,
+          "leaked": 0,
+          "reused": 100,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 81.67,
+          "leaked": 0,
+          "reused": 98,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 82.5,
+          "leaked": 0,
+          "reused": 99,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 81.67,
+          "leaked": 0,
+          "reused": 98,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 86.67,
+          "leaked": 0,
+          "reused": 104,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 86.67,
+          "leaked": 0,
+          "reused": 104,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 82.5,
+          "leaked": 0,
+          "reused": 99,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 81.67,
+          "leaked": 0,
+          "reused": 98,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 84.17,
+          "leaked": 0,
+          "reused": 101,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 81.67,
+          "leaked": 0,
+          "reused": 98,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 84.17,
+          "leaked": 0,
+          "reused": 101,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 81.67,
+          "leaked": 0,
+          "reused": 98,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 81.67,
+          "leaked": 0,
+          "reused": 98,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 79.17,
+          "leaked": 0,
+          "reused": 95,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 85.0,
+          "leaked": 0,
+          "reused": 102,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 85.0,
+          "leaked": 0,
+          "reused": 102,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 80.83,
+          "leaked": 0,
+          "reused": 97,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 83.33,
+          "leaked": 0,
+          "reused": 100,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 80.83,
+          "leaked": 0,
+          "reused": 97,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 86.67,
+          "leaked": 0,
+          "reused": 104,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 85.0,
+          "leaked": 0,
+          "reused": 102,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 80.83,
+          "leaked": 0,
+          "reused": 97,
+          "total": 120
+        }
+      ]
+    },
+    "0.9": {
+      "completeness": 0.9,
+      "leak_mean": 0.0,
+      "leak_sd": 0.0,
+      "reuse_mean": 82.61,
+      "reuse_sd": 2.28,
+      "per_seed": [
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 80.83,
+          "leaked": 0,
+          "reused": 97,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 77.5,
+          "leaked": 0,
+          "reused": 93,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 80.83,
+          "leaked": 0,
+          "reused": 97,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 80.0,
+          "leaked": 0,
+          "reused": 96,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 85.83,
+          "leaked": 0,
+          "reused": 103,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 80.0,
+          "leaked": 0,
+          "reused": 96,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 83.33,
+          "leaked": 0,
+          "reused": 100,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 83.33,
+          "leaked": 0,
+          "reused": 100,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 83.33,
+          "leaked": 0,
+          "reused": 100,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 81.67,
+          "leaked": 0,
+          "reused": 98,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 82.5,
+          "leaked": 0,
+          "reused": 99,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 81.67,
+          "leaked": 0,
+          "reused": 98,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 86.67,
+          "leaked": 0,
+          "reused": 104,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 86.67,
+          "leaked": 0,
+          "reused": 104,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 82.5,
+          "leaked": 0,
+          "reused": 99,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 81.67,
+          "leaked": 0,
+          "reused": 98,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 84.17,
+          "leaked": 0,
+          "reused": 101,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 81.67,
+          "leaked": 0,
+          "reused": 98,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 84.17,
+          "leaked": 0,
+          "reused": 101,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 81.67,
+          "leaked": 0,
+          "reused": 98,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 81.67,
+          "leaked": 0,
+          "reused": 98,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 79.17,
+          "leaked": 0,
+          "reused": 95,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 85.0,
+          "leaked": 0,
+          "reused": 102,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 85.0,
+          "leaked": 0,
+          "reused": 102,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 80.83,
+          "leaked": 0,
+          "reused": 97,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 83.33,
+          "leaked": 0,
+          "reused": 100,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 80.83,
+          "leaked": 0,
+          "reused": 97,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 86.67,
+          "leaked": 0,
+          "reused": 104,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 85.0,
+          "leaked": 0,
+          "reused": 102,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 80.83,
+          "leaked": 0,
+          "reused": 97,
+          "total": 120
+        }
+      ]
+    },
+    "0.95": {
+      "completeness": 0.95,
+      "leak_mean": 0.0,
+      "leak_sd": 0.0,
+      "reuse_mean": 82.61,
+      "reuse_sd": 2.28,
+      "per_seed": [
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 80.83,
+          "leaked": 0,
+          "reused": 97,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 77.5,
+          "leaked": 0,
+          "reused": 93,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 80.83,
+          "leaked": 0,
+          "reused": 97,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 80.0,
+          "leaked": 0,
+          "reused": 96,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 85.83,
+          "leaked": 0,
+          "reused": 103,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 80.0,
+          "leaked": 0,
+          "reused": 96,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 83.33,
+          "leaked": 0,
+          "reused": 100,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 83.33,
+          "leaked": 0,
+          "reused": 100,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 83.33,
+          "leaked": 0,
+          "reused": 100,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 81.67,
+          "leaked": 0,
+          "reused": 98,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 82.5,
+          "leaked": 0,
+          "reused": 99,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 81.67,
+          "leaked": 0,
+          "reused": 98,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 86.67,
+          "leaked": 0,
+          "reused": 104,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 86.67,
+          "leaked": 0,
+          "reused": 104,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 82.5,
+          "leaked": 0,
+          "reused": 99,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 81.67,
+          "leaked": 0,
+          "reused": 98,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 84.17,
+          "leaked": 0,
+          "reused": 101,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 81.67,
+          "leaked": 0,
+          "reused": 98,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 84.17,
+          "leaked": 0,
+          "reused": 101,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 81.67,
+          "leaked": 0,
+          "reused": 98,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 81.67,
+          "leaked": 0,
+          "reused": 98,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 79.17,
+          "leaked": 0,
+          "reused": 95,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 85.0,
+          "leaked": 0,
+          "reused": 102,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 85.0,
+          "leaked": 0,
+          "reused": 102,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 80.83,
+          "leaked": 0,
+          "reused": 97,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 83.33,
+          "leaked": 0,
+          "reused": 100,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 80.83,
+          "leaked": 0,
+          "reused": 97,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 86.67,
+          "leaked": 0,
+          "reused": 104,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 85.0,
+          "leaked": 0,
+          "reused": 102,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 80.83,
+          "leaked": 0,
+          "reused": 97,
+          "total": 120
+        }
+      ]
+    },
+    "1.0": {
+      "completeness": 1.0,
+      "leak_mean": 0.0,
+      "leak_sd": 0.0,
+      "reuse_mean": 82.61,
+      "reuse_sd": 2.28,
+      "per_seed": [
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 80.83,
+          "leaked": 0,
+          "reused": 97,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 77.5,
+          "leaked": 0,
+          "reused": 93,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 80.83,
+          "leaked": 0,
+          "reused": 97,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 80.0,
+          "leaked": 0,
+          "reused": 96,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 85.83,
+          "leaked": 0,
+          "reused": 103,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 80.0,
+          "leaked": 0,
+          "reused": 96,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 83.33,
+          "leaked": 0,
+          "reused": 100,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 83.33,
+          "leaked": 0,
+          "reused": 100,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 83.33,
+          "leaked": 0,
+          "reused": 100,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 81.67,
+          "leaked": 0,
+          "reused": 98,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 82.5,
+          "leaked": 0,
+          "reused": 99,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 81.67,
+          "leaked": 0,
+          "reused": 98,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 86.67,
+          "leaked": 0,
+          "reused": 104,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 86.67,
+          "leaked": 0,
+          "reused": 104,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 82.5,
+          "leaked": 0,
+          "reused": 99,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 81.67,
+          "leaked": 0,
+          "reused": 98,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 84.17,
+          "leaked": 0,
+          "reused": 101,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 81.67,
+          "leaked": 0,
+          "reused": 98,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 84.17,
+          "leaked": 0,
+          "reused": 101,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 81.67,
+          "leaked": 0,
+          "reused": 98,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 81.67,
+          "leaked": 0,
+          "reused": 98,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 79.17,
+          "leaked": 0,
+          "reused": 95,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 85.0,
+          "leaked": 0,
+          "reused": 102,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 85.0,
+          "leaked": 0,
+          "reused": 102,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 80.83,
+          "leaked": 0,
+          "reused": 97,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 83.33,
+          "leaked": 0,
+          "reused": 100,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 80.83,
+          "leaked": 0,
+          "reused": 97,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 86.67,
+          "leaked": 0,
+          "reused": 104,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 85.0,
+          "leaked": 0,
+          "reused": 102,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 80.83,
+          "leaked": 0,
+          "reused": 97,
+          "total": 120
+        }
+      ]
+    }
+  },
+  "tpch": {
+    "0.5": {
+      "completeness": 0.5,
+      "leak_mean": 10.28,
+      "leak_sd": 4.65,
+      "reuse_mean": 90.0,
+      "reuse_sd": 4.33,
+      "per_seed": [
+        {
+          "leak_rate": 12.5,
+          "reuse_rate": 90.0,
+          "leaked": 15,
+          "reused": 108,
+          "total": 120
+        },
+        {
+          "leak_rate": 11.67,
+          "reuse_rate": 90.83,
+          "leaked": 14,
+          "reused": 109,
+          "total": 120
+        },
+        {
+          "leak_rate": 11.67,
+          "reuse_rate": 94.17,
+          "leaked": 14,
+          "reused": 113,
+          "total": 120
+        },
+        {
+          "leak_rate": 5.0,
+          "reuse_rate": 88.33,
+          "leaked": 6,
+          "reused": 106,
+          "total": 120
+        },
+        {
+          "leak_rate": 10.0,
+          "reuse_rate": 91.67,
+          "leaked": 12,
+          "reused": 110,
+          "total": 120
+        },
+        {
+          "leak_rate": 3.33,
+          "reuse_rate": 90.0,
+          "leaked": 4,
+          "reused": 108,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 80.0,
+          "leaked": 0,
+          "reused": 96,
+          "total": 120
+        },
+        {
+          "leak_rate": 10.0,
+          "reuse_rate": 88.33,
+          "leaked": 12,
+          "reused": 106,
+          "total": 120
+        },
+        {
+          "leak_rate": 7.5,
+          "reuse_rate": 87.5,
+          "leaked": 9,
+          "reused": 105,
+          "total": 120
+        },
+        {
+          "leak_rate": 5.83,
+          "reuse_rate": 76.67,
+          "leaked": 7,
+          "reused": 92,
+          "total": 120
+        },
+        {
+          "leak_rate": 2.5,
+          "reuse_rate": 92.5,
+          "leaked": 3,
+          "reused": 111,
+          "total": 120
+        },
+        {
+          "leak_rate": 19.17,
+          "reuse_rate": 95.0,
+          "leaked": 23,
+          "reused": 114,
+          "total": 120
+        },
+        {
+          "leak_rate": 14.17,
+          "reuse_rate": 95.0,
+          "leaked": 17,
+          "reused": 114,
+          "total": 120
+        },
+        {
+          "leak_rate": 12.5,
+          "reuse_rate": 90.83,
+          "leaked": 15,
+          "reused": 109,
+          "total": 120
+        },
+        {
+          "leak_rate": 9.17,
+          "reuse_rate": 94.17,
+          "leaked": 11,
+          "reused": 113,
+          "total": 120
+        },
+        {
+          "leak_rate": 8.33,
+          "reuse_rate": 86.67,
+          "leaked": 10,
+          "reused": 104,
+          "total": 120
+        },
+        {
+          "leak_rate": 13.33,
+          "reuse_rate": 86.67,
+          "leaked": 16,
+          "reused": 104,
+          "total": 120
+        },
+        {
+          "leak_rate": 14.17,
+          "reuse_rate": 90.83,
+          "leaked": 17,
+          "reused": 109,
+          "total": 120
+        },
+        {
+          "leak_rate": 6.67,
+          "reuse_rate": 91.67,
+          "leaked": 8,
+          "reused": 110,
+          "total": 120
+        },
+        {
+          "leak_rate": 10.83,
+          "reuse_rate": 91.67,
+          "leaked": 13,
+          "reused": 110,
+          "total": 120
+        },
+        {
+          "leak_rate": 16.67,
+          "reuse_rate": 93.33,
+          "leaked": 20,
+          "reused": 112,
+          "total": 120
+        },
+        {
+          "leak_rate": 9.17,
+          "reuse_rate": 93.33,
+          "leaked": 11,
+          "reused": 112,
+          "total": 120
+        },
+        {
+          "leak_rate": 12.5,
+          "reuse_rate": 87.5,
+          "leaked": 15,
+          "reused": 105,
+          "total": 120
+        },
+        {
+          "leak_rate": 13.33,
+          "reuse_rate": 90.83,
+          "leaked": 16,
+          "reused": 109,
+          "total": 120
+        },
+        {
+          "leak_rate": 11.67,
+          "reuse_rate": 93.33,
+          "leaked": 14,
+          "reused": 112,
+          "total": 120
+        },
+        {
+          "leak_rate": 21.67,
+          "reuse_rate": 95.0,
+          "leaked": 26,
+          "reused": 114,
+          "total": 120
+        },
+        {
+          "leak_rate": 11.67,
+          "reuse_rate": 90.83,
+          "leaked": 14,
+          "reused": 109,
+          "total": 120
+        },
+        {
+          "leak_rate": 10.0,
+          "reuse_rate": 81.67,
+          "leaked": 12,
+          "reused": 98,
+          "total": 120
+        },
+        {
+          "leak_rate": 4.17,
+          "reuse_rate": 88.33,
+          "leaked": 5,
+          "reused": 106,
+          "total": 120
+        },
+        {
+          "leak_rate": 9.17,
+          "reuse_rate": 93.33,
+          "leaked": 11,
+          "reused": 112,
+          "total": 120
+        }
+      ]
+    },
+    "0.75": {
+      "completeness": 0.75,
+      "leak_mean": 0.86,
+      "leak_sd": 1.09,
+      "reuse_mean": 81.69,
+      "reuse_sd": 4.71,
+      "per_seed": [
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 79.17,
+          "leaked": 0,
+          "reused": 95,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 80.0,
+          "leaked": 0,
+          "reused": 96,
+          "total": 120
+        },
+        {
+          "leak_rate": 1.67,
+          "reuse_rate": 84.17,
+          "leaked": 2,
+          "reused": 101,
+          "total": 120
+        },
+        {
+          "leak_rate": 1.67,
+          "reuse_rate": 86.67,
+          "leaked": 2,
+          "reused": 104,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 85.83,
+          "leaked": 0,
+          "reused": 103,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 86.67,
+          "leaked": 0,
+          "reused": 104,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 80.0,
+          "leaked": 0,
+          "reused": 96,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.83,
+          "reuse_rate": 80.0,
+          "leaked": 1,
+          "reused": 96,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 80.83,
+          "leaked": 0,
+          "reused": 97,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.83,
+          "reuse_rate": 71.67,
+          "leaked": 1,
+          "reused": 86,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.83,
+          "reuse_rate": 90.83,
+          "leaked": 1,
+          "reused": 109,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.83,
+          "reuse_rate": 78.33,
+          "leaked": 1,
+          "reused": 94,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 83.33,
+          "leaked": 0,
+          "reused": 100,
+          "total": 120
+        },
+        {
+          "leak_rate": 1.67,
+          "reuse_rate": 83.33,
+          "leaked": 2,
+          "reused": 100,
+          "total": 120
+        },
+        {
+          "leak_rate": 1.67,
+          "reuse_rate": 88.33,
+          "leaked": 2,
+          "reused": 106,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.83,
+          "reuse_rate": 80.0,
+          "leaked": 1,
+          "reused": 96,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 74.17,
+          "leaked": 0,
+          "reused": 89,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 80.0,
+          "leaked": 0,
+          "reused": 96,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 85.83,
+          "leaked": 0,
+          "reused": 103,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 83.33,
+          "leaked": 0,
+          "reused": 100,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 79.17,
+          "leaked": 0,
+          "reused": 95,
+          "total": 120
+        },
+        {
+          "leak_rate": 1.67,
+          "reuse_rate": 86.67,
+          "leaked": 2,
+          "reused": 104,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.83,
+          "reuse_rate": 75.83,
+          "leaked": 1,
+          "reused": 91,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 78.33,
+          "leaked": 0,
+          "reused": 94,
+          "total": 120
+        },
+        {
+          "leak_rate": 5.0,
+          "reuse_rate": 83.33,
+          "leaked": 6,
+          "reused": 100,
+          "total": 120
+        },
+        {
+          "leak_rate": 1.67,
+          "reuse_rate": 74.17,
+          "leaked": 2,
+          "reused": 89,
+          "total": 120
+        },
+        {
+          "leak_rate": 2.5,
+          "reuse_rate": 84.17,
+          "leaked": 3,
+          "reused": 101,
+          "total": 120
+        },
+        {
+          "leak_rate": 1.67,
+          "reuse_rate": 74.17,
+          "leaked": 2,
+          "reused": 89,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 84.17,
+          "leaked": 0,
+          "reused": 101,
+          "total": 120
+        },
+        {
+          "leak_rate": 1.67,
+          "reuse_rate": 88.33,
+          "leaked": 2,
+          "reused": 106,
+          "total": 120
+        }
+      ]
+    },
+    "0.9": {
+      "completeness": 0.9,
+      "leak_mean": 0.0,
+      "leak_sd": 0.0,
+      "reuse_mean": 81.56,
+      "reuse_sd": 4.78,
+      "per_seed": [
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 79.17,
+          "leaked": 0,
+          "reused": 95,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 80.0,
+          "leaked": 0,
+          "reused": 96,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 84.17,
+          "leaked": 0,
+          "reused": 101,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 86.67,
+          "leaked": 0,
+          "reused": 104,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 85.83,
+          "leaked": 0,
+          "reused": 103,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 86.67,
+          "leaked": 0,
+          "reused": 104,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 80.0,
+          "leaked": 0,
+          "reused": 96,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 80.0,
+          "leaked": 0,
+          "reused": 96,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 80.83,
+          "leaked": 0,
+          "reused": 97,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 71.67,
+          "leaked": 0,
+          "reused": 86,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 90.83,
+          "leaked": 0,
+          "reused": 109,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 78.33,
+          "leaked": 0,
+          "reused": 94,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 83.33,
+          "leaked": 0,
+          "reused": 100,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 83.33,
+          "leaked": 0,
+          "reused": 100,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 88.33,
+          "leaked": 0,
+          "reused": 106,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 80.0,
+          "leaked": 0,
+          "reused": 96,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 74.17,
+          "leaked": 0,
+          "reused": 89,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 80.0,
+          "leaked": 0,
+          "reused": 96,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 85.83,
+          "leaked": 0,
+          "reused": 103,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 83.33,
+          "leaked": 0,
+          "reused": 100,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 79.17,
+          "leaked": 0,
+          "reused": 95,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 86.67,
+          "leaked": 0,
+          "reused": 104,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 75.83,
+          "leaked": 0,
+          "reused": 91,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 78.33,
+          "leaked": 0,
+          "reused": 94,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 82.5,
+          "leaked": 0,
+          "reused": 99,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 74.17,
+          "leaked": 0,
+          "reused": 89,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 82.5,
+          "leaked": 0,
+          "reused": 99,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 72.5,
+          "leaked": 0,
+          "reused": 87,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 84.17,
+          "leaked": 0,
+          "reused": 101,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 88.33,
+          "leaked": 0,
+          "reused": 106,
+          "total": 120
+        }
+      ]
+    },
+    "0.95": {
+      "completeness": 0.95,
+      "leak_mean": 0.0,
+      "leak_sd": 0.0,
+      "reuse_mean": 81.56,
+      "reuse_sd": 4.78,
+      "per_seed": [
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 79.17,
+          "leaked": 0,
+          "reused": 95,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 80.0,
+          "leaked": 0,
+          "reused": 96,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 84.17,
+          "leaked": 0,
+          "reused": 101,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 86.67,
+          "leaked": 0,
+          "reused": 104,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 85.83,
+          "leaked": 0,
+          "reused": 103,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 86.67,
+          "leaked": 0,
+          "reused": 104,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 80.0,
+          "leaked": 0,
+          "reused": 96,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 80.0,
+          "leaked": 0,
+          "reused": 96,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 80.83,
+          "leaked": 0,
+          "reused": 97,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 71.67,
+          "leaked": 0,
+          "reused": 86,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 90.83,
+          "leaked": 0,
+          "reused": 109,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 78.33,
+          "leaked": 0,
+          "reused": 94,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 83.33,
+          "leaked": 0,
+          "reused": 100,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 83.33,
+          "leaked": 0,
+          "reused": 100,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 88.33,
+          "leaked": 0,
+          "reused": 106,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 80.0,
+          "leaked": 0,
+          "reused": 96,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 74.17,
+          "leaked": 0,
+          "reused": 89,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 80.0,
+          "leaked": 0,
+          "reused": 96,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 85.83,
+          "leaked": 0,
+          "reused": 103,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 83.33,
+          "leaked": 0,
+          "reused": 100,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 79.17,
+          "leaked": 0,
+          "reused": 95,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 86.67,
+          "leaked": 0,
+          "reused": 104,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 75.83,
+          "leaked": 0,
+          "reused": 91,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 78.33,
+          "leaked": 0,
+          "reused": 94,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 82.5,
+          "leaked": 0,
+          "reused": 99,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 74.17,
+          "leaked": 0,
+          "reused": 89,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 82.5,
+          "leaked": 0,
+          "reused": 99,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 72.5,
+          "leaked": 0,
+          "reused": 87,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 84.17,
+          "leaked": 0,
+          "reused": 101,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 88.33,
+          "leaked": 0,
+          "reused": 106,
+          "total": 120
+        }
+      ]
+    },
+    "1.0": {
+      "completeness": 1.0,
+      "leak_mean": 0.0,
+      "leak_sd": 0.0,
+      "reuse_mean": 81.56,
+      "reuse_sd": 4.78,
+      "per_seed": [
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 79.17,
+          "leaked": 0,
+          "reused": 95,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 80.0,
+          "leaked": 0,
+          "reused": 96,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 84.17,
+          "leaked": 0,
+          "reused": 101,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 86.67,
+          "leaked": 0,
+          "reused": 104,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 85.83,
+          "leaked": 0,
+          "reused": 103,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 86.67,
+          "leaked": 0,
+          "reused": 104,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 80.0,
+          "leaked": 0,
+          "reused": 96,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 80.0,
+          "leaked": 0,
+          "reused": 96,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 80.83,
+          "leaked": 0,
+          "reused": 97,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 71.67,
+          "leaked": 0,
+          "reused": 86,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 90.83,
+          "leaked": 0,
+          "reused": 109,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 78.33,
+          "leaked": 0,
+          "reused": 94,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 83.33,
+          "leaked": 0,
+          "reused": 100,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 83.33,
+          "leaked": 0,
+          "reused": 100,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 88.33,
+          "leaked": 0,
+          "reused": 106,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 80.0,
+          "leaked": 0,
+          "reused": 96,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 74.17,
+          "leaked": 0,
+          "reused": 89,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 80.0,
+          "leaked": 0,
+          "reused": 96,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 85.83,
+          "leaked": 0,
+          "reused": 103,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 83.33,
+          "leaked": 0,
+          "reused": 100,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 79.17,
+          "leaked": 0,
+          "reused": 95,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 86.67,
+          "leaked": 0,
+          "reused": 104,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 75.83,
+          "leaked": 0,
+          "reused": 91,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 78.33,
+          "leaked": 0,
+          "reused": 94,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 82.5,
+          "leaked": 0,
+          "reused": 99,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 74.17,
+          "leaked": 0,
+          "reused": 89,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 82.5,
+          "leaked": 0,
+          "reused": 99,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 72.5,
+          "leaked": 0,
+          "reused": 87,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 84.17,
+          "leaked": 0,
+          "reused": 101,
+          "total": 120
+        },
+        {
+          "leak_rate": 0.0,
+          "reuse_rate": 88.33,
+          "leaked": 0,
+          "reused": 106,
+          "total": 120
+        }
+      ]
+    }
+  }
+}

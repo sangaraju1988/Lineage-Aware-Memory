@@ -239,7 +239,7 @@ if __name__ == "__main__":
         cr = "n/a" if r["conflict_recall_pct"] is None else f"{r['conflict_recall_pct']}"
         print(f"{r['system']:35s} {r['leak_rate_pct']:>8} {r['reuse_rate_pct']:>9} {cr:>18s} {r['blocked_count']:>8}")
 
-    with open("/home/claude/lineage_playground/results.csv", "w", newline="") as f:
+    with open("results.csv", "w", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=["system", "events", "leak_rate_pct",
                                                 "reuse_rate_pct", "conflict_recall_pct", "blocked_count"])
         writer.writeheader()
@@ -247,7 +247,7 @@ if __name__ == "__main__":
     print("\nWrote results.csv (single seed=42 run)")
 
     sweep_summary, all_rows = run_seed_sweep(n_seeds=30)
-    with open("/home/claude/lineage_playground/sweep_summary.csv", "w", newline="") as f:
+    with open("sweep_summary.csv", "w", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=["system", "leak_mean", "leak_sd",
                                                 "reuse_mean", "reuse_sd", "conflict_recall_mean"])
         writer.writeheader()
@@ -257,5 +257,5 @@ if __name__ == "__main__":
 
     # stash raw per-seed values for plotting
     import json
-    with open("/home/claude/lineage_playground/sweep_raw.json", "w") as f:
+    with open("sweep_raw.json", "w") as f:
         json.dump(all_rows, f)

@@ -1,0 +1,167 @@
+{
+  "dataset_stats": {
+    "total": 43,
+    "TC": 15,
+    "TV": 15,
+    "LO": 8,
+    "CS": 5
+  },
+  "detectors": {
+    "Exact Hash (D1)": {
+      "TP": 28,
+      "FP": 15,
+      "TN": 0,
+      "FN": 0,
+      "precision": 0.651,
+      "recall": 1.0,
+      "f1": 0.789,
+      "bootstrap_ci": {
+        "precision": {
+          "mean": 0.652,
+          "ci_lo": 0.512,
+          "ci_hi": 0.791
+        },
+        "recall": {
+          "mean": 1.0,
+          "ci_lo": 1.0,
+          "ci_hi": 1.0
+        },
+        "f1": {
+          "mean": 0.787,
+          "ci_lo": 0.677,
+          "ci_hi": 0.883
+        }
+      },
+      "by_category": {
+        "TC": {
+          "tp": 15,
+          "fp": 0,
+          "tn": 0,
+          "fn": 0
+        },
+        "TV": {
+          "tp": 0,
+          "fp": 15,
+          "tn": 0,
+          "fn": 0
+        },
+        "LO": {
+          "tp": 8,
+          "fp": 0,
+          "tn": 0,
+          "fn": 0
+        },
+        "CS": {
+          "tp": 5,
+          "fp": 0,
+          "tn": 0,
+          "fn": 0
+        }
+      }
+    },
+    "Jaccard Filter (D2, \u03c4=0.70)": {
+      "TP": 23,
+      "FP": 11,
+      "TN": 4,
+      "FN": 5,
+      "precision": 0.676,
+      "recall": 0.821,
+      "f1": 0.742,
+      "bootstrap_ci": {
+        "precision": {
+          "mean": 0.678,
+          "ci_lo": 0.515,
+          "ci_hi": 0.829
+        },
+        "recall": {
+          "mean": 0.821,
+          "ci_lo": 0.667,
+          "ci_hi": 0.958
+        },
+        "f1": {
+          "mean": 0.74,
+          "ci_lo": 0.604,
+          "ci_hi": 0.853
+        }
+      },
+      "by_category": {
+        "TC": {
+          "tp": 15,
+          "fp": 0,
+          "tn": 0,
+          "fn": 0
+        },
+        "TV": {
+          "tp": 0,
+          "fp": 11,
+          "tn": 4,
+          "fn": 0
+        },
+        "LO": {
+          "tp": 3,
+          "fp": 0,
+          "tn": 0,
+          "fn": 5
+        },
+        "CS": {
+          "tp": 5,
+          "fp": 0,
+          "tn": 0,
+          "fn": 0
+        }
+      }
+    },
+    "Column-Graph (D3)": {
+      "TP": 20,
+      "FP": 0,
+      "TN": 15,
+      "FN": 8,
+      "precision": 1.0,
+      "recall": 0.714,
+      "f1": 0.833,
+      "bootstrap_ci": {
+        "precision": {
+          "mean": 1.0,
+          "ci_lo": 1.0,
+          "ci_hi": 1.0
+        },
+        "recall": {
+          "mean": 0.715,
+          "ci_lo": 0.542,
+          "ci_hi": 0.875
+        },
+        "f1": {
+          "mean": 0.831,
+          "ci_lo": 0.703,
+          "ci_hi": 0.933
+        }
+      },
+      "by_category": {
+        "TC": {
+          "tp": 15,
+          "fp": 0,
+          "tn": 0,
+          "fn": 0
+        },
+        "TV": {
+          "tp": 0,
+          "fp": 0,
+          "tn": 15,
+          "fn": 0
+        },
+        "LO": {
+          "tp": 0,
+          "fp": 0,
+          "tn": 0,
+          "fn": 8
+        },
+        "CS": {
+          "tp": 5,
+          "fp": 0,
+          "tn": 0,
+          "fn": 0
+        }
+      }
+    }
+  }
+}

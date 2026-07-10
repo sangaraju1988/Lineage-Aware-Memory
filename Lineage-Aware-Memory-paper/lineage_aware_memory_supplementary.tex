@@ -1,0 +1,838 @@
+% =============================================================================
+%  Supplementary Material
+%  Lineage-Aware Memory Governance for Enterprise AI Agents
+%  Accompanies the IEEE Access submission
+% =============================================================================
+\documentclass[9pt,twocolumn,twoside]{extarticle}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{mathptmx}
+\usepackage[margin=0.75in,columnsep=0.25in,twoside]{geometry}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\tcbuselibrary{listings,breakable,skins}
+\usepackage{listings}
+\usepackage{cite}
+\usepackage[hidelinks]{hyperref}
+\usepackage{cleveref}
+\usepackage{enumitem}
+\usepackage{caption}
+\usepackage{fancyhdr}
+\usepackage{pifont}
+\usepackage{balance}
+\usepackage{titlesec}
+\usepackage{placeins}
+
+\renewcommand{\dbltopfraction}{0.9}
+\renewcommand{\dblfloatpagefraction}{0.85}
+\setcounter{dbltopnumber}{4}
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\textfraction}{0.07}
+\renewcommand{\floatpagefraction}{0.8}
+
+\captionsetup{font=small,labelfont=bf,labelsep=period}
+
+\titleformat{\section}
+  {\centering\normalfont\fontsize{10}{12}\bfseries}
+  {\Roman{section}.}{0.6em}{\MakeUppercase}
+\titleformat{\subsection}
+  {\normalfont\bfseries\itshape}
+  {\Alph{subsection}.}{0.5em}{}
+\titlespacing*{\section}{0pt}{10pt plus 2pt minus 1pt}{6pt}
+\titlespacing*{\subsection}{0pt}{7pt plus 1pt}{4pt}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}{Definition}
+\newtheorem{assumption}{Assumption}
+\newtheorem*{remark}{Remark}
+
+\definecolor{algbg}{HTML}{F8FAFC}
+\definecolor{algframe}{HTML}{1E3A5F}
+\definecolor{algkw}{HTML}{1D4ED8}
+\definecolor{algcmt}{HTML}{6B7280}
+\definecolor{algnum}{HTML}{374151}
+
+\lstdefinelanguage{pseudocode}{
+  morekeywords={for,if,else,return,true,false,and,or,not,in,to,do,
+                begin,end,each,all,break,continue,of,with,not\_subset},
+  keywordstyle=\bfseries\color{algkw},
+  morecomment=[l]{\%\ },
+  commentstyle=\itshape\color{algcmt},
+  basicstyle=\ttfamily\scriptsize,
+  numbers=left,
+  numberstyle=\tiny\color{algnum},
+  numbersep=6pt,
+  xleftmargin=14pt,
+  framexleftmargin=14pt,
+  breaklines=true,
+  showstringspaces=false,
+  tabsize=2,
+}
+
+\newtcblisting[auto counter]{algorithmbox}[3][]{%
+  title={\textbf{Algorithm~\thetcbcounter}: #2\hfill\textit{\small#3}},
+  colback=algbg, colframe=algframe, fonttitle=\small\bfseries,
+  listing only, listing options={language=pseudocode},
+  breakable, enhanced, #1
+}
+
+\definecolor{myblue}{HTML}{1D4ED8}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE]{\small\itshape Supplementary Material --- Sangaraju and Vissa}
+\fancyhead[RO]{\small\itshape Supplementary Material --- Sangaraju and Vissa}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{firstpage}{%
+  \fancyhf{}
+  \fancyfoot[C]{\small\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+
+\setlength{\parindent}{1em}
+
+\begin{document}
+
+\twocolumn[
+\begin{center}
+{\LARGE\bfseries Supplementary Material\par}
+\vspace{6pt}
+{\large Lineage-Aware Memory Governance: A Derivation-Gated Framework
+for Privacy-Preserving Column-Level Access Control in Enterprise AI Agents\par}
+\vspace{8pt}
+{\large Venkata Sangaraju\textsuperscript{1} and Sudhir Vissa\textsuperscript{2}\par}
+\vspace{5pt}
+{\small
+\textsuperscript{1}Independent Researcher
+(ORCID: \href{https://orcid.org/0009-0001-7716-1342}{0009-0001-7716-1342})\\
+\textsuperscript{2}SAGE7 AI, Georgetown, Texas, USA
+(ORCID: \href{https://orcid.org/0009-0003-7865-0863}{0009-0003-7865-0863})\par}
+\end{center}
+\vspace{8pt}
+\noindent\rule{\textwidth}{0.6pt}
+\vspace{6pt}
+\noindent
+This document accompanies the IEEE Access submission
+\emph{``Lineage-Aware Memory Governance: A Derivation-Gated Framework for
+Privacy-Preserving Column-Level Access Control in Enterprise AI Agents.''}
+It reproduces, in full, material that the main paper summarises for length:
+extended related-work discussion (\S\ref{sec:supp-related}), the
+line-by-line walkthrough of Algorithm~2 (\S\ref{sec:supp-algo}; Algorithm~1's
+walkthrough and the full proof of Theorem~1 are now given directly in the
+main paper and are only reproduced here for self-containedness), extended
+threat descriptions (\S\ref{sec:supp-threat}), the unevaluated composite
+conflict-detector design (\S\ref{sec:supp-d4}), and complete per-experiment
+result tables (\S\ref{sec:supp-tables}).
+All numbering in this document is local to this document; cross-references
+to the main paper are given as plain section numbers (main paper, \S$n$).
+\vspace{6pt}
+\noindent\rule{\textwidth}{0.6pt}
+\vspace{10pt}
+]
+
+\thispagestyle{firstpage}
+
+% =============================================================================
+\section{Extended Related Work}
+\label{sec:supp-related}
+% =============================================================================
+The main paper (\S2) summarises related work in one page against six
+governance dimensions (Table 1). This section reproduces the full
+per-system discussion.
+
+\subsection{Agent Memory Systems}
+
+Du~\cite{du2026survey} formalises agent memory as a write-manage-read loop
+with a three-dimensional taxonomy spanning temporal scope, representational
+substrate, and control policy.
+MemGPT~\cite{packer2023memgpt} instantiated the hierarchy by treating the LLM
+as an OS that pages between a bounded context window and an external store via
+function calls, demonstrating coherent long-horizon conversations and
+large-document analysis.
+\emph{Limitation relative to our work:} governance in MemGPT is implicit---the
+LLM decides what to write and retrieve---with no lineage tracking at any layer.
+
+Zep~\cite{rasmussen2025zep} introduced a temporal knowledge graph with dual-axis
+timestamping (event time vs.\ ingestion time), enabling point-in-time queries.
+\emph{Limitation:} its graph captures \emph{when} information arrived, not
+\emph{how} it was derived.
+A-MEM~\cite{xu2025amem}---a NeurIPS 2025 paper---builds Zettelkasten-style
+linked notes with dynamic indexing, achieving strong benchmark performance across
+six foundation models.
+\emph{Limitation:} linking structure encodes semantic relatedness between notes,
+not the data-derivation path of a computed result.
+All three systems represent the state of the art in conversational or
+task-level memory and are well-suited to remembering facts, past
+conversations, and user preferences, but none model the provenance of
+computed analytical results.
+
+\subsection{Governed and Enterprise Memory Architectures}
+
+Taheri's Governed Memory~\cite{taheri2026governed} addresses a real enterprise
+gap---dozens of agents operating with no shared memory and no common
+governance---through a dual memory model, tiered governance routing, and a
+closed-loop schema lifecycle, achieving 99.6\% fact recall and zero
+cross-entity leakage across 500 adversarial queries in a 250-event controlled
+experiment.
+\emph{Limitation:} its governance operates on \emph{what is stored and who may
+access it as a whole entry}; it does not track derivation, so it cannot detect
+that a permitted entry embeds a forbidden column.
+Lam et al.'s SSGM~\cite{lam2026ssgm} decouples memory evolution from execution
+by enforcing consistency verification, temporal decay modelling, and dynamic
+access control before any memory consolidation.
+\emph{Limitation:} SSGM's dynamic access control enforces agent-topology
+constraints (who may communicate with whom), not column-level derivation
+constraints (what data was touched to produce a result)---the two mechanisms
+are complementary rather than overlapping.
+Oracle AI Agent Memory~\cite{oracle2026memory} provides a commercially
+deployed governed memory core with fine-grained lifecycle management and
+role-based access controls.
+\emph{Limitation:} role assignment controls access to a memory entry as a
+whole, not to the individual columns that contributed to it.
+Abaev et al.'s AgentGuardian~\cite{abaev2026agentguardian} learns
+context-aware access-control policies from execution traces to govern which
+tool calls an agent may issue.
+\emph{Limitation:} it governs \emph{tool-call} legitimacy at execution time,
+not the provenance of values already committed to a shared memory store.
+
+\subsection{Column-Level Security and Data Provenance}
+
+Apache Ranger, Databricks Unity Catalog, and BigQuery column-level security
+enforce column-gated access at the \emph{query layer}: they prevent an
+unauthorised agent from issuing a query that touches a restricted column.
+Subramaniam and Krishnan's DePLOI~\cite{subramaniam2024deploi} uses NL2SQL
+task decomposition to synthesise and audit database access-control
+implementations against natural-language intent, improving the
+trustworthiness of the source-layer policies themselves.
+\emph{Limitation relative to our work:} these are all source-layer controls
+that fire at query time; none address a result that was legitimately computed
+once, cached, and then served to a different, less-privileged requester.
+The W3C PROV standard~\cite{moreau2011prov} encodes entity-activity-agent
+relationships for data provenance, and Herschel et al.~\cite{herschel2017survey}
+survey systems that use provenance to track data flow through complex
+pipelines.
+Column-level lineage extraction systems such as
+LINEAGEX~\cite{zhang2025lineagex}---which parses SQL query trees to infer
+column-level derivation with high coverage and accuracy, demonstrated at ICDE
+2025---represent the state of the art in automatic lineage extraction.
+Zhou et al.'s survey of the LLM$\times$DATA intersection~\cite{zhou2025llmxdata}
+catalogues how data systems and LLMs increasingly interact but does not treat
+agent memory retrieval as a governance surface in its own right.
+\emph{Limitation:} the provenance literature focuses on raw database records
+and ETL pipelines; our AMU schema applies the same column-level-derivation
+concept to \emph{agent memory entries}, and LINEAGEX or
+\textsc{SQLGlot}~\cite{sqlglot2023} (used in Experiment~6) are the natural
+tools for automatically populating AMU lineage fields in production.
+No prior work applies column-level provenance to agent memory retrieval
+governance, or uses derivation graphs to gate cross-department memory
+sharing---this is the precise gap we fill.
+
+\subsection{Privacy and Security in Multi-Agent Systems}
+
+El Yagoubi et al.'s AgentLeak~\cite{elyagoubi2026agentleak}---the first
+full-stack benchmark for privacy leakage in multi-agent LLM systems---shows
+that 68.8\% of leakage occurs through inter-agent channels (messages, shared
+memory, tool arguments) invisible to output-only auditors, across 4,979
+validated execution traces.
+Naik et al.'s OMNI-LEAK~\cite{naik2026omnileak} demonstrates that a single
+indirect prompt injection can compromise several agents and leak sensitive
+data even with data-access controls in place; Alizadeh et
+al.~\cite{alizadeh2025leak} show that simple prompt-injection payloads can
+cause an LLM agent to leak personal data it observed during task execution,
+and Wang et al.'s taxonomy of prompt-injection
+threats~\cite{wang2026landscape} and Dehghantanha and Homayoun's SoK of the
+agentic attack surface~\cite{dehghantanha2026sok} both catalogue memory and
+context poisoning as first-class attack vectors against agents.
+Nguyen et al.'s survey of multi-agent system security~\cite{nguyen2026security}
+derives a 193-item threat taxonomy from production multi-agent architectures,
+including threats to shared memory and inter-agent trust.
+Summers and Wu's Data Flow Control~\cite{summers2026dataflow} enforces
+declarative, tuple-level data-safety policies inside the DBMS query layer
+itself using provenance monomials---closely related in spirit to our
+column-level gate, but operating on live query execution rather than on a
+persistent cross-agent memory cache.
+Wang et al.'s AuthGraph~\cite{wang2026authgraph} defends individual agents
+against prompt-injection by structurally comparing an execution-derived
+provenance graph against an authorisation graph, reducing attack success rates
+from $\sim$40\% to 1--2\% on two benchmarks---the closest prior work to our
+own in combining a provenance graph with an authorisation check, but scoped to
+single-agent tool-calling safety rather than cross-department memory
+retrieval.
+Naseh et al.~\cite{naseh2025riddle} show that retrieval-augmented generation
+systems are vulnerable to stealthy membership-inference attacks that recover
+whether a specific record was present in a retrieval corpus, a threat that
+targets what is stored rather than how it was derived.
+\emph{Limitation relative to our work:} this literature identifies leakage
+through inter-agent communication channels, prompt-level manipulation of a
+single agent, and inference over stored content; our work identifies a
+complementary vector---leakage through a \emph{shared analytical memory
+store} that persists even when every individual communication link and every
+individual agent is otherwise correctly secured.
+The two families of failure modes are independent and both need to be
+addressed in production; the threat model (main paper, \S5) (threat T8) discusses how
+prompt-injection and inference-style attacks interact with the lineage record
+itself.
+
+\subsection{Metric-Definition Governance}
+
+Semantic drift---divergent definitions of the same KPI across
+teams---is a documented source of dashboard inconsistency in enterprise
+BI~\cite{colrows2024metrics}.
+Semantic-layer tools (dbt Metrics, Databricks Unity Catalog, Looker LookML)
+address this for human analysts by centralising metric definitions, and the
+Open Semantic Interchange initiative~\cite{snowflake2025osi}, launched in
+September 2025 by Snowflake, Salesforce, dbt Labs, BlackRock, and
+RelationalAI, is an industry-wide push toward a vendor-neutral metric
+specification.
+\emph{Limitation relative to our work:} these tools govern metrics that
+\emph{humans} define centrally in advance; they provide no mechanism for
+detecting drift when an autonomous agent computes a KPI on the fly through
+its own generated query.
+Our \texttt{definition\_hash} conflict detector (Algorithm~\ref{alg:write})
+provides a lightweight, retrofittable foundation for automated metric
+governance in agentic systems that write results outside a pre-registered
+semantic layer; the extended fuzzy experiment in the extended fuzzy conflict-detection experiment (main paper, \S6)
+characterises where hash-based detection is, and is not, the right
+granularity.
+
+% =============================================================================
+\section{Algorithm Walkthroughs}
+\label{sec:supp-algo}
+% =============================================================================
+The main paper now gives the full line-by-line walkthrough for Algorithm~1
+(Lineage-Gated Retrieve) directly in System Design (main paper, \S3.2),
+including its worst-/best-case complexity derivation, so it is not repeated
+here; the pseudocode is reproduced below only so that line numbers cited by
+the proof in \S\ref{sec:supp-proof} remain unambiguous in this standalone
+document. Algorithm~2 (Lineage-Aware Write with Conflict Detection) is
+reproduced below with its full walkthrough, since the main paper gives only
+a summary of it.
+
+% ── Algorithm 1 (pseudocode only; walkthrough is in the main paper) ─────────
+\begin{algorithmbox}[label={alg:retrieve}]{Lineage-Gated Retrieve}{%
+  \textnormal{Input: \textit{store}, \textit{metric}, \textit{dept}, \textit{fresh}}%
+  \quad Output: \textit{result}; \textit{leaked}=\textbf{False} guaranteed}
+candidates <- store[metric]         % all stored AMUs for this metric
+permitted  <- P(dept)               % column set the department may see
+blocked    <- False
+
+for each a in REVERSE(candidates):  % most-recent-first
+  if S(a) not_subset permitted:     % derivation touches a forbidden column
+    blocked <- True
+    continue                        % skip this candidate; try the next
+  end if
+  return (reused=True, value=a.value, leaked=False, blocked=False)
+end for
+
+store[metric].append(fresh)
+return (reused=False, value=fresh.value, leaked=False, blocked=blocked)
+\end{algorithmbox}
+
+% ── Algorithm 2 ──────────────────────────────────────────────────────────────
+\begin{algorithmbox}[label={alg:write}]{Lineage-Aware Write with Conflict Detection}{%
+  \textnormal{Input: \textit{store}, AMU \textit{a}} \quad
+  Output: \textit{conflict} \textbf{bool}}
+% store    : shared memory dict (mutated in place)
+% a        : new AMU to persist
+% conflict : True iff a cross-department definition conflict is detected
+
+existing <- store[a.metric]   % all AMUs stored for this metric name
+conflict <- False
+
+for each e in existing:
+  if e.dept != a.dept:        % cross-department pair
+    if H(e) != H(a):          % definition hashes differ -> potential conflict
+      conflict <- True
+      break                   % one conflict is sufficient; raise alert
+    end if
+  end if
+end for
+
+store[a.metric].append(a)     % always persist; conflict is surfaced, not blocked
+return conflict
+\end{algorithmbox}
+
+\paragraph{Line-by-line walkthrough.}
+Line~5 gathers every AMU already stored under the same metric name as the
+incoming write, regardless of which department produced it.
+Line~9 restricts the comparison to \emph{cross-department} pairs: two AMUs
+written by the same department under the same metric name are assumed to
+share a definition by construction and are not compared.
+Line~10 compares the cached definition hashes $\mathrm{H}(\cdot)$
+(Equation~\ref{eq:defhash}) rather than the raw lineage graphs, which is what
+makes the comparison $O(1)$ per pair rather than requiring a graph-isomorphism
+check.
+Lines~11--12 raise the conflict flag and exit the loop on the first
+cross-department hash mismatch found; one divergent definition is sufficient
+evidence of drift, so the algorithm does not need to enumerate all of them.
+Line~17 always persists the new AMU, whether or not a conflict was detected:
+\emph{the write path never blocks on a conflict}, it only surfaces one for
+downstream alerting (the threat model (main paper, \S5), T2).
+This design choice trades a small amount of governance strictness for
+operational safety---a metric-definition disagreement should never cause a
+legitimate business query to fail outright.
+\emph{Complexity:} the loop performs at most $n$ hash comparisons, each
+$O(1)$, giving $O(n)$ worst case (no conflict, full scan) and $O(1)$ best case
+(conflict found on the first cross-department comparison), matching the
+empirical measurements in Table~\ref{tab:runtime}.
+
+% =============================================================================
+\section{Full Proof of the Sensitive-Column Safety Theorem}
+\label{sec:supp-proof}
+% =============================================================================
+The main paper (\S4) now states Theorem 1, its full proof, and its two
+corollaries in full (not merely a proof sketch). The complete statements and
+proof are reproduced below as well, so that this document remains readable
+independently of the main paper.
+Equations (1)--(2) define the cached sensitivity tag $\mathrm{S}(a)$ and
+definition hash $\mathrm{H}(a)$ referenced throughout.
+
+\begin{align}
+  \mathrm{S}(a) &= \bigcup_{i=1}^{k} C_i \;\cap\; \mathcal{S}
+  \label{eq:sensitivity} \\[2pt]
+  \mathrm{H}(a) &= \mathrm{SHA256}\!\left(
+    \mathrm{sort}(\mathit{tables}) \,\|\,
+    \mathrm{sort}\!\left(\bigcup_i C_i\right) \,\|\, \varphi
+  \right)_{\![0{:}12]}
+  \label{eq:defhash}
+\end{align}
+
+\begin{assumption}[Complete Lineage]
+\label{ass:complete}
+For every AMU $a$ in the store, $a.\mathit{lineage}$ records every table, every
+column, and the filter logic of the computation that produced $a.\mathit{value}$.
+\end{assumption}
+
+\begin{theorem}[Sensitive-Column Safety]
+\label{thm:safety}
+Under Assumption~\ref{ass:complete}, Algorithm~\ref{alg:retrieve} returns no
+result to department $d$ that was derived from a sensitive column
+$c \in \mathcal{S}$ with $c \notin \mathrm{P}(d)$.
+\end{theorem}
+
+\begin{remark}[Scope of the guarantee]
+\label{rem:scope}
+The gate checks $\mathrm{S}(a) \subseteq \mathrm{P}(d)$ where
+$\mathrm{S}(a) = \bigl(\bigcup_i C_i\bigr) \cap \mathcal{S}$ contains only
+columns in the sensitive registry $\mathcal{S}$.
+Non-sensitive columns that appear in a department's blocked list (such as
+\texttt{amount} for Support in Table~\ref{tab:perms}) are \emph{not}
+gate-enforced by Algorithm~\ref{alg:retrieve} as written.
+An operator who wishes to gate-enforce non-sensitive columns as well should
+extend $\mathcal{S}$ to include them, or change the gate condition to
+$\bigl(\bigcup_i C_i\bigr) \subseteq \mathrm{P}(d)$ at the cost of
+blocking more memory reuse.
+\end{remark}
+
+\begin{proof}
+This proof is also given, in identical form, in the main paper (\S4); it is
+reproduced here so the Supplementary Material remains self-contained.
+By inspection, Algorithm~\ref{alg:retrieve} has exactly two statements that
+return a value to the caller: line~10 (memory-served) and line~14 (fallback).
+Every invocation terminates by reaching one of the two, since the
+\texttt{for} loop either returns early at line~10 or exhausts \textit{candidates}
+and falls through to lines~13--14.
+We show the returned AMU's derivation touches no forbidden sensitive column
+on each path.
+
+\smallskip\noindent\textbf{Case 1: memory-served path (line~10).}
+Reaching line~10 for candidate $a$ requires the guard at line~6 to have
+evaluated false, i.e.\ $\mathrm{S}(a) \subseteq \mathrm{P}(d)$ holds for that
+$a$.
+Unfolding Equation~\ref{eq:sensitivity},
+$\mathrm{S}(a) = \bigl(\bigcup_{i=1}^{k} C_i\bigr) \cap \mathcal{S}$, so
+$\mathrm{S}(a) \subseteq \mathrm{P}(d)$ is equivalent to: for every step
+$s_i \in a.\mathit{lineage}$ and every column $c \in C_i \cap \mathcal{S}$,
+$c \in \mathrm{P}(d)$.
+Contrapositively, there is no sensitive column $c \in \mathcal{S}$ with
+$c \notin \mathrm{P}(d)$ appearing in any $C_i$---i.e., no such $c$ appears
+anywhere in $a$'s derivation.
+Since Assumption~\ref{ass:complete} guarantees $a.\mathit{lineage}$ records
+\emph{every} column touched by the computation that produced $a.value$, this
+is precisely the safety property claimed for the value returned at line~10.
+
+\smallskip\noindent\textbf{Case 2: fallback path (line~14).}
+The input precondition to Algorithm~\ref{alg:retrieve} (stated in the
+signature) requires that \textit{fresh} is computed entirely within
+$\mathrm{P}(d)$ by the caller, before Algorithm~\ref{alg:retrieve} is
+invoked.
+Under Assumption~\ref{ass:complete}, \textit{fresh}.\textit{lineage} records
+every column of that computation, so every column recorded is, by the
+precondition, in $\mathrm{P}(d)$; in particular no sensitive column outside
+$\mathrm{P}(d)$ is touched.
+
+\smallskip\noindent
+Both cases establish that the AMU returned to department $d$ has a derivation
+containing no sensitive column outside $\mathrm{P}(d)$, for an arbitrary
+invocation with arbitrary \textit{store} contents.
+Since the two cases are exhaustive over all return statements, the claim
+holds for every invocation of Algorithm~\ref{alg:retrieve}.
+\end{proof}
+
+\begin{corollary}[Robustness to unsafe store contents]
+\label{cor:unsafe-contents}
+The guarantee of Theorem~\ref{thm:safety} holds even when \textit{store}
+contains AMUs whose derivation paths touch sensitive columns
+$c \in \mathcal{S}$ with $c \notin \mathrm{P}(d)$: such candidates fail the
+guard at line~6 for department $d$'s request and are skipped, never
+returned, regardless of how many such unsafe candidates exist or where they
+occur in \textit{candidates}.
+This matters operationally because a shared store necessarily contains AMUs
+written by \emph{every} department, including ones whose lineage is
+unsafe for the department currently requesting: the guarantee does not
+depend on the store being curated per department.
+\end{corollary}
+
+\begin{corollary}[Behaviour under policy updates]
+\label{cor:policy-update}
+Let $\mathrm{P}_1(d)$ and $\mathrm{P}_2(d)$ be two successive versions of
+department $d$'s permission set, and let $\mathcal{S}_1, \mathcal{S}_2$ be
+two successive versions of the sensitive-column registry.
+If $\mathrm{S}(a)$ is cached using $\mathcal{S}_1$ at write time and the
+organisation transitions to $(\mathcal{S}_2, \mathrm{P}_2)$ without
+recomputing $\mathrm{S}(a)$ for existing AMUs, Theorem~\ref{thm:safety}'s
+guarantee holds only with respect to $(\mathcal{S}_1, \mathrm{P}_1)$, not
+$(\mathcal{S}_2, \mathrm{P}_2)$: a column newly added to $\mathcal{S}_2$ that
+appears in $a$'s lineage but was not in $\mathcal{S}_1$ will not appear in the
+stale cached $\mathrm{S}(a)$, and a candidate that should now be blocked may
+instead pass the gate.
+The guarantee is restored for all subsequent retrievals as soon as
+$\mathrm{S}(a)$ is recomputed against $\mathcal{S}_2$ for every AMU with a
+write epoch preceding the policy change---an $O(N)$ one-time cost over the
+$N$ AMUs in the store, after which each retrieval again costs $O(n)$ as in
+Theorem~\ref{thm:safety}.
+In practice we recommend the lazy recomputation strategy of
+the implementation considerations (main paper, \S3): recompute $\mathrm{S}(a)$ the first time an AMU
+is touched after a policy-version bump, amortising the $O(N)$ cost over
+subsequent retrievals rather than paying it eagerly.
+This corollary formalises threat T3 (the threat model (main paper, \S5)).
+\end{corollary}
+
+\begin{remark}[Assumption dependency]
+Assumption~\ref{ass:complete} is critical.
+If lineage is reported by the computing agent rather than extracted automatically
+from query execution plans, a buggy or adversarial agent can omit a column,
+breaking the guarantee.
+Automatic extraction via systems such as LINEAGEX~\cite{zhang2025lineagex} is
+the appropriate production countermeasure; this dependency is also catalogued
+as threat T5 in the threat model (main paper, \S5).
+The completeness-degradation experiment (main paper, \S6) empirically quantifies how the guarantee degrades
+as a function of lineage completeness.
+\end{remark}
+
+% =============================================================================
+\section{Extended Threat Descriptions}
+\label{sec:supp-threat}
+% =============================================================================
+The main paper (\S5, Table 4) summarises all eight threats in tabular form.
+The full prose description of each threat, reproduced from the original
+threat-model analysis, follows.
+
+\subsection{Threats Addressed}
+\subsection{Threats Addressed}
+
+\begin{description}[leftmargin=1.2em,itemsep=3pt]
+\item[T1 --- Sensitive-column leakage via cached result.]
+  An agent retrieves a result derived from a sensitive column
+  $c \in \mathcal{S}$ it is not permitted to see.
+  \textit{Mitigation:} Algorithm~\ref{alg:retrieve} blocks such retrievals
+  via the $\mathrm{S}(a) \subseteq \mathrm{P}(d)$ gate.
+  Non-sensitive columns outside $\mathrm{P}(d)$ are not gate-enforced by
+  the current design; see Remark~\ref{rem:scope}.
+
+\item[T2 --- Silent metric definition drift.]
+  Two teams store conflicting definitions of the same KPI under the same name.
+  \textit{Mitigation:} Algorithm~\ref{alg:write} surfaces the divergence on
+  write via the definition-hash conflict detector.
+
+\item[T3 --- Stale sensitive data reuse.]
+  An AMU derived from data that was sensitive at write time is retrieved after
+  column permissions are updated.
+  \textit{Mitigation:} the \texttt{epoch} field enables TTL-based eviction;
+  sensitivity tags should be re-evaluated on retrieval when policies change.
+\end{description}
+
+\subsection{Threats Not Addressed}
+\subsection{Threats Not Addressed}
+
+\begin{description}[leftmargin=1.2em,itemsep=3pt]
+\item[T4 --- Inference attacks.]
+  A derived feature that \emph{encodes} sensitive information without naming
+  the source column (e.g., a risk score computed from \texttt{income}) will not
+  be caught unless the dependency is explicitly recorded in the lineage graph.
+  This is the most important production gap.
+
+\item[T5 --- Malicious lineage fabrication.]
+  A rogue agent writes an AMU with an intentionally incomplete lineage graph,
+  bypassing the gate.
+  The degradation experiment (the completeness-degradation experiment (main paper, \S6)) quantifies how even
+  \emph{accidental} under-reporting erodes the guarantee.
+  Automatic lineage extraction is the appropriate countermeasure.
+
+\item[T6 --- Aggregate inference.]
+  A sequence of individually safe retrievals may allow reconstruction of
+  sensitive values.
+  Algorithm~\ref{alg:retrieve} is a per-retrieval check; it provides no
+  differential privacy guarantee.
+
+\item[T7 --- Insider threats.]
+  An operator with direct store access can read or modify entries.
+  The mechanism assumes a trusted store layer.
+
+\item[T8 --- Prompt-injection and timing attacks on the lineage record.]
+  Two related attack surfaces are specific to the lineage layer itself and are
+  not covered by Theorem~\ref{thm:safety}.
+  First, an indirect prompt injection embedded in tool output or retrieved
+  content could manipulate an LLM-orchestrated agent into issuing a query that
+  omits a sensitive join from its \emph{self-reported} lineage, or into
+  requesting that a differently derived (but identically named) result be
+  written under a misleading \texttt{metric\_name}; this is a lineage-specific
+  instance of the broader agent attack surface catalogued
+  by~\cite{wang2026landscape,dehghantanha2026sok,alizadeh2025leak,naik2026omnileak}.
+  Second, differential timing of the retrieve path itself is a theoretical
+  side channel: because the worst-case branch (all candidates blocked, $O(n)$)
+  and the best-case branch (first candidate safe, $O(1)$) have measurably
+  different latencies (Table~\ref{tab:runtime}), a co-located observer could in
+  principle infer whether \emph{some} cross-department AMU exists for a given
+  metric name, even without learning its value---an inference analogous to the
+  membership-inference attacks demonstrated against retrieval-augmented
+  generation systems by Naseh et al.~\cite{naseh2025riddle}.
+  \textit{Mitigation:} for the prompt-injection surface, lineage should be
+  extracted automatically from the executed query (as in Experiment~6,
+  the real-agent experiment (main paper, \S6)) rather than self-reported by the agent, and defences such
+  as AuthGraph's provenance/authorisation cross-check~\cite{wang2026authgraph}
+  are complementary and can run upstream of the AMU write path.
+  For the timing surface, constant-time gate evaluation (padding every
+  retrieval to worst-case latency) closes the channel at a fixed
+  $13.8\,\mu$s-per-retrieval cost, which Table~\ref{tab:runtime} shows is
+  negligible relative to any real analytics query; we do not implement this
+  hardening in the current prototype and flag it as required only for
+  deployments with an explicit timing-side-channel threat in scope.
+\end{description}
+
+% =============================================================================
+\section{Proposed Composite Conflict Detector (D4, Unevaluated)}
+\label{sec:supp-d4}
+% =============================================================================
+The main paper's extended fuzzy conflict-detection experiment (\S6) reports
+that the column-graph detector D3 is blind to logic-operator changes (the
+``LO blind spot''). Motivated by this finding, we sketch a composite
+detector D4 that combines D3's column-graph comparison with an explicit
+structural check on filter logic. \textbf{D4 has not been implemented or
+evaluated}; it is a design proposal reported as future work, precisely so
+it can be benchmarked against the same 43-pair dataset before any
+production claim is made about it. The design intent is that D4 subsumes
+D3 exactly on True-Conflict and Threshold-Variant pairs (where column-graph
+comparison alone is already correct) while adding sensitivity to
+Logic-Operator pairs by comparing the \emph{operator multiset} of the
+parsed filter expression rather than its literal token similarity.
+
+\begin{algorithmbox}[label={alg:composite}]{Proposed Composite Conflict Detector (D4, unevaluated)}{%
+  \textnormal{Input: lineage pair $(L_1, L_2)$} \quad Output: \textit{conflict} \textbf{bool}}
+% L1, L2 : two lineage graphs for the same metric_name from different depts
+% Combines D3 (column-graph) with an explicit filter-logic structural check.
+% NOT implemented or evaluated in this paper -- design proposal only.
+
+tables1, cols1 <- tables_and_columns(L1)
+tables2, cols2 <- tables_and_columns(L2)
+
+if tables1 != tables2 or cols1 != cols2:
+  return True                        % D3's existing check: structural join/column diff
+
+% Column-graphs are identical; D3 alone would return False here.
+% D4 adds an explicit comparison of filter-logic structure.
+ast1 <- parse_filter_logic(L1.varphi)  % e.g. via a boolean-expression parser
+ast2 <- parse_filter_logic(L2.varphi)
+
+if operator_multiset(ast1) != operator_multiset(ast2):
+  return True                        % AND/OR/NOT composition differs: logic-operator conflict
+
+if threshold_literals(ast1) != threshold_literals(ast2):
+  return False                       % same logical structure, only a numeric threshold differs
+                                      % (TV case: not a conflict, matches D3's original design intent)
+
+return False                         % identical column-graph and identical filter-logic structure
+\end{algorithmbox}
+
+% =============================================================================
+\section{Complete Per-Experiment Result Tables}
+\label{sec:supp-tables}
+% =============================================================================
+The main paper (\S6) reports condensed results tables. The complete,
+un-condensed tables for every experiment are reproduced below.
+
+\subsection{Experiment 1: Department Permissions and Full Results}
+\begin{table*}[h]
+\centering
+\caption{Department permissions (synthetic schema).
+The gate (Algorithm~\ref{alg:retrieve}) enforces restrictions only for
+columns in the sensitive registry
+$\mathcal{S} = \{\texttt{ssn},\texttt{email},\texttt{income}\}$;
+non-sensitive blocked columns (\texttt{amount}, \texttt{spend}) represent
+the full policy intent but are not currently gate-enforced
+(see Remark~\ref{rem:scope}).}
+\label{tab:perms}
+\small
+\begin{tabular}{@{}p{0.14\linewidth}p{0.28\linewidth}p{0.46\linewidth}@{}}
+\toprule
+\textbf{Department} & \textbf{Permitted (summary)} & \textbf{Blocked (gate-enforced in $\mathcal{S}$)} \\
+\midrule
+Finance   & All columns            & None \\
+Marketing & Commercial, order data & \texttt{ssn, income, email} \\
+Support   & Customer, ticket meta  & \texttt{ssn, income, email} (\texttt{amount, spend}: policy only) \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{table*}[h]
+\centering
+\caption{Synthetic schema results (30 seeds, mean $\pm$ population std dev).
+Bootstrap 95\% CI on naive$-$LA difference excludes zero for all comparisons
+(Mann-Whitney $U$, $p < 0.001$).}
+\label{tab:results1}
+\small
+\begin{tabular}{@{}p{0.24\linewidth}p{0.13\linewidth}p{0.15\linewidth}p{0.17\linewidth}p{0.16\linewidth}@{}}
+\toprule
+\textbf{Metric} & \textbf{No Memory} & \textbf{Naive Shared} & \textbf{Lineage-Aware} & \textbf{Diff CI (95\%)} \\
+\midrule
+Leak rate (\%)           & $0.0 \pm 0.0$ & $18.8 \pm 3.7$ & $0.0 \pm 0.0$\textsuperscript{$\dagger$} & $[+14.7, +22.8]$ \\
+Memory reuse rate (\%)   & $0.0 \pm 0.0$ & $95.8 \pm 0.0$ & $82.6 \pm 2.3$                           & $[+11.2, +15.1]$ \\
+Conflict recall (\%)     & n/a           & $0.0 \pm 0.0$  & $100.0 \pm 0.0$                          & --- \\
+Blocked retrievals (seed=42) & 0         & 0              & 15                                       & --- \\
+\bottomrule
+\multicolumn{5}{l}{\textsuperscript{$\dagger$}Formal guarantee (Theorem~\ref{thm:safety}), not an empirical discovery.}
+\end{tabular}
+\end{table*}
+
+\subsection{Experiment 2: TPC-H Full Results}
+\begin{table*}[h]
+\centering
+\caption{TPC-H-inspired schema results (30 seeds, mean $\pm$ population std dev).
+Both comparisons: $p < 0.001$, bootstrap 95\% CI excludes zero.}
+\label{tab:results2}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+\textbf{Metric} & \textbf{Naive Shared} & \textbf{Lineage-Aware} & \textbf{Diff CI (95\%)} \\
+\midrule
+Leak rate (\%)            & $25.5 \pm 4.5$ & $0.0 \pm 0.0$\textsuperscript{$\dagger$} & $[+19.7, +31.2]$ \\
+Memory reuse rate (\%)    & $95.8 \pm 0.0$ & $81.5 \pm 4.8$                           & $[+10.4, +18.2]$ \\
+Metric-conflict recall (\%) & $0.0 \pm 0.0$ & $100.0 \pm 0.0$                         & --- \\
+\bottomrule
+\multicolumn{4}{l}{\textsuperscript{$\dagger$}Formal guarantee (Theorem~\ref{thm:safety}).}
+\end{tabular}
+\end{table*}
+
+\subsection{Experiment 3: Full Degradation Table}
+\begin{table*}[h]
+\centering
+\caption{Lineage-completeness degradation: leak rate vs.\ reporting completeness
+$\rho$ (30 seeds each, mean $\pm$ population std dev).
+At $\rho{=}1.0$ the guarantee holds by Theorem~\ref{thm:safety}.}
+\label{tab:degradation}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Schema} & $\rho=0.50$ & $\rho=0.75$ & $\rho=0.90$ & $\rho=1.00$ \\
+\midrule
+Synthetic (5-table) & $16.3 \pm 3.3\%$ & $0.0 \pm 0.0\%$ & $0.0 \pm 0.0\%$ & $0.0 \pm 0.0\%$ \\
+TPC-H (8-table)     & $10.3 \pm 4.7\%$ & $0.9 \pm 1.1\%$ & $0.0 \pm 0.0\%$ & $0.0 \pm 0.0\%$ \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\subsection{Experiment 4: Full Fuzzy Conflict-Detection Results}
+\begin{table*}[h]
+\centering
+\caption{Extended fuzzy conflict-detection results (43 pairs:
+15 TC + 15 TV + 8 LO + 5 CS). Bootstrap 95\% CI on $F_1$ shown in
+square brackets. LO column shows per-category TP/total detection.}
+\label{tab:fuzzy}
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+\textbf{Detector} & \textbf{Prec.} & \textbf{Recall} & \textbf{F\textsubscript{1}}
+& \textbf{95\% CI ($F_1$)} & \textbf{LO correct} \\
+\midrule
+D1 --- Exact hash             & 0.651 & 1.000 & 0.789 & [0.677, 0.883] & 8/8\,\checkmark \\
+D2 --- Jaccard ($\tau{=}0.70$)    & 0.676 & 0.821 & 0.742 & [0.604, 0.853] & 3/8 \\
+D3 --- Column-graph           & \textbf{1.000} & 0.714 & 0.833 & [0.703, 0.933] & 0/8\,\ding{55} \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\subsection{Experiment 5: Complete Runtime Measurements}
+\begin{table*}[h]
+\centering
+\caption{Empirical runtime (mean $\pm$ std dev over 2,000 iterations).
+$k{=}2$--$3$ lineage steps, $c{=}4$--$7$ columns per step.}
+\label{tab:runtime}
+\begin{tabular}{@{}llll@{}}
+\toprule
+\textbf{Operation} & \textbf{$n$} & \textbf{Mean ($\mu$s)} & \textbf{Std dev ($\mu$s)} \\
+\midrule
+Gate-check predicate (set-difference) & any  & $0.09$ & $0.03$ \\
+Sensitivity-tag derivation ($O(kc)$)  & ---  & $0.35$ & $0.13$ \\
+Definition-hash computation ($O(kc)$) & ---  & $1.20$ & $0.46$ \\
+\midrule
+Retrieve, best-case (first hit safe)  & 1    & $0.66$ & $0.23$ \\
+Retrieve, best-case (first hit safe)  & 50   & $0.64$ & $0.22$ \\
+Retrieve, worst-case (all blocked)    & 1    & $0.66$ & $0.12$ \\
+Retrieve, worst-case (all blocked)    & 5    & $1.74$ & $0.22$ \\
+Retrieve, worst-case (all blocked)    & 10   & $3.07$ & $0.39$ \\
+Retrieve, worst-case (all blocked)    & 20   & $5.72$ & $0.45$ \\
+Retrieve, worst-case (all blocked)    & 50   & $13.82$ & $0.76$ \\
+\midrule
+Write, no-conflict (full scan, $O(n)$)  & 1  & $0.28$ & $0.03$ \\
+Write, no-conflict (full scan, $O(n)$)  & 50 & $1.63$ & $0.20$ \\
+Write, conflict detected (early exit)   & 1  & $2.37$ & $1.12$ \\
+Write, conflict detected (early exit)   & 50 & $2.33$ & $0.61$ \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\subsection{Experiment 6: All Real-Agent Round-Trips}
+\begin{table*}[h]
+\centering
+\caption{Experiment~6: all 9 agent round-trips. ``REUSE'' = served from
+         cached AMU; ``WRITE'' = fresh SQL executed and AMU written;
+         ``BLOCK'' = gate blocked at least one candidate before
+         falling back to a fresh computation.}
+\label{tab:exp6}
+\small
+\begin{tabular}{@{}p{0.03\linewidth}p{0.11\linewidth}p{0.24\linewidth}p{0.09\linewidth}p{0.1\linewidth}p{0.1\linewidth}p{0.1\linewidth}@{}}
+\toprule
+Label & Dept & Metric & Action & Blocked & Conflict & Leaked \\
+\midrule
+A1 & Finance    & revenue\_by\_category & WRITE & No & No & No \\
+A2 & Sales      & revenue\_by\_category & REUSE & No & No & No \\
+A3 & Operations & revenue\_by\_category & WRITE & \textbf{Yes} & \textbf{Yes} & No \\
+B1 & HR         & employee\_directory   & WRITE & No & No & No \\
+B2 & Finance    & employee\_directory   & REUSE & No & No & No \\
+B3 & Sales      & employee\_directory   & WRITE & \textbf{Yes} & \textbf{Yes} & No \\
+C1 & Finance    & orders\_by\_country   & WRITE & No & No & No \\
+C2 & Operations & orders\_by\_country   & REUSE & No & No & No \\
+C3 & Sales      & orders\_by\_country   & REUSE & No & No & No \\
+\midrule
+\multicolumn{4}{l}{\textit{Totals (9 round-trips)}} &
+  2 blocked & 2 conflicts & \textbf{0 leaked} \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+% =============================================================================
+\balance
+\bibliographystyle{ieeetr}
+\bibliography{references}
+% =============================================================================
+\end{document}

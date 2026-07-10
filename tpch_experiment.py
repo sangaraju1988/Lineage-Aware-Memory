@@ -386,6 +386,6 @@ if __name__ == "__main__":
     print(f"LA     — leak: {results['la']['leak_mean']:.1f} ± {results['la']['leak_sd']:.1f}%  "
           f"reuse: {results['la']['reuse_mean']:.1f} ± {results['la']['reuse_sd']:.1f}%  "
           f"conflict recall: {results['la']['cr_mean']:.1f} ± {results['la']['cr_sd']:.1f}%")
-    with open("/sessions/cool-awesome-faraday/mnt/outputs/tpch_results.json", "w") as f:
+    with open("tpch_results.json", "w") as f:
         json.dump(results, f, indent=2)
     print("Saved tpch_results.json")

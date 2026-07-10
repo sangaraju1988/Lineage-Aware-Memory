@@ -1,0 +1,17 @@
+# Requirements for Lineage-Aware Memory Governance simulation code
+# Generated from actual imports in: model.py, systems.py, simulate.py,
+# tpch_experiment.py, fuzzy_experiment.py, gen_figures.py, plot_results.py
+#
+# The core simulation (model.py, systems.py, simulate.py, tpch_experiment.py,
+# fuzzy_experiment.py) uses only Python 3.8+ stdlib — no third-party installs needed.
+#
+# Figure generation (gen_figures.py) and extended analysis require:
+matplotlib==3.10.9
+numpy==2.2.6
+
+# Statistical analysis (stats_analysis.py) requires:
+scipy==1.15.3
+
+# Optional — used in plot_results.py and notebook exploration:
+pandas==2.3.3
+seaborn==0.13.2
