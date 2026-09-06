@@ -1,8 +1,9 @@
 # Lineage-Aware Memory Governance for Enterprise AI Agents
 
-> **Paper:** *Lineage-Aware Memory Governance for Enterprise AI Agents — A Derivation-Gated Approach to Privacy Isolation and Metric-Definition Consistency in Multi-Department Analytics*
+> **Paper:** *Lineage-Aware Memory Governance: A Derivation-Gated Framework for Privacy-Preserving Column-Level Access Control in Enterprise AI Agents*
 > **Authors:** Venkata Sangaraju · Sudhir Vissa (SAGE7 AI)
-> **Date:** June 2026 
+> **Published:** [IEEE Access](https://doi.org/10.1109/ACCESS.2026.3730363), Early Access, open access · DOI: 10.1109/ACCESS.2026.3730363
+> **Reference implementation:** [amu-governance](https://github.com/sangaraju1988/amu-governance) (MIT, pip-installable)
 
 ---
 
@@ -186,9 +187,12 @@ pdflatex lineage_aware_memory.tex
 ```bibtex
 @article{sangaraju2026lineage,
   author  = {Venkata Sangaraju and Sudhir Vissa},
-  title   = {Lineage-Aware Memory Governance for Enterprise {AI} Agents},
+  title   = {Lineage-Aware Memory Governance: A Derivation-Gated Framework
+             for Privacy-Preserving Column-Level Access Control in
+             Enterprise {AI} Agents},
+  journal = {IEEE Access},
   year    = {2026},
-  note    = {Preprint, June 2026}
+  doi     = {10.1109/ACCESS.2026.3730363}
 }
 ```
 
