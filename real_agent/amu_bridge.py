@@ -102,14 +102,19 @@ def sql_to_amu(
     # Step 1: sqlglot extracts lineage automatically — no agent self-reporting
     raw_steps = extract_lineage_from_sql(sql, dialect=dialect)
 
-    # Step 2: Convert to paper's LineageStep objects
+    # Step 2: Convert to paper's LineageStep objects.
+    # Unresolved ("unknown") columns are kept, not dropped: an unqualified
+    # reference to a sensitive column in a multi-table query (e.g. a
+    # comma-join with no table prefix) must still reach the sensitivity
+    # gate, or the gate silently under-reports lineage and serves a result
+    # it should have blocked. Fail closed -- an unresolved column counts as
+    # touched, never as absent.
     steps = tuple(
         LineageStep(
             table=step["table"],
             columns_used=tuple(step["columns"]),
         )
         for step in raw_steps
-        if step["table"] != "unknown"  # skip unresolved unqualified references
     )
 
     # Step 3: Build Lineage
