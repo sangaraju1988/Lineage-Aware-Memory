@@ -15,3 +15,7 @@ scipy==1.15.3
 # Optional — used in plot_results.py and notebook exploration:
 pandas==2.3.3
 seaborn==0.13.2
+
+# adversarial_lineage_experiment.py (post-publication addendum) exercises the
+# published reference implementation directly, not the root model.py/systems.py:
+amu-governance>=0.1.0

@@ -1,0 +1,17 @@
+{
+  "json": {
+    "ratio_mean": 3.93,
+    "ratio_min": 3.44,
+    "ratio_max": 5.0,
+    "bare_bytes_mean": 91.1,
+    "full_bytes_mean": 357.0
+  },
+  "pickle": {
+    "ratio_mean": 3.19,
+    "ratio_min": 2.85,
+    "ratio_max": 3.83,
+    "bare_bytes_mean": 103.1,
+    "full_bytes_mean": 328.7
+  },
+  "n": 21
+}
