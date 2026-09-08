@@ -1,0 +1,585 @@
+{
+  "stock_gate": {
+    "leak_rate_mean": 32.67,
+    "leak_rate_sd": 9.29,
+    "block_rate_mean": 0.0
+  },
+  "closure_gate": {
+    "leak_rate_mean": 0.0,
+    "leak_rate_sd": 0.0,
+    "block_rate_mean": 32.67
+  },
+  "n_seeds": 30,
+  "per_seed": [
+    {
+      "seed": 0,
+      "stock": {
+        "leak_rate_pct": 30.0,
+        "block_rate_pct": 0.0,
+        "served_downstream_pct": 100.0,
+        "true_leaks_possible": 10,
+        "leaked": 6,
+        "n_events": 20
+      },
+      "closure": {
+        "leak_rate_pct": 0.0,
+        "block_rate_pct": 30.0,
+        "served_downstream_pct": 70.0,
+        "true_leaks_possible": 10,
+        "leaked": 0,
+        "n_events": 20
+      }
+    },
+    {
+      "seed": 1,
+      "stock": {
+        "leak_rate_pct": 30.0,
+        "block_rate_pct": 0.0,
+        "served_downstream_pct": 100.0,
+        "true_leaks_possible": 10,
+        "leaked": 6,
+        "n_events": 20
+      },
+      "closure": {
+        "leak_rate_pct": 0.0,
+        "block_rate_pct": 30.0,
+        "served_downstream_pct": 70.0,
+        "true_leaks_possible": 10,
+        "leaked": 0,
+        "n_events": 20
+      }
+    },
+    {
+      "seed": 2,
+      "stock": {
+        "leak_rate_pct": 15.0,
+        "block_rate_pct": 0.0,
+        "served_downstream_pct": 100.0,
+        "true_leaks_possible": 8,
+        "leaked": 3,
+        "n_events": 20
+      },
+      "closure": {
+        "leak_rate_pct": 0.0,
+        "block_rate_pct": 15.0,
+        "served_downstream_pct": 85.0,
+        "true_leaks_possible": 8,
+        "leaked": 0,
+        "n_events": 20
+      }
+    },
+    {
+      "seed": 3,
+      "stock": {
+        "leak_rate_pct": 25.0,
+        "block_rate_pct": 0.0,
+        "served_downstream_pct": 100.0,
+        "true_leaks_possible": 9,
+        "leaked": 5,
+        "n_events": 20
+      },
+      "closure": {
+        "leak_rate_pct": 0.0,
+        "block_rate_pct": 25.0,
+        "served_downstream_pct": 75.0,
+        "true_leaks_possible": 9,
+        "leaked": 0,
+        "n_events": 20
+      }
+    },
+    {
+      "seed": 4,
+      "stock": {
+        "leak_rate_pct": 15.0,
+        "block_rate_pct": 0.0,
+        "served_downstream_pct": 100.0,
+        "true_leaks_possible": 7,
+        "leaked": 3,
+        "n_events": 20
+      },
+      "closure": {
+        "leak_rate_pct": 0.0,
+        "block_rate_pct": 15.0,
+        "served_downstream_pct": 85.0,
+        "true_leaks_possible": 7,
+        "leaked": 0,
+        "n_events": 20
+      }
+    },
+    {
+      "seed": 5,
+      "stock": {
+        "leak_rate_pct": 45.0,
+        "block_rate_pct": 0.0,
+        "served_downstream_pct": 100.0,
+        "true_leaks_possible": 14,
+        "leaked": 9,
+        "n_events": 20
+      },
+      "closure": {
+        "leak_rate_pct": 0.0,
+        "block_rate_pct": 45.0,
+        "served_downstream_pct": 55.0,
+        "true_leaks_possible": 14,
+        "leaked": 0,
+        "n_events": 20
+      }
+    },
+    {
+      "seed": 6,
+      "stock": {
+        "leak_rate_pct": 50.0,
+        "block_rate_pct": 0.0,
+        "served_downstream_pct": 100.0,
+        "true_leaks_possible": 11,
+        "leaked": 10,
+        "n_events": 20
+      },
+      "closure": {
+        "leak_rate_pct": 0.0,
+        "block_rate_pct": 50.0,
+        "served_downstream_pct": 50.0,
+        "true_leaks_possible": 11,
+        "leaked": 0,
+        "n_events": 20
+      }
+    },
+    {
+      "seed": 7,
+      "stock": {
+        "leak_rate_pct": 45.0,
+        "block_rate_pct": 0.0,
+        "served_downstream_pct": 100.0,
+        "true_leaks_possible": 14,
+        "leaked": 9,
+        "n_events": 20
+      },
+      "closure": {
+        "leak_rate_pct": 0.0,
+        "block_rate_pct": 45.0,
+        "served_downstream_pct": 55.0,
+        "true_leaks_possible": 14,
+        "leaked": 0,
+        "n_events": 20
+      }
+    },
+    {
+      "seed": 8,
+      "stock": {
+        "leak_rate_pct": 30.0,
+        "block_rate_pct": 0.0,
+        "served_downstream_pct": 100.0,
+        "true_leaks_possible": 12,
+        "leaked": 6,
+        "n_events": 20
+      },
+      "closure": {
+        "leak_rate_pct": 0.0,
+        "block_rate_pct": 30.0,
+        "served_downstream_pct": 70.0,
+        "true_leaks_possible": 12,
+        "leaked": 0,
+        "n_events": 20
+      }
+    },
+    {
+      "seed": 9,
+      "stock": {
+        "leak_rate_pct": 40.0,
+        "block_rate_pct": 0.0,
+        "served_downstream_pct": 100.0,
+        "true_leaks_possible": 13,
+        "leaked": 8,
+        "n_events": 20
+      },
+      "closure": {
+        "leak_rate_pct": 0.0,
+        "block_rate_pct": 40.0,
+        "served_downstream_pct": 60.0,
+        "true_leaks_possible": 13,
+        "leaked": 0,
+        "n_events": 20
+      }
+    },
+    {
+      "seed": 10,
+      "stock": {
+        "leak_rate_pct": 30.0,
+        "block_rate_pct": 0.0,
+        "served_downstream_pct": 100.0,
+        "true_leaks_possible": 10,
+        "leaked": 6,
+        "n_events": 20
+      },
+      "closure": {
+        "leak_rate_pct": 0.0,
+        "block_rate_pct": 30.0,
+        "served_downstream_pct": 70.0,
+        "true_leaks_possible": 10,
+        "leaked": 0,
+        "n_events": 20
+      }
+    },
+    {
+      "seed": 11,
+      "stock": {
+        "leak_rate_pct": 40.0,
+        "block_rate_pct": 0.0,
+        "served_downstream_pct": 100.0,
+        "true_leaks_possible": 10,
+        "leaked": 8,
+        "n_events": 20
+      },
+      "closure": {
+        "leak_rate_pct": 0.0,
+        "block_rate_pct": 40.0,
+        "served_downstream_pct": 60.0,
+        "true_leaks_possible": 10,
+        "leaked": 0,
+        "n_events": 20
+      }
+    },
+    {
+      "seed": 12,
+      "stock": {
+        "leak_rate_pct": 20.0,
+        "block_rate_pct": 0.0,
+        "served_downstream_pct": 100.0,
+        "true_leaks_possible": 10,
+        "leaked": 4,
+        "n_events": 20
+      },
+      "closure": {
+        "leak_rate_pct": 0.0,
+        "block_rate_pct": 20.0,
+        "served_downstream_pct": 80.0,
+        "true_leaks_possible": 10,
+        "leaked": 0,
+        "n_events": 20
+      }
+    },
+    {
+      "seed": 13,
+      "stock": {
+        "leak_rate_pct": 25.0,
+        "block_rate_pct": 0.0,
+        "served_downstream_pct": 100.0,
+        "true_leaks_possible": 9,
+        "leaked": 5,
+        "n_events": 20
+      },
+      "closure": {
+        "leak_rate_pct": 0.0,
+        "block_rate_pct": 25.0,
+        "served_downstream_pct": 75.0,
+        "true_leaks_possible": 9,
+        "leaked": 0,
+        "n_events": 20
+      }
+    },
+    {
+      "seed": 14,
+      "stock": {
+        "leak_rate_pct": 45.0,
+        "block_rate_pct": 0.0,
+        "served_downstream_pct": 100.0,
+        "true_leaks_possible": 9,
+        "leaked": 9,
+        "n_events": 20
+      },
+      "closure": {
+        "leak_rate_pct": 0.0,
+        "block_rate_pct": 45.0,
+        "served_downstream_pct": 55.0,
+        "true_leaks_possible": 9,
+        "leaked": 0,
+        "n_events": 20
+      }
+    },
+    {
+      "seed": 15,
+      "stock": {
+        "leak_rate_pct": 30.0,
+        "block_rate_pct": 0.0,
+        "served_downstream_pct": 100.0,
+        "true_leaks_possible": 8,
+        "leaked": 6,
+        "n_events": 20
+      },
+      "closure": {
+        "leak_rate_pct": 0.0,
+        "block_rate_pct": 30.0,
+        "served_downstream_pct": 70.0,
+        "true_leaks_possible": 8,
+        "leaked": 0,
+        "n_events": 20
+      }
+    },
+    {
+      "seed": 16,
+      "stock": {
+        "leak_rate_pct": 30.0,
+        "block_rate_pct": 0.0,
+        "served_downstream_pct": 100.0,
+        "true_leaks_possible": 8,
+        "leaked": 6,
+        "n_events": 20
+      },
+      "closure": {
+        "leak_rate_pct": 0.0,
+        "block_rate_pct": 30.0,
+        "served_downstream_pct": 70.0,
+        "true_leaks_possible": 8,
+        "leaked": 0,
+        "n_events": 20
+      }
+    },
+    {
+      "seed": 17,
+      "stock": {
+        "leak_rate_pct": 40.0,
+        "block_rate_pct": 0.0,
+        "served_downstream_pct": 100.0,
+        "true_leaks_possible": 9,
+        "leaked": 8,
+        "n_events": 20
+      },
+      "closure": {
+        "leak_rate_pct": 0.0,
+        "block_rate_pct": 40.0,
+        "served_downstream_pct": 60.0,
+        "true_leaks_possible": 9,
+        "leaked": 0,
+        "n_events": 20
+      }
+    },
+    {
+      "seed": 18,
+      "stock": {
+        "leak_rate_pct": 40.0,
+        "block_rate_pct": 0.0,
+        "served_downstream_pct": 100.0,
+        "true_leaks_possible": 10,
+        "leaked": 8,
+        "n_events": 20
+      },
+      "closure": {
+        "leak_rate_pct": 0.0,
+        "block_rate_pct": 40.0,
+        "served_downstream_pct": 60.0,
+        "true_leaks_possible": 10,
+        "leaked": 0,
+        "n_events": 20
+      }
+    },
+    {
+      "seed": 19,
+      "stock": {
+        "leak_rate_pct": 40.0,
+        "block_rate_pct": 0.0,
+        "served_downstream_pct": 100.0,
+        "true_leaks_possible": 12,
+        "leaked": 8,
+        "n_events": 20
+      },
+      "closure": {
+        "leak_rate_pct": 0.0,
+        "block_rate_pct": 40.0,
+        "served_downstream_pct": 60.0,
+        "true_leaks_possible": 12,
+        "leaked": 0,
+        "n_events": 20
+      }
+    },
+    {
+      "seed": 20,
+      "stock": {
+        "leak_rate_pct": 45.0,
+        "block_rate_pct": 0.0,
+        "served_downstream_pct": 100.0,
+        "true_leaks_possible": 12,
+        "leaked": 9,
+        "n_events": 20
+      },
+      "closure": {
+        "leak_rate_pct": 0.0,
+        "block_rate_pct": 45.0,
+        "served_downstream_pct": 55.0,
+        "true_leaks_possible": 12,
+        "leaked": 0,
+        "n_events": 20
+      }
+    },
+    {
+      "seed": 21,
+      "stock": {
+        "leak_rate_pct": 20.0,
+        "block_rate_pct": 0.0,
+        "served_downstream_pct": 100.0,
+        "true_leaks_possible": 10,
+        "leaked": 4,
+        "n_events": 20
+      },
+      "closure": {
+        "leak_rate_pct": 0.0,
+        "block_rate_pct": 20.0,
+        "served_downstream_pct": 80.0,
+        "true_leaks_possible": 10,
+        "leaked": 0,
+        "n_events": 20
+      }
+    },
+    {
+      "seed": 22,
+      "stock": {
+        "leak_rate_pct": 30.0,
+        "block_rate_pct": 0.0,
+        "served_downstream_pct": 100.0,
+        "true_leaks_possible": 8,
+        "leaked": 6,
+        "n_events": 20
+      },
+      "closure": {
+        "leak_rate_pct": 0.0,
+        "block_rate_pct": 30.0,
+        "served_downstream_pct": 70.0,
+        "true_leaks_possible": 8,
+        "leaked": 0,
+        "n_events": 20
+      }
+    },
+    {
+      "seed": 23,
+      "stock": {
+        "leak_rate_pct": 30.0,
+        "block_rate_pct": 0.0,
+        "served_downstream_pct": 100.0,
+        "true_leaks_possible": 8,
+        "leaked": 6,
+        "n_events": 20
+      },
+      "closure": {
+        "leak_rate_pct": 0.0,
+        "block_rate_pct": 30.0,
+        "served_downstream_pct": 70.0,
+        "true_leaks_possible": 8,
+        "leaked": 0,
+        "n_events": 20
+      }
+    },
+    {
+      "seed": 24,
+      "stock": {
+        "leak_rate_pct": 30.0,
+        "block_rate_pct": 0.0,
+        "served_downstream_pct": 100.0,
+        "true_leaks_possible": 9,
+        "leaked": 6,
+        "n_events": 20
+      },
+      "closure": {
+        "leak_rate_pct": 0.0,
+        "block_rate_pct": 30.0,
+        "served_downstream_pct": 70.0,
+        "true_leaks_possible": 9,
+        "leaked": 0,
+        "n_events": 20
+      }
+    },
+    {
+      "seed": 25,
+      "stock": {
+        "leak_rate_pct": 25.0,
+        "block_rate_pct": 0.0,
+        "served_downstream_pct": 100.0,
+        "true_leaks_possible": 9,
+        "leaked": 5,
+        "n_events": 20
+      },
+      "closure": {
+        "leak_rate_pct": 0.0,
+        "block_rate_pct": 25.0,
+        "served_downstream_pct": 75.0,
+        "true_leaks_possible": 9,
+        "leaked": 0,
+        "n_events": 20
+      }
+    },
+    {
+      "seed": 26,
+      "stock": {
+        "leak_rate_pct": 45.0,
+        "block_rate_pct": 0.0,
+        "served_downstream_pct": 100.0,
+        "true_leaks_possible": 14,
+        "leaked": 9,
+        "n_events": 20
+      },
+      "closure": {
+        "leak_rate_pct": 0.0,
+        "block_rate_pct": 45.0,
+        "served_downstream_pct": 55.0,
+        "true_leaks_possible": 14,
+        "leaked": 0,
+        "n_events": 20
+      }
+    },
+    {
+      "seed": 27,
+      "stock": {
+        "leak_rate_pct": 35.0,
+        "block_rate_pct": 0.0,
+        "served_downstream_pct": 100.0,
+        "true_leaks_possible": 9,
+        "leaked": 7,
+        "n_events": 20
+      },
+      "closure": {
+        "leak_rate_pct": 0.0,
+        "block_rate_pct": 35.0,
+        "served_downstream_pct": 65.0,
+        "true_leaks_possible": 9,
+        "leaked": 0,
+        "n_events": 20
+      }
+    },
+    {
+      "seed": 28,
+      "stock": {
+        "leak_rate_pct": 30.0,
+        "block_rate_pct": 0.0,
+        "served_downstream_pct": 100.0,
+        "true_leaks_possible": 10,
+        "leaked": 6,
+        "n_events": 20
+      },
+      "closure": {
+        "leak_rate_pct": 0.0,
+        "block_rate_pct": 30.0,
+        "served_downstream_pct": 70.0,
+        "true_leaks_possible": 10,
+        "leaked": 0,
+        "n_events": 20
+      }
+    },
+    {
+      "seed": 29,
+      "stock": {
+        "leak_rate_pct": 25.0,
+        "block_rate_pct": 0.0,
+        "served_downstream_pct": 100.0,
+        "true_leaks_possible": 7,
+        "leaked": 5,
+        "n_events": 20
+      },
+      "closure": {
+        "leak_rate_pct": 0.0,
+        "block_rate_pct": 25.0,
+        "served_downstream_pct": 75.0,
+        "true_leaks_possible": 7,
+        "leaked": 0,
+        "n_events": 20
+      }
+    }
+  ]
+}

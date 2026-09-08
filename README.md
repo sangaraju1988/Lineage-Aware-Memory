@@ -2,8 +2,8 @@
 
 > **Paper:** *Lineage-Aware Memory Governance: A Derivation-Gated Framework for Privacy-Preserving Column-Level Access Control in Enterprise AI Agents*
 > **Authors:** Venkata Sangaraju · Sudhir Vissa (SAGE7 AI)
-> **Published:** [IEEE Access](https://doi.org/10.1109/ACCESS.2026.3730363), Early Access, open access · DOI: 10.1109/ACCESS.2026.3730363
-> **Reference implementation:** [amu-governance](https://github.com/sangaraju1988/amu-governance) (MIT, pip-installable)
+> **Published:** [IEEE Access](https://doi.org/10.1109/ACCESS.2026.3730363), Early Access, open access · DOI: 10.1109/ACCESS.2026.3730363 · also on [IEEE Xplore](https://ieeexplore.ieee.org/document/11677041)
+> **Reference implementation:** [amu-governance](https://github.com/sangaraju1988/amu-governance) (MIT, pip-installable: `pip install amu-governance`) · [Zenodo software DOI](https://doi.org/10.5281/zenodo.21302744)
 
 ---
 
@@ -42,6 +42,11 @@ Lineage-Aware-Memory/
 ├── degradation_results.json    # Completeness sweep: leak rate vs. reporting fraction
 ├── benchmark_results.json      # Runtime measurements in µs across operation types
 ├── stats_results.json          # Bootstrap CI + Mann-Whitney p-values
+├── adversarial_lineage_experiment.py  # Exp. 7: materialization-boundary leak + closure fix
+├── adversarial_lineage_results.json   # Exp. 7 output
+├── storage_overhead_measurement.py    # Empirical check of the paper's 4-8x storage estimate
+├── storage_overhead_results.json      # Measurement output
+├── test_package_conformance.py        # Root modules vs. amu-governance package, 30-seed check
 ├── RESULTS.md                  # Honest assessment of what the results do/don't show
 │
 ├── agent_demo/
@@ -58,6 +63,39 @@ Lineage-Aware-Memory/
     ├── fig4_tpch_comparison.png   # Figure 4 — TPC-H vs synthetic comparison
     └── fig5_degradation.png       # Figure 5 — leak rate vs. lineage completeness
 ```
+
+---
+
+## Relationship between this repository and the `amu-governance` package
+
+The mechanism appears in four places in this project, and they are
+**independent implementations that happen to agree, not one shared
+codebase**:
+
+1. `model.py` / `systems.py` in this repo — used by `simulate.py`,
+   `degradation_experiment.py`, and `benchmark_runtime.py`. Hardcodes the
+   paper's 5-table schema and department permissions as module globals.
+2. Self-contained reimplementations embedded directly in
+   `tpch_experiment.py` (`TAMU`/`TLineage`/`TLineageAwareSystem`, TPC-H
+   schema) and `fuzzy_experiment.py` — neither imports `model.py`/`systems.py`.
+3. [`amu-governance`](https://github.com/sangaraju1988/amu-governance) on
+   PyPI — a policy-agnostic rewrite (`GovernancePolicy` replaces the
+   hardcoded globals) intended as the general-purpose reference
+   implementation for reuse outside this paper's specific schema.
+
+This split is a known, low-risk-but-real maintenance duplication, not a sign
+of drift: an equivalence check (`test_package_conformance.py`, seeded, 30
+runs) confirms `model.py`/`systems.py` and `amu-governance` produce
+identical `served`/`leaked`/`reused`/`blocked`/conflict-flagged outcomes on
+the exact workload behind the paper's headline synthetic-schema numbers.
+The root modules here are the frozen artifact that produced the published
+results; `amu-governance` is the maintained, schema-agnostic descendant for
+new work — including `adversarial_lineage_experiment.py` above, which is
+written against the package rather than the root modules for that reason.
+Consolidating the TPC-H/fuzzy reimplementations onto one shared codebase
+would reduce this duplication further but was intentionally left out of
+scope here, since it would require re-running and re-verifying every
+published number rather than adding new, additive experiments.
 
 ---
 
@@ -103,6 +141,11 @@ python gen_figures.py
 #    Finance + Marketing agents through LineageAwareSystem
 #    Generates agent_demo/transcript.md
 python agent_demo/demo.py
+
+# 9. Adversarial lineage experiment (post-publication addendum, not in the
+#    IEEE Access paper) — materialization-boundary leak + closure fix.
+#    Requires the amu-governance package: pip install amu-governance
+python adversarial_lineage_experiment.py
 ```
 
 ---
@@ -121,6 +164,20 @@ python agent_demo/demo.py
 
 All comparisons: Mann-Whitney U, p < 0.001 (bootstrap 95% CI excludes zero).
 The 0% leakage result is a **formal guarantee** (Theorem 1), not an empirical finding.
+
+### Post-publication addendum: adversarial lineage testing (not in the paper)
+
+`adversarial_lineage_experiment.py` — the paper's own stated #1 roadmap
+priority, added after publication. Tests the gate against a materialization
+boundary: a sensitive metric (`risk_score`, derived from `income`) is
+persisted as a column, then a second metric is derived from that column
+alone, with lineage that never names `income`. Full writeup in
+[`RESULTS.md`](RESULTS.md#experiment-7-transitive-lineage-closure-under-materialization-boundaries).
+
+| Gate | Leak rate (30 seeds) | Block rate |
+|---|---|---|
+| Stock `LineageAwareSystem` (published, unmodified) | **32.7% ± 9.3%** | 0.0% |
+| + transitive lineage closure (candidate fix) | **0.0% ± 0.0%** | 32.7% |
 
 ### Fuzzy Conflict Detection — Extended Study (43 pairs: TC/TV/LO/CS)
 

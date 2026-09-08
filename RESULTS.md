@@ -82,6 +82,64 @@ practice.
   tries to construct queries that smuggle sensitive joins past the lineage
   check
 
+## Experiment 7: transitive lineage closure under materialization boundaries
+
+`adversarial_lineage_experiment.py` — the adversarial follow-up flagged above
+as the actual next work item, and the paper's own stated #1 roadmap priority
+("adversarial lineage testing... derived features or view indirection").
+
+**The attack:** Finance computes `risk_score` from `income` (lineage
+correctly records `income`; the gate correctly blocks Marketing from
+`risk_score` directly). `risk_score` is then materialized as a column in a
+downstream table — normal practice, not a workaround. A second metric,
+`high_risk_customers`, is derived from `risk_score` alone; its recorded
+lineage never touches `income`, so `sensitivity_tags` is empty. Marketing
+requests `high_risk_customers` and the stock gate serves it — income has
+leaked through a materialization boundary without ever being named.
+
+**Result (30 seeds, seeded workload mixing this chain with a non-sensitive
+transaction-volume chain at random):**
+
+| Gate | Leak rate (mean ± sd) | Block rate |
+|---|---|---|
+| Stock `LineageAwareSystem` (published, unmodified) | **32.7% ± 9.3%** | 0.0% |
+| + transitive lineage closure (candidate fix, this experiment only) | **0.0% ± 0.0%** | 32.7% |
+
+The stock gate's leak rate here is *higher* than the paper's original
+18.8% naive-baseline number — this workload is specifically constructed to
+find the failure, not a general-purpose estimate. Transitive closure (walk
+a `MaterializationRegistry` mapping materialized `(table, column)` back to
+its upstream `Lineage`, and union the upstream sensitive columns into the
+downstream AMU's lineage before gating) closes it to zero, at the same
+kind of reuse-rate cost as the paper's headline leak/reuse tradeoff.
+
+**What this does and doesn't show:** this confirms the mechanism *can* be
+extended to close a materialization-boundary leak, using only a provenance
+edge recorded at write time — no change to `amu_governance` itself, no
+change to the safety theorem's structure. It does **not** show that
+transitive closure is the only or best fix, and it does **not** cover a
+materialized column produced by a process that never registers a
+provenance edge at all (e.g. a feature store computing `income_bucket`
+outside this system entirely) — closure can only close what has a
+recorded upstream link. That remains open, consistent with the paper's own
+framing of Assumption 1 as the load-bearing assumption the safety guarantee
+depends on.
+
+## Storage overhead: measured, not just estimated
+
+The paper's "roughly 4-8x... 200-600 bytes for a typical 2-4 table join"
+storage-overhead figure (Section 5, Complexity and Storage) is an
+analytical estimate — arithmetic over the schema, not a measurement; no
+script in the original submission serialized an AMU and measured it.
+`storage_overhead_measurement.py` closes that gap: JSON-serializing every
+metric-variant x department AMU in the synthetic schema gives a mean
+overhead of **3.93x** (range 3.44x-5.00x), full-entry size **357 bytes**
+mean — inside the paper's byte range, but at the low end of its ratio
+range rather than spanning 4-8x. This isn't a correction so much as a
+missing citation: the estimate holds up reasonably well, but "roughly 4-8x"
+should be read as an upper-bound-inclusive estimate for this schema's join
+depth (2-3 steps), not a tight measured range.
+
 ## What NOT to claim yet
 
 - Don't report conflict recall as "100% accurate conflict detection" in the
