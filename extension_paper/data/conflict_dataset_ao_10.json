@@ -1,0 +1,193 @@
+{
+  "_metadata": {
+    "description": "Aggregation-Operator (AO) conflict-detection pairs -- Group A3. Each pair has identical tables, identical columns, and identical filter-logic operator topology (so D3 and D4 cannot distinguish them by construction); they differ only in aggregation_fn. This dataset exists specifically to (a) demonstrate the aggregation-operator blind spot D4 has and D5 closes, and (b) give A4's full evaluation matrix a category where D4 and D5 provably diverge, which is what the paired McNemar test in run_a4_full_matrix.py compares.",
+    "labeling_methodology": "Single-pass, single-labeler (the executing agent for this build pass -- see extension_paper/docs/limitations.md). Each pair's ground-truth is_conflict label and rationale were authored together, by construction of the pair (i.e. the pairs were built to have a known, intended answer, not labeled after the fact from an ambiguous real query pair). No second labeler or inter-rater agreement statistic exists for this dataset; treat P/R/F1 on this category as a demonstration of the mechanism against clearly-intended cases, not as an estimate of real-world AO-conflict detection accuracy on ambiguous queries.",
+    "n_pairs": 10,
+    "category": "AO",
+    "positive_pairs": 7,
+    "negative_pairs": 3,
+    "created_for": "extension_paper Group A3 (see build_prompt.md Section 3, Group A)"
+  },
+  "pairs": [
+    {
+      "name": "revenue: SUM vs AVG over identical join/filter",
+      "category": "AO",
+      "a": {
+        "tables": ["lineitem", "orders"],
+        "columns": ["l_orderkey", "l_extendedprice", "o_orderdate"],
+        "filter_logic": "l_shipdate BETWEEN 1994-01-01 AND 1995-01-01",
+        "aggregation_fn": "SUM"
+      },
+      "b": {
+        "tables": ["lineitem", "orders"],
+        "columns": ["l_orderkey", "l_extendedprice", "o_orderdate"],
+        "filter_logic": "l_shipdate BETWEEN 1994-01-01 AND 1995-01-01",
+        "aggregation_fn": "AVG"
+      },
+      "is_conflict": true,
+      "rationale": "Same tables, columns, and filter window; total revenue (SUM) and average order value (AVG) are genuinely different metrics that would silently diverge if cached under the same metric_name."
+    },
+    {
+      "name": "order_count: COUNT vs SUM(quantity) over identical scope",
+      "category": "AO",
+      "a": {
+        "tables": ["orders", "lineitem"],
+        "columns": ["o_orderkey", "l_quantity"],
+        "filter_logic": "o_orderdate >= 2024-01-01",
+        "aggregation_fn": "COUNT"
+      },
+      "b": {
+        "tables": ["orders", "lineitem"],
+        "columns": ["o_orderkey", "l_quantity"],
+        "filter_logic": "o_orderdate >= 2024-01-01",
+        "aggregation_fn": "SUM"
+      },
+      "is_conflict": true,
+      "rationale": "Number of orders (COUNT) vs total units ordered (SUM of quantity) over the same scope are different business quantities despite identical lineage and filter."
+    },
+    {
+      "name": "campaign_spend: MIN vs MAX over identical scope",
+      "category": "AO",
+      "a": {
+        "tables": ["campaigns"],
+        "columns": ["campaign_id", "spend"],
+        "filter_logic": "channel = email",
+        "aggregation_fn": "MIN"
+      },
+      "b": {
+        "tables": ["campaigns"],
+        "columns": ["campaign_id", "spend"],
+        "filter_logic": "channel = email",
+        "aggregation_fn": "MAX"
+      },
+      "is_conflict": true,
+      "rationale": "Minimum vs maximum campaign spend are extremes of the same distribution, not the same value -- a genuine conflict if both are cached as \"campaign_spend\"."
+    },
+    {
+      "name": "active_customers: COUNT vs COUNT (identical, negative control)",
+      "category": "AO",
+      "a": {
+        "tables": ["customers", "transactions"],
+        "columns": ["customer_id", "txn_date"],
+        "filter_logic": "txn in last 30 days",
+        "aggregation_fn": "COUNT"
+      },
+      "b": {
+        "tables": ["customers", "transactions"],
+        "columns": ["customer_id", "txn_date"],
+        "filter_logic": "txn in last 30 days",
+        "aggregation_fn": "COUNT"
+      },
+      "is_conflict": false,
+      "rationale": "Negative control: tables, columns, filter logic, and aggregation function are all identical -- this must not be flagged, or the detector has a false-positive problem on the trivial case."
+    },
+    {
+      "name": "support_load: avg vs AVG (case-normalization negative control)",
+      "category": "AO",
+      "a": {
+        "tables": ["support_tickets", "customers"],
+        "columns": ["customer_id", "ticket_id", "category"],
+        "filter_logic": "open tickets by region",
+        "aggregation_fn": "avg"
+      },
+      "b": {
+        "tables": ["support_tickets", "customers"],
+        "columns": ["customer_id", "ticket_id", "category"],
+        "filter_logic": "open tickets by region",
+        "aggregation_fn": "AVG"
+      },
+      "is_conflict": false,
+      "rationale": "Negative control for aggregation_fn normalization: \"avg\" and \"AVG\" must normalize to the same canonical value and not be flagged as a conflict (see amu_ext.aggregation.normalize_aggregation_fn)."
+    },
+    {
+      "name": "revenue_by_region: SUM vs no-aggregation (row-level) over identical scope",
+      "category": "AO",
+      "a": {
+        "tables": ["lineitem", "orders", "customer", "nation", "region"],
+        "columns": ["l_extendedprice", "l_discount", "o_custkey", "c_nationkey", "n_regionkey", "r_name"],
+        "filter_logic": "revenue by region via nation lookup",
+        "aggregation_fn": "SUM"
+      },
+      "b": {
+        "tables": ["lineitem", "orders", "customer", "nation", "region"],
+        "columns": ["l_extendedprice", "l_discount", "o_custkey", "c_nationkey", "n_regionkey", "r_name"],
+        "filter_logic": "revenue by region via nation lookup",
+        "aggregation_fn": null
+      },
+      "is_conflict": true,
+      "rationale": "A row-level (unaggregated / IDENTITY) value and its SUM over the same scope are not interchangeable -- one is per-line-item revenue, the other a regional total. aggregation_fn=null normalizes to IDENTITY, which is still distinct from SUM."
+    },
+    {
+      "name": "churn_rate: COUNT vs AVG over identical scope",
+      "category": "AO",
+      "a": {
+        "tables": ["customers", "transactions"],
+        "columns": ["customer_id", "signup_date", "txn_date", "amount"],
+        "filter_logic": "no txn in 90 days",
+        "aggregation_fn": "COUNT"
+      },
+      "b": {
+        "tables": ["customers", "transactions"],
+        "columns": ["customer_id", "signup_date", "txn_date", "amount"],
+        "filter_logic": "no txn in 90 days",
+        "aggregation_fn": "AVG"
+      },
+      "is_conflict": true,
+      "rationale": "Count of churned customers vs. their average transaction amount are unrelated quantities that happen to share a filter and join path -- flagging this protects against a metric_name collision, not a lineage collision."
+    },
+    {
+      "name": "high_value_segment: SUM vs SUM, threshold-only variant (should NOT flag)",
+      "category": "AO",
+      "a": {
+        "tables": ["customer_pii", "transactions"],
+        "columns": ["customer_id", "income", "amount"],
+        "filter_logic": "income decile 9-10",
+        "aggregation_fn": "SUM"
+      },
+      "b": {
+        "tables": ["customer_pii", "transactions"],
+        "columns": ["customer_id", "income", "amount"],
+        "filter_logic": "income decile 8-10",
+        "aggregation_fn": "SUM"
+      },
+      "is_conflict": false,
+      "rationale": "Both sides sum the same column over the same join path; only the decile threshold changed (same shape as the original dataset's TV category). Combining a matching aggregation_fn with a threshold-only filter change must not be flagged -- this guards against D5 over-flagging every AO-category pair regardless of whether aggregation actually differs."
+    },
+    {
+      "name": "supplier_cost: MIN vs AVG AND an AND-to-OR filter change (double conflict)",
+      "category": "AO",
+      "a": {
+        "tables": ["partsupp", "lineitem"],
+        "columns": ["ps_supplycost", "ps_availqty", "l_extendedprice"],
+        "filter_logic": "ps_availqty >= 50 AND l_extendedprice > 1000",
+        "aggregation_fn": "MIN"
+      },
+      "b": {
+        "tables": ["partsupp", "lineitem"],
+        "columns": ["ps_supplycost", "ps_availqty", "l_extendedprice"],
+        "filter_logic": "ps_availqty >= 50 OR l_extendedprice > 1000",
+        "aggregation_fn": "AVG"
+      },
+      "is_conflict": true,
+      "rationale": "Two independent conflict signals at once (AND-to-OR filter-topology change AND a different aggregation function) -- D4 alone already flags this via the topology diff, and D5 must continue to flag it too (D5 is a superset of D4's flagged conflicts, never a subset)."
+    },
+    {
+      "name": "campaign_roi: unspecified (None/IDENTITY) vs SUM over identical scope",
+      "category": "AO",
+      "a": {
+        "tables": ["campaigns", "transactions"],
+        "columns": ["campaign_id", "customer_id", "spend", "channel", "amount"],
+        "filter_logic": "revenue attributed within 14-day window",
+        "aggregation_fn": null
+      },
+      "b": {
+        "tables": ["campaigns", "transactions"],
+        "columns": ["campaign_id", "customer_id", "spend", "channel", "amount"],
+        "filter_logic": "revenue attributed within 14-day window",
+        "aggregation_fn": "SUM"
+      },
+      "is_conflict": true,
+      "rationale": "An unspecified/row-level aggregation (null, normalized to IDENTITY) is not the same value as an explicit SUM over the same scope -- this checks that null normalizes to a real, comparable value rather than being treated as a wildcard that matches anything."
+    }
+  ]
+}

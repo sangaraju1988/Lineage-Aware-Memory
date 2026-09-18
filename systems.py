@@ -111,7 +111,17 @@ class LineageAwareSystem:
             break
 
         if safe_candidate is not None:
-            return RetrievalResult(served=True, leaked=False, reused=True, blocked=False)
+            # POST-PUBLICATION CORRECTION (extension_paper Group C4): this used
+            # to hardcode blocked=False here, discarding any_blocked even when
+            # an unsafe candidate was skipped earlier in the loop before a safe,
+            # older one was found. `blocked` is a diagnostic/reporting flag only
+            # -- `leaked` (the safety-relevant field) was never affected, since
+            # a safe_candidate was found either way -- but the block-rate
+            # statistics computed from this field (e.g. simulate.py's
+            # `blocked` counter) undercounted true blocking events whenever this
+            # branch was reached. See results/RESULTS.md and
+            # tests/regression/test_algorithm1_diagnostic_bug.py.
+            return RetrievalResult(served=True, leaked=False, reused=True, blocked=any_blocked)
 
         # No safe candidate in memory -> fall back to fresh compute (in-scope, safe)
         return RetrievalResult(served=True, leaked=False, reused=False, blocked=any_blocked)

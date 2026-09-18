@@ -1,0 +1,1476 @@
+{
+  "_metadata": {
+    "source": "Ported from the root repo's fuzzy_experiment.py PAIRS list (verbatim data, reformatted to the extension_paper Pair JSON schema). Rationale strings were generated from each pair's category and original name for this port -- they were not present as free-text per-pair rationale in the original 43-pair dataset (unlike data/conflict_dataset_ao_10.json's Group A3 pairs, which were hand-labeled with individual rationale from the start).",
+    "n_pairs": 43,
+    "categories": [
+      "CS",
+      "LO",
+      "TC",
+      "TV"
+    ],
+    "ported_by": "extension_paper scaffold (Group A, Section 1.4 reconnaissance)"
+  },
+  "pairs": [
+    {
+      "name": "churn_rate: txn-only vs pii-adjusted",
+      "category": "TC",
+      "a": {
+        "tables": [
+          "customers",
+          "transactions"
+        ],
+        "columns": [
+          "customer_id",
+          "signup_date",
+          "txn_date",
+          "amount"
+        ],
+        "filter_logic": "no txn in 90 days",
+        "aggregation_fn": null
+      },
+      "b": {
+        "tables": [
+          "customers",
+          "customer_pii",
+          "transactions"
+        ],
+        "columns": [
+          "customer_id",
+          "signup_date",
+          "income",
+          "txn_date",
+          "amount"
+        ],
+        "filter_logic": "no txn in 60 days AND income-segment adjusted",
+        "aggregation_fn": null
+      },
+      "is_conflict": true,
+      "rationale": "Category TC: different tables and/or columns -- a genuinely different derivation path (True Conflict). Original pair name: \"churn_rate: txn-only vs pii-adjusted\"."
+    },
+    {
+      "name": "active_customers: txn-based vs campaign-based",
+      "category": "TC",
+      "a": {
+        "tables": [
+          "customers",
+          "transactions"
+        ],
+        "columns": [
+          "customer_id",
+          "region",
+          "txn_date"
+        ],
+        "filter_logic": "txn in last 30 days",
+        "aggregation_fn": null
+      },
+      "b": {
+        "tables": [
+          "customers",
+          "campaigns"
+        ],
+        "columns": [
+          "customer_id",
+          "region",
+          "channel"
+        ],
+        "filter_logic": "any campaign engagement in last 30 days",
+        "aggregation_fn": null
+      },
+      "is_conflict": true,
+      "rationale": "Category TC: different tables and/or columns -- a genuinely different derivation path (True Conflict). Original pair name: \"active_customers: txn-based vs campaign-based\"."
+    },
+    {
+      "name": "revenue: gross vs net-of-discount",
+      "category": "TC",
+      "a": {
+        "tables": [
+          "lineitem",
+          "orders"
+        ],
+        "columns": [
+          "l_orderkey",
+          "l_extendedprice",
+          "o_orderdate"
+        ],
+        "filter_logic": "l_shipdate BETWEEN 1994-01-01 AND 1995-01-01",
+        "aggregation_fn": null
+      },
+      "b": {
+        "tables": [
+          "lineitem",
+          "orders"
+        ],
+        "columns": [
+          "l_orderkey",
+          "l_extendedprice",
+          "l_discount",
+          "o_orderdate"
+        ],
+        "filter_logic": "l_shipdate BETWEEN 1994-01-01 AND 1995-01-01 net of discount",
+        "aggregation_fn": null
+      },
+      "is_conflict": true,
+      "rationale": "Category TC: different tables and/or columns -- a genuinely different derivation path (True Conflict). Original pair name: \"revenue: gross vs net-of-discount\"."
+    },
+    {
+      "name": "customer_ltv: financial vs engagement-only",
+      "category": "TC",
+      "a": {
+        "tables": [
+          "customer",
+          "orders",
+          "lineitem"
+        ],
+        "columns": [
+          "c_custkey",
+          "c_mktsegment",
+          "c_acctbal",
+          "o_totalprice",
+          "l_extendedprice",
+          "l_discount"
+        ],
+        "filter_logic": "c_mktsegment = 'BUILDING' AND orders in last 2 years",
+        "aggregation_fn": null
+      },
+      "b": {
+        "tables": [
+          "customer",
+          "orders",
+          "lineitem"
+        ],
+        "columns": [
+          "c_custkey",
+          "c_mktsegment",
+          "o_orderdate",
+          "l_quantity",
+          "l_shipdate"
+        ],
+        "filter_logic": "c_mktsegment = 'BUILDING' AND orders in last 2 years (no financials)",
+        "aggregation_fn": null
+      },
+      "is_conflict": true,
+      "rationale": "Category TC: different tables and/or columns -- a genuinely different derivation path (True Conflict). Original pair name: \"customer_ltv: financial vs engagement-only\"."
+    },
+    {
+      "name": "supplier_perf: balance-adjusted vs on-time only",
+      "category": "TC",
+      "a": {
+        "tables": [
+          "supplier",
+          "partsupp",
+          "lineitem"
+        ],
+        "columns": [
+          "s_suppkey",
+          "s_acctbal",
+          "s_name",
+          "ps_supplycost",
+          "ps_availqty",
+          "l_quantity",
+          "l_extendedprice"
+        ],
+        "filter_logic": "supplier balance-adjusted performance, past 1 year",
+        "aggregation_fn": null
+      },
+      "b": {
+        "tables": [
+          "supplier",
+          "partsupp",
+          "lineitem"
+        ],
+        "columns": [
+          "s_suppkey",
+          "s_name",
+          "ps_availqty",
+          "l_quantity",
+          "l_linestatus"
+        ],
+        "filter_logic": "on-time delivery rate, past 1 year (no financials)",
+        "aggregation_fn": null
+      },
+      "is_conflict": true,
+      "rationale": "Category TC: different tables and/or columns -- a genuinely different derivation path (True Conflict). Original pair name: \"supplier_perf: balance-adjusted vs on-time only\"."
+    },
+    {
+      "name": "campaign_roi: spend+revenue vs spend-only",
+      "category": "TC",
+      "a": {
+        "tables": [
+          "campaigns",
+          "transactions"
+        ],
+        "columns": [
+          "campaign_id",
+          "customer_id",
+          "spend",
+          "channel",
+          "amount"
+        ],
+        "filter_logic": "revenue attributed within 14-day window",
+        "aggregation_fn": null
+      },
+      "b": {
+        "tables": [
+          "campaigns"
+        ],
+        "columns": [
+          "campaign_id",
+          "spend",
+          "channel"
+        ],
+        "filter_logic": "spend only, no revenue attribution",
+        "aggregation_fn": null
+      },
+      "is_conflict": true,
+      "rationale": "Category TC: different tables and/or columns -- a genuinely different derivation path (True Conflict). Original pair name: \"campaign_roi: spend+revenue vs spend-only\"."
+    },
+    {
+      "name": "support_load: ticket+region vs ticket-only",
+      "category": "TC",
+      "a": {
+        "tables": [
+          "support_tickets",
+          "customers"
+        ],
+        "columns": [
+          "customer_id",
+          "ticket_id",
+          "category",
+          "region"
+        ],
+        "filter_logic": "open tickets by region",
+        "aggregation_fn": null
+      },
+      "b": {
+        "tables": [
+          "support_tickets"
+        ],
+        "columns": [
+          "customer_id",
+          "ticket_id",
+          "category"
+        ],
+        "filter_logic": "open tickets (no region breakdown)",
+        "aggregation_fn": null
+      },
+      "is_conflict": true,
+      "rationale": "Category TC: different tables and/or columns -- a genuinely different derivation path (True Conflict). Original pair name: \"support_load: ticket+region vs ticket-only\"."
+    },
+    {
+      "name": "high_value_segment: income+txn vs txn-only",
+      "category": "TC",
+      "a": {
+        "tables": [
+          "customer_pii",
+          "transactions"
+        ],
+        "columns": [
+          "customer_id",
+          "income",
+          "amount"
+        ],
+        "filter_logic": "income decile 9-10",
+        "aggregation_fn": null
+      },
+      "b": {
+        "tables": [
+          "transactions"
+        ],
+        "columns": [
+          "customer_id",
+          "amount"
+        ],
+        "filter_logic": "top 10% by transaction volume only",
+        "aggregation_fn": null
+      },
+      "is_conflict": true,
+      "rationale": "Category TC: different tables and/or columns -- a genuinely different derivation path (True Conflict). Original pair name: \"high_value_segment: income+txn vs txn-only\"."
+    },
+    {
+      "name": "part_availability: with supplier vs without",
+      "category": "TC",
+      "a": {
+        "tables": [
+          "part",
+          "partsupp",
+          "supplier"
+        ],
+        "columns": [
+          "p_partkey",
+          "p_brand",
+          "ps_availqty",
+          "s_name",
+          "s_nationkey"
+        ],
+        "filter_logic": "available parts by supplier region",
+        "aggregation_fn": null
+      },
+      "b": {
+        "tables": [
+          "part",
+          "partsupp"
+        ],
+        "columns": [
+          "p_partkey",
+          "p_brand",
+          "ps_availqty"
+        ],
+        "filter_logic": "available parts count only",
+        "aggregation_fn": null
+      },
+      "is_conflict": true,
+      "rationale": "Category TC: different tables and/or columns -- a genuinely different derivation path (True Conflict). Original pair name: \"part_availability: with supplier vs without\"."
+    },
+    {
+      "name": "order_volume: with returns vs without returnflag",
+      "category": "TC",
+      "a": {
+        "tables": [
+          "orders",
+          "lineitem"
+        ],
+        "columns": [
+          "o_orderkey",
+          "o_orderdate",
+          "l_quantity",
+          "l_returnflag"
+        ],
+        "filter_logic": "order volume including return flag",
+        "aggregation_fn": null
+      },
+      "b": {
+        "tables": [
+          "orders",
+          "lineitem"
+        ],
+        "columns": [
+          "o_orderkey",
+          "o_orderdate",
+          "l_quantity"
+        ],
+        "filter_logic": "order volume excluding return flag column",
+        "aggregation_fn": null
+      },
+      "is_conflict": true,
+      "rationale": "Category TC: different tables and/or columns -- a genuinely different derivation path (True Conflict). Original pair name: \"order_volume: with returns vs without returnflag\"."
+    },
+    {
+      "name": "churn: 3-table join vs 2-table join",
+      "category": "TC",
+      "a": {
+        "tables": [
+          "customers",
+          "customer_pii",
+          "transactions"
+        ],
+        "columns": [
+          "customer_id",
+          "email",
+          "txn_date"
+        ],
+        "filter_logic": "no txn in 90 days, email-verified only",
+        "aggregation_fn": null
+      },
+      "b": {
+        "tables": [
+          "customers",
+          "transactions"
+        ],
+        "columns": [
+          "customer_id",
+          "txn_date"
+        ],
+        "filter_logic": "no txn in 90 days",
+        "aggregation_fn": null
+      },
+      "is_conflict": true,
+      "rationale": "Category TC: different tables and/or columns -- a genuinely different derivation path (True Conflict). Original pair name: \"churn: 3-table join vs 2-table join\"."
+    },
+    {
+      "name": "revenue_by_region: nation join vs market segment",
+      "category": "TC",
+      "a": {
+        "tables": [
+          "lineitem",
+          "orders",
+          "customer",
+          "nation",
+          "region"
+        ],
+        "columns": [
+          "l_extendedprice",
+          "l_discount",
+          "o_custkey",
+          "c_nationkey",
+          "n_regionkey",
+          "r_name"
+        ],
+        "filter_logic": "revenue by region via nation lookup",
+        "aggregation_fn": null
+      },
+      "b": {
+        "tables": [
+          "lineitem",
+          "orders",
+          "customer"
+        ],
+        "columns": [
+          "l_extendedprice",
+          "l_discount",
+          "o_custkey",
+          "c_mktsegment"
+        ],
+        "filter_logic": "revenue by market segment (no region)",
+        "aggregation_fn": null
+      },
+      "is_conflict": true,
+      "rationale": "Category TC: different tables and/or columns -- a genuinely different derivation path (True Conflict). Original pair name: \"revenue_by_region: nation join vs market segment\"."
+    },
+    {
+      "name": "customer_ltv: with PII contact vs without",
+      "category": "TC",
+      "a": {
+        "tables": [
+          "customer",
+          "orders"
+        ],
+        "columns": [
+          "c_custkey",
+          "c_acctbal",
+          "c_phone",
+          "o_totalprice"
+        ],
+        "filter_logic": "lifetime value including account balance and contact PII",
+        "aggregation_fn": null
+      },
+      "b": {
+        "tables": [
+          "customer",
+          "orders"
+        ],
+        "columns": [
+          "c_custkey",
+          "c_mktsegment",
+          "o_totalprice"
+        ],
+        "filter_logic": "lifetime value by market segment only",
+        "aggregation_fn": null
+      },
+      "is_conflict": true,
+      "rationale": "Category TC: different tables and/or columns -- a genuinely different derivation path (True Conflict). Original pair name: \"customer_ltv: with PII contact vs without\"."
+    },
+    {
+      "name": "supplier_cost: with discount vs without",
+      "category": "TC",
+      "a": {
+        "tables": [
+          "partsupp",
+          "lineitem"
+        ],
+        "columns": [
+          "ps_supplycost",
+          "ps_availqty",
+          "l_extendedprice",
+          "l_discount"
+        ],
+        "filter_logic": "net supplier cost after discount",
+        "aggregation_fn": null
+      },
+      "b": {
+        "tables": [
+          "partsupp",
+          "lineitem"
+        ],
+        "columns": [
+          "ps_supplycost",
+          "ps_availqty",
+          "l_extendedprice"
+        ],
+        "filter_logic": "gross supplier cost (no discount column)",
+        "aggregation_fn": null
+      },
+      "is_conflict": true,
+      "rationale": "Category TC: different tables and/or columns -- a genuinely different derivation path (True Conflict). Original pair name: \"supplier_cost: with discount vs without\"."
+    },
+    {
+      "name": "active_customers: campaign+txn vs txn only",
+      "category": "TC",
+      "a": {
+        "tables": [
+          "customers",
+          "campaigns",
+          "transactions"
+        ],
+        "columns": [
+          "customer_id",
+          "region",
+          "channel",
+          "txn_date"
+        ],
+        "filter_logic": "active via either campaign or transaction in 30 days",
+        "aggregation_fn": null
+      },
+      "b": {
+        "tables": [
+          "customers",
+          "transactions"
+        ],
+        "columns": [
+          "customer_id",
+          "region",
+          "txn_date"
+        ],
+        "filter_logic": "active via transaction only in 30 days",
+        "aggregation_fn": null
+      },
+      "is_conflict": true,
+      "rationale": "Category TC: different tables and/or columns -- a genuinely different derivation path (True Conflict). Original pair name: \"active_customers: campaign+txn vs txn only\"."
+    },
+    {
+      "name": "churn_rate: 90-day vs 60-day window (same cols)",
+      "category": "TV",
+      "a": {
+        "tables": [
+          "customers",
+          "transactions"
+        ],
+        "columns": [
+          "customer_id",
+          "signup_date",
+          "txn_date",
+          "amount"
+        ],
+        "filter_logic": "no txn in 90 days",
+        "aggregation_fn": null
+      },
+      "b": {
+        "tables": [
+          "customers",
+          "transactions"
+        ],
+        "columns": [
+          "customer_id",
+          "signup_date",
+          "txn_date",
+          "amount"
+        ],
+        "filter_logic": "no txn in 60 days",
+        "aggregation_fn": null
+      },
+      "is_conflict": false,
+      "rationale": "Category TV: identical tables, columns, and filter-logic structure; only a literal threshold/window changed (Threshold Variant, same metric, recalibrated). Original pair name: \"churn_rate: 90-day vs 60-day window (same cols)\"."
+    },
+    {
+      "name": "active_customers: 30-day vs 14-day window",
+      "category": "TV",
+      "a": {
+        "tables": [
+          "customers",
+          "transactions"
+        ],
+        "columns": [
+          "customer_id",
+          "region",
+          "txn_date"
+        ],
+        "filter_logic": "txn in last 30 days",
+        "aggregation_fn": null
+      },
+      "b": {
+        "tables": [
+          "customers",
+          "transactions"
+        ],
+        "columns": [
+          "customer_id",
+          "region",
+          "txn_date"
+        ],
+        "filter_logic": "txn in last 14 days",
+        "aggregation_fn": null
+      },
+      "is_conflict": false,
+      "rationale": "Category TV: identical tables, columns, and filter-logic structure; only a literal threshold/window changed (Threshold Variant, same metric, recalibrated). Original pair name: \"active_customers: 30-day vs 14-day window\"."
+    },
+    {
+      "name": "high_value_segment: income decile 9-10 vs 8-10",
+      "category": "TV",
+      "a": {
+        "tables": [
+          "customer_pii",
+          "transactions"
+        ],
+        "columns": [
+          "customer_id",
+          "income",
+          "amount"
+        ],
+        "filter_logic": "income decile 9-10",
+        "aggregation_fn": null
+      },
+      "b": {
+        "tables": [
+          "customer_pii",
+          "transactions"
+        ],
+        "columns": [
+          "customer_id",
+          "income",
+          "amount"
+        ],
+        "filter_logic": "income decile 8-10",
+        "aggregation_fn": null
+      },
+      "is_conflict": false,
+      "rationale": "Category TV: identical tables, columns, and filter-logic structure; only a literal threshold/window changed (Threshold Variant, same metric, recalibrated). Original pair name: \"high_value_segment: income decile 9-10 vs 8-10\"."
+    },
+    {
+      "name": "revenue: 1994 window vs 1993 window (same cols)",
+      "category": "TV",
+      "a": {
+        "tables": [
+          "lineitem",
+          "orders"
+        ],
+        "columns": [
+          "l_orderkey",
+          "l_extendedprice",
+          "o_orderdate"
+        ],
+        "filter_logic": "l_shipdate BETWEEN 1994-01-01 AND 1995-01-01",
+        "aggregation_fn": null
+      },
+      "b": {
+        "tables": [
+          "lineitem",
+          "orders"
+        ],
+        "columns": [
+          "l_orderkey",
+          "l_extendedprice",
+          "o_orderdate"
+        ],
+        "filter_logic": "l_shipdate BETWEEN 1993-01-01 AND 1994-01-01",
+        "aggregation_fn": null
+      },
+      "is_conflict": false,
+      "rationale": "Category TV: identical tables, columns, and filter-logic structure; only a literal threshold/window changed (Threshold Variant, same metric, recalibrated). Original pair name: \"revenue: 1994 window vs 1993 window (same cols)\"."
+    },
+    {
+      "name": "campaign_roi: 14-day vs 7-day attribution window",
+      "category": "TV",
+      "a": {
+        "tables": [
+          "campaigns",
+          "transactions"
+        ],
+        "columns": [
+          "campaign_id",
+          "customer_id",
+          "spend",
+          "channel",
+          "amount"
+        ],
+        "filter_logic": "revenue attributed within 14-day window",
+        "aggregation_fn": null
+      },
+      "b": {
+        "tables": [
+          "campaigns",
+          "transactions"
+        ],
+        "columns": [
+          "campaign_id",
+          "customer_id",
+          "spend",
+          "channel",
+          "amount"
+        ],
+        "filter_logic": "revenue attributed within 7-day window",
+        "aggregation_fn": null
+      },
+      "is_conflict": false,
+      "rationale": "Category TV: identical tables, columns, and filter-logic structure; only a literal threshold/window changed (Threshold Variant, same metric, recalibrated). Original pair name: \"campaign_roi: 14-day vs 7-day attribution window\"."
+    },
+    {
+      "name": "churn_rate: 120-day vs 90-day window",
+      "category": "TV",
+      "a": {
+        "tables": [
+          "customers",
+          "transactions"
+        ],
+        "columns": [
+          "customer_id",
+          "signup_date",
+          "txn_date",
+          "amount"
+        ],
+        "filter_logic": "no txn in 120 days",
+        "aggregation_fn": null
+      },
+      "b": {
+        "tables": [
+          "customers",
+          "transactions"
+        ],
+        "columns": [
+          "customer_id",
+          "signup_date",
+          "txn_date",
+          "amount"
+        ],
+        "filter_logic": "no txn in 90 days",
+        "aggregation_fn": null
+      },
+      "is_conflict": false,
+      "rationale": "Category TV: identical tables, columns, and filter-logic structure; only a literal threshold/window changed (Threshold Variant, same metric, recalibrated). Original pair name: \"churn_rate: 120-day vs 90-day window\"."
+    },
+    {
+      "name": "high_value_segment: top 5% vs top 10% by spend",
+      "category": "TV",
+      "a": {
+        "tables": [
+          "customer_pii",
+          "transactions"
+        ],
+        "columns": [
+          "customer_id",
+          "income",
+          "amount"
+        ],
+        "filter_logic": "top 5% by spend",
+        "aggregation_fn": null
+      },
+      "b": {
+        "tables": [
+          "customer_pii",
+          "transactions"
+        ],
+        "columns": [
+          "customer_id",
+          "income",
+          "amount"
+        ],
+        "filter_logic": "top 10% by spend",
+        "aggregation_fn": null
+      },
+      "is_conflict": false,
+      "rationale": "Category TV: identical tables, columns, and filter-logic structure; only a literal threshold/window changed (Threshold Variant, same metric, recalibrated). Original pair name: \"high_value_segment: top 5% vs top 10% by spend\"."
+    },
+    {
+      "name": "order_volume: 2023 vs 2024 year filter",
+      "category": "TV",
+      "a": {
+        "tables": [
+          "orders",
+          "lineitem"
+        ],
+        "columns": [
+          "o_orderkey",
+          "o_orderdate",
+          "l_quantity",
+          "l_returnflag"
+        ],
+        "filter_logic": "o_orderdate >= 2023-01-01",
+        "aggregation_fn": null
+      },
+      "b": {
+        "tables": [
+          "orders",
+          "lineitem"
+        ],
+        "columns": [
+          "o_orderkey",
+          "o_orderdate",
+          "l_quantity",
+          "l_returnflag"
+        ],
+        "filter_logic": "o_orderdate >= 2024-01-01",
+        "aggregation_fn": null
+      },
+      "is_conflict": false,
+      "rationale": "Category TV: identical tables, columns, and filter-logic structure; only a literal threshold/window changed (Threshold Variant, same metric, recalibrated). Original pair name: \"order_volume: 2023 vs 2024 year filter\"."
+    },
+    {
+      "name": "part_availability: min qty 100 vs 50",
+      "category": "TV",
+      "a": {
+        "tables": [
+          "part",
+          "partsupp"
+        ],
+        "columns": [
+          "p_partkey",
+          "p_brand",
+          "ps_availqty"
+        ],
+        "filter_logic": "ps_availqty >= 100",
+        "aggregation_fn": null
+      },
+      "b": {
+        "tables": [
+          "part",
+          "partsupp"
+        ],
+        "columns": [
+          "p_partkey",
+          "p_brand",
+          "ps_availqty"
+        ],
+        "filter_logic": "ps_availqty >= 50",
+        "aggregation_fn": null
+      },
+      "is_conflict": false,
+      "rationale": "Category TV: identical tables, columns, and filter-logic structure; only a literal threshold/window changed (Threshold Variant, same metric, recalibrated). Original pair name: \"part_availability: min qty 100 vs 50\"."
+    },
+    {
+      "name": "supplier_performance: 6-month vs 12-month window",
+      "category": "TV",
+      "a": {
+        "tables": [
+          "supplier",
+          "partsupp",
+          "lineitem"
+        ],
+        "columns": [
+          "s_suppkey",
+          "s_name",
+          "ps_availqty",
+          "l_quantity",
+          "l_linestatus"
+        ],
+        "filter_logic": "on-time delivery rate, past 6 months",
+        "aggregation_fn": null
+      },
+      "b": {
+        "tables": [
+          "supplier",
+          "partsupp",
+          "lineitem"
+        ],
+        "columns": [
+          "s_suppkey",
+          "s_name",
+          "ps_availqty",
+          "l_quantity",
+          "l_linestatus"
+        ],
+        "filter_logic": "on-time delivery rate, past 12 months",
+        "aggregation_fn": null
+      },
+      "is_conflict": false,
+      "rationale": "Category TV: identical tables, columns, and filter-logic structure; only a literal threshold/window changed (Threshold Variant, same metric, recalibrated). Original pair name: \"supplier_performance: 6-month vs 12-month window\"."
+    },
+    {
+      "name": "revenue: discount threshold 0.05 vs 0.10",
+      "category": "TV",
+      "a": {
+        "tables": [
+          "lineitem",
+          "orders"
+        ],
+        "columns": [
+          "l_orderkey",
+          "l_extendedprice",
+          "l_discount",
+          "o_orderdate"
+        ],
+        "filter_logic": "l_discount < 0.05",
+        "aggregation_fn": null
+      },
+      "b": {
+        "tables": [
+          "lineitem",
+          "orders"
+        ],
+        "columns": [
+          "l_orderkey",
+          "l_extendedprice",
+          "l_discount",
+          "o_orderdate"
+        ],
+        "filter_logic": "l_discount < 0.10",
+        "aggregation_fn": null
+      },
+      "is_conflict": false,
+      "rationale": "Category TV: identical tables, columns, and filter-logic structure; only a literal threshold/window changed (Threshold Variant, same metric, recalibrated). Original pair name: \"revenue: discount threshold 0.05 vs 0.10\"."
+    },
+    {
+      "name": "campaign_roi: min spend 500 vs 1000",
+      "category": "TV",
+      "a": {
+        "tables": [
+          "campaigns",
+          "transactions"
+        ],
+        "columns": [
+          "campaign_id",
+          "customer_id",
+          "spend",
+          "channel",
+          "amount"
+        ],
+        "filter_logic": "spend >= 500",
+        "aggregation_fn": null
+      },
+      "b": {
+        "tables": [
+          "campaigns",
+          "transactions"
+        ],
+        "columns": [
+          "campaign_id",
+          "customer_id",
+          "spend",
+          "channel",
+          "amount"
+        ],
+        "filter_logic": "spend >= 1000",
+        "aggregation_fn": null
+      },
+      "is_conflict": false,
+      "rationale": "Category TV: identical tables, columns, and filter-logic structure; only a literal threshold/window changed (Threshold Variant, same metric, recalibrated). Original pair name: \"campaign_roi: min spend 500 vs 1000\"."
+    },
+    {
+      "name": "support_load: priority 1-2 vs 1-3",
+      "category": "TV",
+      "a": {
+        "tables": [
+          "support_tickets",
+          "customers"
+        ],
+        "columns": [
+          "customer_id",
+          "ticket_id",
+          "category",
+          "region"
+        ],
+        "filter_logic": "priority IN (1, 2)",
+        "aggregation_fn": null
+      },
+      "b": {
+        "tables": [
+          "support_tickets",
+          "customers"
+        ],
+        "columns": [
+          "customer_id",
+          "ticket_id",
+          "category",
+          "region"
+        ],
+        "filter_logic": "priority IN (1, 2, 3)",
+        "aggregation_fn": null
+      },
+      "is_conflict": false,
+      "rationale": "Category TV: identical tables, columns, and filter-logic structure; only a literal threshold/window changed (Threshold Variant, same metric, recalibrated). Original pair name: \"support_load: priority 1-2 vs 1-3\"."
+    },
+    {
+      "name": "active_customers: 60-day vs 90-day window",
+      "category": "TV",
+      "a": {
+        "tables": [
+          "customers",
+          "transactions"
+        ],
+        "columns": [
+          "customer_id",
+          "region",
+          "txn_date"
+        ],
+        "filter_logic": "txn in last 60 days",
+        "aggregation_fn": null
+      },
+      "b": {
+        "tables": [
+          "customers",
+          "transactions"
+        ],
+        "columns": [
+          "customer_id",
+          "region",
+          "txn_date"
+        ],
+        "filter_logic": "txn in last 90 days",
+        "aggregation_fn": null
+      },
+      "is_conflict": false,
+      "rationale": "Category TV: identical tables, columns, and filter-logic structure; only a literal threshold/window changed (Threshold Variant, same metric, recalibrated). Original pair name: \"active_customers: 60-day vs 90-day window\"."
+    },
+    {
+      "name": "customer_ltv: 1-year vs 2-year lookback",
+      "category": "TV",
+      "a": {
+        "tables": [
+          "customer",
+          "orders",
+          "lineitem"
+        ],
+        "columns": [
+          "c_custkey",
+          "c_mktsegment",
+          "o_orderdate",
+          "l_quantity",
+          "l_shipdate"
+        ],
+        "filter_logic": "orders in last 1 year",
+        "aggregation_fn": null
+      },
+      "b": {
+        "tables": [
+          "customer",
+          "orders",
+          "lineitem"
+        ],
+        "columns": [
+          "c_custkey",
+          "c_mktsegment",
+          "o_orderdate",
+          "l_quantity",
+          "l_shipdate"
+        ],
+        "filter_logic": "orders in last 2 years",
+        "aggregation_fn": null
+      },
+      "is_conflict": false,
+      "rationale": "Category TV: identical tables, columns, and filter-logic structure; only a literal threshold/window changed (Threshold Variant, same metric, recalibrated). Original pair name: \"customer_ltv: 1-year vs 2-year lookback\"."
+    },
+    {
+      "name": "churn: AND\u2192OR on no-txn + no-engagement (same cols)",
+      "category": "LO",
+      "a": {
+        "tables": [
+          "customers",
+          "transactions",
+          "campaigns"
+        ],
+        "columns": [
+          "customer_id",
+          "txn_date",
+          "channel"
+        ],
+        "filter_logic": "no txn in 90 days AND no campaign engagement",
+        "aggregation_fn": null
+      },
+      "b": {
+        "tables": [
+          "customers",
+          "transactions",
+          "campaigns"
+        ],
+        "columns": [
+          "customer_id",
+          "txn_date",
+          "channel"
+        ],
+        "filter_logic": "no txn in 90 days OR no campaign engagement",
+        "aggregation_fn": null
+      },
+      "is_conflict": true,
+      "rationale": "Category LO: identical tables and columns; a Boolean connective (AND/OR/NOT) in the filter logic changed, which changes which rows qualify despite no schema change (Logic-Operator conflict). Original pair name: \"churn: AND\u2192OR on no-txn + no-engagement (same cols)\"."
+    },
+    {
+      "name": "high_value: AND\u2192OR on income + spend (same cols)",
+      "category": "LO",
+      "a": {
+        "tables": [
+          "customer_pii",
+          "transactions"
+        ],
+        "columns": [
+          "customer_id",
+          "income",
+          "amount"
+        ],
+        "filter_logic": "income decile 9-10 AND spend > 10000",
+        "aggregation_fn": null
+      },
+      "b": {
+        "tables": [
+          "customer_pii",
+          "transactions"
+        ],
+        "columns": [
+          "customer_id",
+          "income",
+          "amount"
+        ],
+        "filter_logic": "income decile 9-10 OR spend > 10000",
+        "aggregation_fn": null
+      },
+      "is_conflict": true,
+      "rationale": "Category LO: identical tables and columns; a Boolean connective (AND/OR/NOT) in the filter logic changed, which changes which rows qualify despite no schema change (Logic-Operator conflict). Original pair name: \"high_value: AND\u2192OR on income + spend (same cols)\"."
+    },
+    {
+      "name": "active_customers: AND\u2192OR on txn + region (same cols)",
+      "category": "LO",
+      "a": {
+        "tables": [
+          "customers",
+          "transactions"
+        ],
+        "columns": [
+          "customer_id",
+          "region",
+          "txn_date"
+        ],
+        "filter_logic": "txn in last 30 days AND region = EUROPE",
+        "aggregation_fn": null
+      },
+      "b": {
+        "tables": [
+          "customers",
+          "transactions"
+        ],
+        "columns": [
+          "customer_id",
+          "region",
+          "txn_date"
+        ],
+        "filter_logic": "txn in last 30 days OR region = EUROPE",
+        "aggregation_fn": null
+      },
+      "is_conflict": true,
+      "rationale": "Category LO: identical tables and columns; a Boolean connective (AND/OR/NOT) in the filter logic changed, which changes which rows qualify despite no schema change (Logic-Operator conflict). Original pair name: \"active_customers: AND\u2192OR on txn + region (same cols)\"."
+    },
+    {
+      "name": "order_volume: NOT returned vs all returned (same cols)",
+      "category": "LO",
+      "a": {
+        "tables": [
+          "orders",
+          "lineitem"
+        ],
+        "columns": [
+          "o_orderkey",
+          "o_orderdate",
+          "l_quantity",
+          "l_returnflag"
+        ],
+        "filter_logic": "l_returnflag = N (not returned)",
+        "aggregation_fn": null
+      },
+      "b": {
+        "tables": [
+          "orders",
+          "lineitem"
+        ],
+        "columns": [
+          "o_orderkey",
+          "o_orderdate",
+          "l_quantity",
+          "l_returnflag"
+        ],
+        "filter_logic": "l_returnflag IN (N, R) includes returned",
+        "aggregation_fn": null
+      },
+      "is_conflict": true,
+      "rationale": "Category LO: identical tables and columns; a Boolean connective (AND/OR/NOT) in the filter logic changed, which changes which rows qualify despite no schema change (Logic-Operator conflict). Original pair name: \"order_volume: NOT returned vs all returned (same cols)\"."
+    },
+    {
+      "name": "supplier_perf: AND\u2192OR on delivery+quality (same cols)",
+      "category": "LO",
+      "a": {
+        "tables": [
+          "supplier",
+          "partsupp",
+          "lineitem"
+        ],
+        "columns": [
+          "s_suppkey",
+          "s_name",
+          "ps_availqty",
+          "l_quantity",
+          "l_linestatus"
+        ],
+        "filter_logic": "on-time AND in-full delivery, past 12 months",
+        "aggregation_fn": null
+      },
+      "b": {
+        "tables": [
+          "supplier",
+          "partsupp",
+          "lineitem"
+        ],
+        "columns": [
+          "s_suppkey",
+          "s_name",
+          "ps_availqty",
+          "l_quantity",
+          "l_linestatus"
+        ],
+        "filter_logic": "on-time OR in-full delivery, past 12 months",
+        "aggregation_fn": null
+      },
+      "is_conflict": true,
+      "rationale": "Category LO: identical tables and columns; a Boolean connective (AND/OR/NOT) in the filter logic changed, which changes which rows qualify despite no schema change (Logic-Operator conflict). Original pair name: \"supplier_perf: AND\u2192OR on delivery+quality (same cols)\"."
+    },
+    {
+      "name": "revenue: AND\u2192OR on date+discount filter (same cols)",
+      "category": "LO",
+      "a": {
+        "tables": [
+          "lineitem",
+          "orders"
+        ],
+        "columns": [
+          "l_orderkey",
+          "l_extendedprice",
+          "l_discount",
+          "o_orderdate"
+        ],
+        "filter_logic": "l_shipdate >= 1994-01-01 AND l_discount < 0.05",
+        "aggregation_fn": null
+      },
+      "b": {
+        "tables": [
+          "lineitem",
+          "orders"
+        ],
+        "columns": [
+          "l_orderkey",
+          "l_extendedprice",
+          "l_discount",
+          "o_orderdate"
+        ],
+        "filter_logic": "l_shipdate >= 1994-01-01 OR l_discount < 0.05",
+        "aggregation_fn": null
+      },
+      "is_conflict": true,
+      "rationale": "Category LO: identical tables and columns; a Boolean connective (AND/OR/NOT) in the filter logic changed, which changes which rows qualify despite no schema change (Logic-Operator conflict). Original pair name: \"revenue: AND\u2192OR on date+discount filter (same cols)\"."
+    },
+    {
+      "name": "campaign_roi: AND\u2192OR on channel+spend (same cols)",
+      "category": "LO",
+      "a": {
+        "tables": [
+          "campaigns",
+          "transactions"
+        ],
+        "columns": [
+          "campaign_id",
+          "customer_id",
+          "spend",
+          "channel",
+          "amount"
+        ],
+        "filter_logic": "channel = email AND spend >= 500",
+        "aggregation_fn": null
+      },
+      "b": {
+        "tables": [
+          "campaigns",
+          "transactions"
+        ],
+        "columns": [
+          "campaign_id",
+          "customer_id",
+          "spend",
+          "channel",
+          "amount"
+        ],
+        "filter_logic": "channel = email OR spend >= 500",
+        "aggregation_fn": null
+      },
+      "is_conflict": true,
+      "rationale": "Category LO: identical tables and columns; a Boolean connective (AND/OR/NOT) in the filter logic changed, which changes which rows qualify despite no schema change (Logic-Operator conflict). Original pair name: \"campaign_roi: AND\u2192OR on channel+spend (same cols)\"."
+    },
+    {
+      "name": "support_load: NOT escalated vs all categories (same cols)",
+      "category": "LO",
+      "a": {
+        "tables": [
+          "support_tickets",
+          "customers"
+        ],
+        "columns": [
+          "customer_id",
+          "ticket_id",
+          "category",
+          "region"
+        ],
+        "filter_logic": "category != escalated",
+        "aggregation_fn": null
+      },
+      "b": {
+        "tables": [
+          "support_tickets",
+          "customers"
+        ],
+        "columns": [
+          "customer_id",
+          "ticket_id",
+          "category",
+          "region"
+        ],
+        "filter_logic": "all categories including escalated",
+        "aggregation_fn": null
+      },
+      "is_conflict": true,
+      "rationale": "Category LO: identical tables and columns; a Boolean connective (AND/OR/NOT) in the filter logic changed, which changes which rows qualify despite no schema change (Logic-Operator conflict). Original pair name: \"support_load: NOT escalated vs all categories (same cols)\"."
+    },
+    {
+      "name": "customer_ltv: with vs without acctbal (subset)",
+      "category": "CS",
+      "a": {
+        "tables": [
+          "customer",
+          "orders"
+        ],
+        "columns": [
+          "c_custkey",
+          "c_mktsegment",
+          "c_acctbal",
+          "o_totalprice"
+        ],
+        "filter_logic": "lifetime value with account balance",
+        "aggregation_fn": null
+      },
+      "b": {
+        "tables": [
+          "customer",
+          "orders"
+        ],
+        "columns": [
+          "c_custkey",
+          "c_mktsegment",
+          "o_totalprice"
+        ],
+        "filter_logic": "lifetime value without account balance",
+        "aggregation_fn": null
+      },
+      "is_conflict": true,
+      "rationale": "Category CS: one side's columns are a strict subset of the other's -- the derivation paths differ in what they read (Column-Subset conflict). Original pair name: \"customer_ltv: with vs without acctbal (subset)\"."
+    },
+    {
+      "name": "revenue: with vs without discount col (subset)",
+      "category": "CS",
+      "a": {
+        "tables": [
+          "lineitem",
+          "orders"
+        ],
+        "columns": [
+          "l_orderkey",
+          "l_extendedprice",
+          "l_discount",
+          "o_orderdate"
+        ],
+        "filter_logic": "revenue with discount column",
+        "aggregation_fn": null
+      },
+      "b": {
+        "tables": [
+          "lineitem",
+          "orders"
+        ],
+        "columns": [
+          "l_orderkey",
+          "l_extendedprice",
+          "o_orderdate"
+        ],
+        "filter_logic": "revenue without discount column",
+        "aggregation_fn": null
+      },
+      "is_conflict": true,
+      "rationale": "Category CS: one side's columns are a strict subset of the other's -- the derivation paths differ in what they read (Column-Subset conflict). Original pair name: \"revenue: with vs without discount col (subset)\"."
+    },
+    {
+      "name": "churn_rate: with vs without email (subset)",
+      "category": "CS",
+      "a": {
+        "tables": [
+          "customers",
+          "customer_pii",
+          "transactions"
+        ],
+        "columns": [
+          "customer_id",
+          "email",
+          "txn_date"
+        ],
+        "filter_logic": "churn with email verification",
+        "aggregation_fn": null
+      },
+      "b": {
+        "tables": [
+          "customers",
+          "customer_pii",
+          "transactions"
+        ],
+        "columns": [
+          "customer_id",
+          "txn_date"
+        ],
+        "filter_logic": "churn without email column",
+        "aggregation_fn": null
+      },
+      "is_conflict": true,
+      "rationale": "Category CS: one side's columns are a strict subset of the other's -- the derivation paths differ in what they read (Column-Subset conflict). Original pair name: \"churn_rate: with vs without email (subset)\"."
+    },
+    {
+      "name": "part_availability: with brand+type vs key only (subset)",
+      "category": "CS",
+      "a": {
+        "tables": [
+          "part",
+          "partsupp"
+        ],
+        "columns": [
+          "p_partkey",
+          "p_brand",
+          "p_type",
+          "ps_availqty"
+        ],
+        "filter_logic": "availability by brand and type",
+        "aggregation_fn": null
+      },
+      "b": {
+        "tables": [
+          "part",
+          "partsupp"
+        ],
+        "columns": [
+          "p_partkey",
+          "ps_availqty"
+        ],
+        "filter_logic": "availability count only",
+        "aggregation_fn": null
+      },
+      "is_conflict": true,
+      "rationale": "Category CS: one side's columns are a strict subset of the other's -- the derivation paths differ in what they read (Column-Subset conflict). Original pair name: \"part_availability: with brand+type vs key only (subset)\"."
+    },
+    {
+      "name": "active_customers: region+date vs date only (subset)",
+      "category": "CS",
+      "a": {
+        "tables": [
+          "customers",
+          "transactions"
+        ],
+        "columns": [
+          "customer_id",
+          "region",
+          "txn_date"
+        ],
+        "filter_logic": "active by region last 30 days",
+        "aggregation_fn": null
+      },
+      "b": {
+        "tables": [
+          "customers",
+          "transactions"
+        ],
+        "columns": [
+          "customer_id",
+          "txn_date"
+        ],
+        "filter_logic": "active last 30 days (no region split)",
+        "aggregation_fn": null
+      },
+      "is_conflict": true,
+      "rationale": "Category CS: one side's columns are a strict subset of the other's -- the derivation paths differ in what they read (Column-Subset conflict). Original pair name: \"active_customers: region+date vs date only (subset)\"."
+    }
+  ]
+}

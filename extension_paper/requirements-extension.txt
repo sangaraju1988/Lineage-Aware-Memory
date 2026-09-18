@@ -1,0 +1,20 @@
+# Extension-paper dependencies. The root repo pins its own runtime deps in
+# ../requirements.txt (matplotlib, numpy, scipy, pandas, seaborn,
+# amu-governance); this file adds only what extension_paper/ needs on top
+# of that, plus the dev/test toolchain. Installed together via `make setup`.
+
+# Runtime (also declared in pyproject.toml; kept here too since the root
+# repo uses requirements.txt as its primary convention, not pyproject.toml)
+numpy>=1.24
+scipy>=1.10
+matplotlib>=3.7
+sqlglot>=20.0.0
+amu-governance>=0.1.0
+
+# Dev / test toolchain
+pytest>=7.0
+pytest-cov>=4.1
+mypy>=1.5
+ruff>=0.1
+black>=23.0
+hypothesis>=6.80
