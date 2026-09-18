@@ -1,0 +1,75 @@
+{
+  "n_configs": 5,
+  "n_seeds_per_config": 30,
+  "rows": [
+    {
+      "config_name": "2chains_3dept_original",
+      "n_chains": 2,
+      "n_departments": 3,
+      "topology": "3dept",
+      "stock_leak_rate_mean": 32.67,
+      "stock_leak_rate_sd": 9.29,
+      "closure_leak_rate_mean": 0.0,
+      "closure_leak_rate_sd": 0.0,
+      "stock_block_rate_mean": 0.0,
+      "closure_block_rate_mean": 32.67
+    },
+    {
+      "config_name": "3chains_3dept",
+      "n_chains": 3,
+      "n_departments": 3,
+      "topology": "3dept",
+      "stock_leak_rate_mean": 46.33,
+      "stock_leak_rate_sd": 10.95,
+      "closure_leak_rate_mean": 0.0,
+      "closure_leak_rate_sd": 0.0,
+      "stock_block_rate_mean": 0.0,
+      "closure_block_rate_mean": 46.33
+    },
+    {
+      "config_name": "5chains_3dept",
+      "n_chains": 5,
+      "n_departments": 3,
+      "topology": "3dept",
+      "stock_leak_rate_mean": 40.83,
+      "stock_leak_rate_sd": 12.52,
+      "closure_leak_rate_mean": 0.0,
+      "closure_leak_rate_sd": 0.0,
+      "stock_block_rate_mean": 0.0,
+      "closure_block_rate_mean": 40.83
+    },
+    {
+      "config_name": "2chains_5dept",
+      "n_chains": 2,
+      "n_departments": 5,
+      "topology": "5dept",
+      "stock_leak_rate_mean": 18.67,
+      "stock_leak_rate_sd": 8.16,
+      "closure_leak_rate_mean": 0.0,
+      "closure_leak_rate_sd": 0.0,
+      "stock_block_rate_mean": 0.0,
+      "closure_block_rate_mean": 18.67
+    },
+    {
+      "config_name": "5chains_5dept",
+      "n_chains": 5,
+      "n_departments": 5,
+      "topology": "5dept",
+      "stock_leak_rate_mean": 33.33,
+      "stock_leak_rate_sd": 7.56,
+      "closure_leak_rate_mean": 0.0,
+      "closure_leak_rate_sd": 0.0,
+      "stock_block_rate_mean": 0.0,
+      "closure_block_rate_mean": 33.33
+    }
+  ],
+  "pr1_reproduction_check": {
+    "matches_pr1_leak_rate": true,
+    "matches_pr1_leak_sd": true,
+    "measured_leak_mean": 32.67,
+    "measured_leak_sd": 9.29,
+    "pr1_reported_leak_mean": 32.7,
+    "pr1_reported_leak_sd": 9.3
+  },
+  "note": "closure_leak_rate is 0.0% +/- 0.0% in every configuration by construction (closure sees every registered provenance edge, and every chain here IS registered -- see Group B3's regression test for the unregistered case, where this stops being true)."
+}

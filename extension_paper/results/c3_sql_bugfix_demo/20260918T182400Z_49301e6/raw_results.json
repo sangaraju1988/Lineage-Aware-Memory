@@ -1,0 +1,392 @@
+{
+  "per_query": [
+    {
+      "condition": "pre_fix",
+      "name": "comma_join_homephone",
+      "style": "comma_join_unqualified",
+      "true_sensitive_columns": [
+        "homephone"
+      ],
+      "extracted_sensitivity_tags": [],
+      "truly_unpermitted": [
+        "homephone"
+      ],
+      "leaked": true,
+      "sql": "SELECT HomePhone, OrderID FROM Employees, Orders WHERE Employees.EmployeeID = Orders.EmployeeID",
+      "description": "Classic comma-join; HomePhone has no table prefix and two tables are in scope."
+    },
+    {
+      "condition": "pre_fix",
+      "name": "comma_join_birthdate",
+      "style": "comma_join_unqualified",
+      "true_sensitive_columns": [
+        "birthdate"
+      ],
+      "extracted_sensitivity_tags": [],
+      "truly_unpermitted": [
+        "birthdate"
+      ],
+      "leaked": true,
+      "sql": "SELECT BirthDate, City FROM Employees, Orders WHERE Employees.EmployeeID = Orders.EmployeeID",
+      "description": "Comma-join; BirthDate unqualified."
+    },
+    {
+      "condition": "pre_fix",
+      "name": "comma_join_unitprice",
+      "style": "comma_join_unqualified",
+      "true_sensitive_columns": [
+        "unitprice"
+      ],
+      "extracted_sensitivity_tags": [],
+      "truly_unpermitted": [
+        "unitprice"
+      ],
+      "leaked": true,
+      "sql": "SELECT UnitPrice, ProductName FROM Products, Categories WHERE Products.CategoryID = Categories.CategoryID",
+      "description": "Comma-join; UnitPrice (commercial pricing) unqualified."
+    },
+    {
+      "condition": "pre_fix",
+      "name": "comma_join_freight",
+      "style": "comma_join_unqualified",
+      "true_sensitive_columns": [
+        "freight"
+      ],
+      "extracted_sensitivity_tags": [],
+      "truly_unpermitted": [
+        "freight"
+      ],
+      "leaked": true,
+      "sql": "SELECT Freight, ShipCity FROM Orders, Customers WHERE Orders.CustomerID = Customers.CustomerID",
+      "description": "Comma-join; Freight (shipping cost) unqualified."
+    },
+    {
+      "condition": "pre_fix",
+      "name": "three_table_comma_join_two_sensitive",
+      "style": "comma_join_unqualified",
+      "true_sensitive_columns": [
+        "homephone",
+        "unitprice"
+      ],
+      "extracted_sensitivity_tags": [],
+      "truly_unpermitted": [
+        "homephone",
+        "unitprice"
+      ],
+      "leaked": true,
+      "sql": "SELECT HomePhone, UnitPrice, OrderID FROM Employees, Orders, \"Order Details\" WHERE Employees.EmployeeID = Orders.EmployeeID AND Orders.OrderID = \"Order Details\".OrderID",
+      "description": "Three-table comma-join with two unqualified sensitive columns from different tables."
+    },
+    {
+      "condition": "pre_fix",
+      "name": "multi_sensitive_single_query",
+      "style": "comma_join_unqualified",
+      "true_sensitive_columns": [
+        "birthdate",
+        "homephone"
+      ],
+      "extracted_sensitivity_tags": [],
+      "truly_unpermitted": [
+        "birthdate",
+        "homephone"
+      ],
+      "leaked": true,
+      "sql": "SELECT HomePhone, BirthDate, OrderID FROM Employees, Orders WHERE Employees.EmployeeID = Orders.EmployeeID",
+      "description": "Two unqualified sensitive columns from the SAME table in one comma-join."
+    },
+    {
+      "condition": "pre_fix",
+      "name": "aliased_table_unqualified_sensitive_column",
+      "style": "comma_join_unqualified",
+      "true_sensitive_columns": [
+        "homephone"
+      ],
+      "extracted_sensitivity_tags": [],
+      "truly_unpermitted": [
+        "homephone"
+      ],
+      "leaked": true,
+      "sql": "SELECT e.LastName, HomePhone FROM Employees e, Orders o WHERE e.EmployeeID = o.EmployeeID",
+      "description": "One column table-aliased (e.LastName), the sensitive one (HomePhone) still unqualified."
+    },
+    {
+      "condition": "pre_fix",
+      "name": "unqualified_sensitive_with_join_keyword",
+      "style": "comma_join_unqualified",
+      "true_sensitive_columns": [
+        "unitprice"
+      ],
+      "extracted_sensitivity_tags": [],
+      "truly_unpermitted": [
+        "unitprice"
+      ],
+      "leaked": true,
+      "sql": "SELECT UnitPrice, ProductName FROM Products p, Suppliers s WHERE p.SupplierID = 1",
+      "description": "Comma-join where the join predicate itself doesn't reference the second table -- UnitPrice still ambiguous because two tables are in FROM scope."
+    },
+    {
+      "condition": "pre_fix",
+      "name": "fully_qualified_sensitive_control",
+      "style": "fully_qualified",
+      "true_sensitive_columns": [
+        "homephone"
+      ],
+      "extracted_sensitivity_tags": [
+        "homephone"
+      ],
+      "truly_unpermitted": [
+        "homephone"
+      ],
+      "leaked": false,
+      "sql": "SELECT e.HomePhone, o.OrderID FROM Employees e JOIN Orders o ON e.EmployeeID = o.EmployeeID",
+      "description": "Control: HomePhone IS table-qualified -- resolves correctly regardless of the fix."
+    },
+    {
+      "condition": "pre_fix",
+      "name": "single_table_unqualified_sensitive_control",
+      "style": "single_table_unqualified",
+      "true_sensitive_columns": [
+        "homephone"
+      ],
+      "extracted_sensitivity_tags": [
+        "homephone"
+      ],
+      "truly_unpermitted": [
+        "homephone"
+      ],
+      "leaked": false,
+      "sql": "SELECT HomePhone, LastName FROM Employees WHERE EmployeeID = 5",
+      "description": "Control: only one table in scope, so the extractor's single-table heuristic resolves HomePhone correctly even pre-fix."
+    },
+    {
+      "condition": "pre_fix",
+      "name": "comma_join_nonsensitive_control",
+      "style": "comma_join_unqualified",
+      "true_sensitive_columns": [],
+      "extracted_sensitivity_tags": [],
+      "truly_unpermitted": [],
+      "leaked": false,
+      "sql": "SELECT City, Country FROM Customers, Orders WHERE Customers.CustomerID = Orders.CustomerID",
+      "description": "Control: unqualified comma-join, but neither column is sensitive -- no leak either way."
+    },
+    {
+      "condition": "pre_fix",
+      "name": "comma_join_permitted_sensitive_control",
+      "style": "comma_join_unqualified",
+      "true_sensitive_columns": [
+        "unitprice"
+      ],
+      "extracted_sensitivity_tags": [],
+      "truly_unpermitted": [
+        "unitprice"
+      ],
+      "leaked": true,
+      "sql": "SELECT UnitPrice, ShipCity FROM Orders, Customers WHERE Orders.CustomerID = Customers.CustomerID",
+      "description": "Control: UnitPrice is unqualified in a comma-join and IS sensitive, but this case is evaluated the same as the others against Operations, which lacks it -- included to keep the positive-case count honest rather than cherry-picked."
+    },
+    {
+      "condition": "post_fix",
+      "name": "comma_join_homephone",
+      "style": "comma_join_unqualified",
+      "true_sensitive_columns": [
+        "homephone"
+      ],
+      "extracted_sensitivity_tags": [
+        "homephone"
+      ],
+      "truly_unpermitted": [
+        "homephone"
+      ],
+      "leaked": false,
+      "sql": "SELECT HomePhone, OrderID FROM Employees, Orders WHERE Employees.EmployeeID = Orders.EmployeeID",
+      "description": "Classic comma-join; HomePhone has no table prefix and two tables are in scope."
+    },
+    {
+      "condition": "post_fix",
+      "name": "comma_join_birthdate",
+      "style": "comma_join_unqualified",
+      "true_sensitive_columns": [
+        "birthdate"
+      ],
+      "extracted_sensitivity_tags": [
+        "birthdate"
+      ],
+      "truly_unpermitted": [
+        "birthdate"
+      ],
+      "leaked": false,
+      "sql": "SELECT BirthDate, City FROM Employees, Orders WHERE Employees.EmployeeID = Orders.EmployeeID",
+      "description": "Comma-join; BirthDate unqualified."
+    },
+    {
+      "condition": "post_fix",
+      "name": "comma_join_unitprice",
+      "style": "comma_join_unqualified",
+      "true_sensitive_columns": [
+        "unitprice"
+      ],
+      "extracted_sensitivity_tags": [
+        "unitprice"
+      ],
+      "truly_unpermitted": [
+        "unitprice"
+      ],
+      "leaked": false,
+      "sql": "SELECT UnitPrice, ProductName FROM Products, Categories WHERE Products.CategoryID = Categories.CategoryID",
+      "description": "Comma-join; UnitPrice (commercial pricing) unqualified."
+    },
+    {
+      "condition": "post_fix",
+      "name": "comma_join_freight",
+      "style": "comma_join_unqualified",
+      "true_sensitive_columns": [
+        "freight"
+      ],
+      "extracted_sensitivity_tags": [
+        "freight"
+      ],
+      "truly_unpermitted": [
+        "freight"
+      ],
+      "leaked": false,
+      "sql": "SELECT Freight, ShipCity FROM Orders, Customers WHERE Orders.CustomerID = Customers.CustomerID",
+      "description": "Comma-join; Freight (shipping cost) unqualified."
+    },
+    {
+      "condition": "post_fix",
+      "name": "three_table_comma_join_two_sensitive",
+      "style": "comma_join_unqualified",
+      "true_sensitive_columns": [
+        "homephone",
+        "unitprice"
+      ],
+      "extracted_sensitivity_tags": [
+        "homephone",
+        "unitprice"
+      ],
+      "truly_unpermitted": [
+        "homephone",
+        "unitprice"
+      ],
+      "leaked": false,
+      "sql": "SELECT HomePhone, UnitPrice, OrderID FROM Employees, Orders, \"Order Details\" WHERE Employees.EmployeeID = Orders.EmployeeID AND Orders.OrderID = \"Order Details\".OrderID",
+      "description": "Three-table comma-join with two unqualified sensitive columns from different tables."
+    },
+    {
+      "condition": "post_fix",
+      "name": "multi_sensitive_single_query",
+      "style": "comma_join_unqualified",
+      "true_sensitive_columns": [
+        "birthdate",
+        "homephone"
+      ],
+      "extracted_sensitivity_tags": [
+        "birthdate",
+        "homephone"
+      ],
+      "truly_unpermitted": [
+        "birthdate",
+        "homephone"
+      ],
+      "leaked": false,
+      "sql": "SELECT HomePhone, BirthDate, OrderID FROM Employees, Orders WHERE Employees.EmployeeID = Orders.EmployeeID",
+      "description": "Two unqualified sensitive columns from the SAME table in one comma-join."
+    },
+    {
+      "condition": "post_fix",
+      "name": "aliased_table_unqualified_sensitive_column",
+      "style": "comma_join_unqualified",
+      "true_sensitive_columns": [
+        "homephone"
+      ],
+      "extracted_sensitivity_tags": [
+        "homephone"
+      ],
+      "truly_unpermitted": [
+        "homephone"
+      ],
+      "leaked": false,
+      "sql": "SELECT e.LastName, HomePhone FROM Employees e, Orders o WHERE e.EmployeeID = o.EmployeeID",
+      "description": "One column table-aliased (e.LastName), the sensitive one (HomePhone) still unqualified."
+    },
+    {
+      "condition": "post_fix",
+      "name": "unqualified_sensitive_with_join_keyword",
+      "style": "comma_join_unqualified",
+      "true_sensitive_columns": [
+        "unitprice"
+      ],
+      "extracted_sensitivity_tags": [
+        "unitprice"
+      ],
+      "truly_unpermitted": [
+        "unitprice"
+      ],
+      "leaked": false,
+      "sql": "SELECT UnitPrice, ProductName FROM Products p, Suppliers s WHERE p.SupplierID = 1",
+      "description": "Comma-join where the join predicate itself doesn't reference the second table -- UnitPrice still ambiguous because two tables are in FROM scope."
+    },
+    {
+      "condition": "post_fix",
+      "name": "fully_qualified_sensitive_control",
+      "style": "fully_qualified",
+      "true_sensitive_columns": [
+        "homephone"
+      ],
+      "extracted_sensitivity_tags": [
+        "homephone"
+      ],
+      "truly_unpermitted": [
+        "homephone"
+      ],
+      "leaked": false,
+      "sql": "SELECT e.HomePhone, o.OrderID FROM Employees e JOIN Orders o ON e.EmployeeID = o.EmployeeID",
+      "description": "Control: HomePhone IS table-qualified -- resolves correctly regardless of the fix."
+    },
+    {
+      "condition": "post_fix",
+      "name": "single_table_unqualified_sensitive_control",
+      "style": "single_table_unqualified",
+      "true_sensitive_columns": [
+        "homephone"
+      ],
+      "extracted_sensitivity_tags": [
+        "homephone"
+      ],
+      "truly_unpermitted": [
+        "homephone"
+      ],
+      "leaked": false,
+      "sql": "SELECT HomePhone, LastName FROM Employees WHERE EmployeeID = 5",
+      "description": "Control: only one table in scope, so the extractor's single-table heuristic resolves HomePhone correctly even pre-fix."
+    },
+    {
+      "condition": "post_fix",
+      "name": "comma_join_nonsensitive_control",
+      "style": "comma_join_unqualified",
+      "true_sensitive_columns": [],
+      "extracted_sensitivity_tags": [],
+      "truly_unpermitted": [],
+      "leaked": false,
+      "sql": "SELECT City, Country FROM Customers, Orders WHERE Customers.CustomerID = Orders.CustomerID",
+      "description": "Control: unqualified comma-join, but neither column is sensitive -- no leak either way."
+    },
+    {
+      "condition": "post_fix",
+      "name": "comma_join_permitted_sensitive_control",
+      "style": "comma_join_unqualified",
+      "true_sensitive_columns": [
+        "unitprice"
+      ],
+      "extracted_sensitivity_tags": [
+        "unitprice"
+      ],
+      "truly_unpermitted": [
+        "unitprice"
+      ],
+      "leaked": false,
+      "sql": "SELECT UnitPrice, ShipCity FROM Orders, Customers WHERE Orders.CustomerID = Customers.CustomerID",
+      "description": "Control: UnitPrice is unqualified in a comma-join and IS sensitive, but this case is evaluated the same as the others against Operations, which lacks it -- included to keep the positive-case count honest rather than cherry-picked."
+    }
+  ]
+}

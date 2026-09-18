@@ -1,0 +1,102 @@
+{
+  "per_pair": {
+    "smallest": {
+      "pair_name": "campaign_spend: MIN vs MAX over identical scope",
+      "complexity": 6,
+      "D4": {
+        "mean_us": 4.4539,
+        "median_us": 4.25,
+        "p95_us": 4.622,
+        "sd_us": 1.6545,
+        "min_us": 3.977,
+        "max_us": 40.468,
+        "n_iter": 2000,
+        "n_warmup": 200
+      },
+      "D5": {
+        "mean_us": 4.8375,
+        "median_us": 4.593,
+        "p95_us": 5.05,
+        "sd_us": 1.838,
+        "min_us": 4.311,
+        "max_us": 41.187,
+        "n_iter": 2000,
+        "n_warmup": 200
+      },
+      "D5_vs_D4_mean_regression_pct": 8.61
+    },
+    "median": {
+      "pair_name": "customer_ltv: with vs without acctbal (subset)",
+      "complexity": 11,
+      "D4": {
+        "mean_us": 0.425,
+        "median_us": 0.411,
+        "p95_us": 0.465,
+        "sd_us": 0.3122,
+        "min_us": 0.368,
+        "max_us": 13.208,
+        "n_iter": 2000,
+        "n_warmup": 200
+      },
+      "D5": {
+        "mean_us": 0.4521,
+        "median_us": 0.436,
+        "p95_us": 0.489,
+        "sd_us": 0.3943,
+        "min_us": 0.388,
+        "max_us": 16.909,
+        "n_iter": 2000,
+        "n_warmup": 200
+      },
+      "D5_vs_D4_mean_regression_pct": 6.38
+    },
+    "largest": {
+      "pair_name": "revenue_by_region: SUM vs no-aggregation (row-level) over identical scope",
+      "complexity": 22,
+      "D4": {
+        "mean_us": 7.5583,
+        "median_us": 7.148,
+        "p95_us": 9.198,
+        "sd_us": 2.3279,
+        "min_us": 6.858,
+        "max_us": 39.9,
+        "n_iter": 2000,
+        "n_warmup": 200
+      },
+      "D5": {
+        "mean_us": 7.7389,
+        "median_us": 7.417,
+        "p95_us": 7.891,
+        "sd_us": 2.1156,
+        "min_us": 7.109,
+        "max_us": 41.316,
+        "n_iter": 2000,
+        "n_warmup": 200
+      },
+      "D5_vs_D4_mean_regression_pct": 2.39
+    }
+  },
+  "full_dataset_sweep": {
+    "n_pairs": 53,
+    "D4": {
+      "mean_us": 244.2647,
+      "median_us": 236.1735,
+      "p95_us": 293.773,
+      "sd_us": 22.93,
+      "min_us": 218.04,
+      "max_us": 365.663,
+      "n_iter": 500,
+      "n_warmup": 50
+    },
+    "D5": {
+      "mean_us": 263.9464,
+      "median_us": 252.2385,
+      "p95_us": 318.031,
+      "sd_us": 27.1032,
+      "min_us": 235.961,
+      "max_us": 471.017,
+      "n_iter": 500,
+      "n_warmup": 50
+    }
+  }
+}

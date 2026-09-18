@@ -1,0 +1,46 @@
+{
+  "git_commit": "49301e6",
+  "total_elapsed_seconds": 2.39,
+  "experiments": [
+    {
+      "module": "run_c1_conformance",
+      "return_code": 0,
+      "elapsed_seconds": 0.27
+    },
+    {
+      "module": "run_c2_storage_overhead",
+      "return_code": 0,
+      "elapsed_seconds": 0.02
+    },
+    {
+      "module": "run_c3_sql_bugfix_demo",
+      "return_code": 0,
+      "elapsed_seconds": 0.07
+    },
+    {
+      "module": "run_b2_materialization_sweep",
+      "return_code": 0,
+      "elapsed_seconds": 0.18
+    },
+    {
+      "module": "run_a1_d4_eval",
+      "return_code": 0,
+      "elapsed_seconds": 0.6
+    },
+    {
+      "module": "run_a2_d5_eval",
+      "return_code": 0,
+      "elapsed_seconds": 0.07
+    },
+    {
+      "module": "run_a4_full_matrix",
+      "return_code": 0,
+      "elapsed_seconds": 0.82
+    },
+    {
+      "module": "run_a5_runtime_benchmark",
+      "return_code": 0,
+      "elapsed_seconds": 0.36
+    }
+  ]
+}

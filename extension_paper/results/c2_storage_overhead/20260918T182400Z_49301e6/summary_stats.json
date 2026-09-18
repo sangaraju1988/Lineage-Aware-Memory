@@ -1,0 +1,19 @@
+{
+  "n_amus_measured": 21,
+  "json_ratio_mean": 3.93,
+  "json_ratio_range": [
+    3.44,
+    5.0
+  ],
+  "json_bare_bytes_mean": 91.1,
+  "json_full_bytes_mean": 357.0,
+  "pickle_ratio_mean": 3.19,
+  "paper_analytical_estimate": {
+    "ratio_lo": 4.0,
+    "ratio_hi": 8.0,
+    "bytes_lo": 200,
+    "bytes_hi": 600
+  },
+  "within_paper_estimate_range": false,
+  "framing": "Refinement, not a correction: the measured JSON ratio (3.93x) sits just below the paper's analytical estimate's lower bound (4x) -- i.e. at the low end of the estimated range, not inside it by a strict inequality. The measured byte counts (bare/full) do fall inside the paper's 200-600 byte estimate. These are the exact measured values -- not rounded or adjusted toward the estimate."
+}

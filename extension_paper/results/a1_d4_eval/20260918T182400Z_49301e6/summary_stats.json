@@ -1,0 +1,220 @@
+{
+  "detectors": {
+    "D1_exact_hash": {
+      "TP": 28,
+      "FP": 15,
+      "TN": 0,
+      "FN": 0,
+      "precision": 0.6512,
+      "recall": 1.0,
+      "f1": 0.7887,
+      "f1_bootstrap_ci": {
+        "mean": 0.787,
+        "ci_lo": 0.6769,
+        "ci_hi": 0.8831,
+        "confidence": 0.95,
+        "n_resamples": 10000
+      },
+      "by_category": {
+        "CS": {
+          "TP": 5,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "LO": {
+          "TP": 8,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "TC": {
+          "TP": 15,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "TV": {
+          "TP": 0,
+          "FP": 15,
+          "TN": 0,
+          "FN": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      }
+    },
+    "D2_jaccard": {
+      "TP": 23,
+      "FP": 11,
+      "TN": 4,
+      "FN": 5,
+      "precision": 0.6765,
+      "recall": 0.8214,
+      "f1": 0.7419,
+      "f1_bootstrap_ci": {
+        "mean": 0.7398,
+        "ci_lo": 0.6038,
+        "ci_hi": 0.8529,
+        "confidence": 0.95,
+        "n_resamples": 10000
+      },
+      "by_category": {
+        "CS": {
+          "TP": 5,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "LO": {
+          "TP": 3,
+          "FP": 0,
+          "TN": 0,
+          "FN": 5,
+          "precision": 1.0,
+          "recall": 0.375,
+          "f1": 0.5455
+        },
+        "TC": {
+          "TP": 15,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "TV": {
+          "TP": 0,
+          "FP": 11,
+          "TN": 4,
+          "FN": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      }
+    },
+    "D3_column_graph": {
+      "TP": 20,
+      "FP": 0,
+      "TN": 15,
+      "FN": 8,
+      "precision": 1.0,
+      "recall": 0.7143,
+      "f1": 0.8333,
+      "f1_bootstrap_ci": {
+        "mean": 0.8307,
+        "ci_lo": 0.7027,
+        "ci_hi": 0.9333,
+        "confidence": 0.95,
+        "n_resamples": 10000
+      },
+      "by_category": {
+        "CS": {
+          "TP": 5,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "LO": {
+          "TP": 0,
+          "FP": 0,
+          "TN": 0,
+          "FN": 8,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "TC": {
+          "TP": 15,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "TV": {
+          "TP": 0,
+          "FP": 0,
+          "TN": 15,
+          "FN": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      }
+    },
+    "D4_structural_topology": {
+      "TP": 28,
+      "FP": 0,
+      "TN": 15,
+      "FN": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "f1_bootstrap_ci": {
+        "mean": 1.0,
+        "ci_lo": 1.0,
+        "ci_hi": 1.0,
+        "confidence": 0.95,
+        "n_resamples": 10000
+      },
+      "by_category": {
+        "CS": {
+          "TP": 5,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "LO": {
+          "TP": 8,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "TC": {
+          "TP": 15,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "TV": {
+          "TP": 0,
+          "FP": 0,
+          "TN": 15,
+          "FN": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      }
+    }
+  }
+}

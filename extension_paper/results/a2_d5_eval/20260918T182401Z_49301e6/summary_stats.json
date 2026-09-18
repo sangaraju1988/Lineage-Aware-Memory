@@ -1,0 +1,37 @@
+{
+  "n_pairs": 10,
+  "D4": {
+    "TP": 1,
+    "FP": 0,
+    "TN": 3,
+    "FN": 6,
+    "precision": 1.0,
+    "recall": 0.1429,
+    "f1": 0.25,
+    "note": "D4 cannot see aggregation_fn -- this is the blind spot Group A2/A3 demonstrate"
+  },
+  "D5": {
+    "TP": 7,
+    "FP": 0,
+    "TN": 3,
+    "FN": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "f1_bootstrap_ci": {
+      "mean": 1.0,
+      "ci_lo": 1.0,
+      "ci_hi": 1.0,
+      "confidence": 0.95,
+      "n_resamples": 10000
+    }
+  },
+  "mcnemar_D4_vs_D5": {
+    "n_discordant": 6,
+    "b_a_flags_not_b": 0,
+    "c_b_flags_not_a": 6,
+    "statistic": 0.0,
+    "p_value": 0.03125,
+    "exact": true
+  }
+}

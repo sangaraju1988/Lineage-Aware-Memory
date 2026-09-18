@@ -1,0 +1,50 @@
+{
+  "pair_names": [
+    "revenue: SUM vs AVG over identical join/filter",
+    "order_count: COUNT vs SUM(quantity) over identical scope",
+    "campaign_spend: MIN vs MAX over identical scope",
+    "active_customers: COUNT vs COUNT (identical, negative control)",
+    "support_load: avg vs AVG (case-normalization negative control)",
+    "revenue_by_region: SUM vs no-aggregation (row-level) over identical scope",
+    "churn_rate: COUNT vs AVG over identical scope",
+    "high_value_segment: SUM vs SUM, threshold-only variant (should NOT flag)",
+    "supplier_cost: MIN vs AVG AND an AND-to-OR filter change (double conflict)",
+    "campaign_roi: unspecified (None/IDENTITY) vs SUM over identical scope"
+  ],
+  "ground_truth": [
+    true,
+    true,
+    true,
+    false,
+    false,
+    true,
+    true,
+    false,
+    true,
+    true
+  ],
+  "d4_predictions": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    true,
+    false
+  ],
+  "d5_predictions": [
+    true,
+    true,
+    true,
+    false,
+    false,
+    true,
+    true,
+    false,
+    true,
+    true
+  ]
+}
