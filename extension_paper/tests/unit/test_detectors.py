@@ -30,11 +30,13 @@ from amu_ext.detectors import (
     LineageSpec,
     Pair,
     d1_exact,
+    d2_jaccard,
     d3_column_graph,
     d4_structural_topology,
     d5_with_aggregation,
     load_pairs,
     operator_topology,
+    save_pairs,
 )
 
 _DATA_DIR = Path(__file__).resolve().parents[2] / "data"
@@ -368,3 +370,114 @@ class TestFullDatasetD1D2D3MatchRootRepo:
         for fn in DETECTORS.values():
             for p in pairs[:3]:
                 fn(p)  # smoke: must not raise, regardless of aggregation_fn=None
+
+
+# ---------------------------------------------------------------------------
+# Pair/LineageSpec (de)serialization and dataset I/O
+# ---------------------------------------------------------------------------
+
+
+class TestSerializationRoundTrip:
+    def test_lineage_spec_to_dict_from_dict_round_trip(self) -> None:
+        spec = LineageSpec(
+            tables=("orders",), columns=("amount",), filter_logic="x > 5", aggregation_fn="SUM"
+        )
+        d = spec.to_dict()
+        assert d == {
+            "tables": ["orders"],
+            "columns": ["amount"],
+            "filter_logic": "x > 5",
+            "aggregation_fn": "SUM",
+        }
+        assert LineageSpec.from_dict(d) == spec
+
+    def test_pair_to_dict_from_dict_round_trip(self) -> None:
+        pair = _pair("rt", ["t"], ["c"], "x > 1", ["t"], ["c"], "x > 2", is_conflict=False, category="TV")
+        d = pair.to_dict()
+        assert d["name"] == "rt"
+        assert d["category"] == "TV"
+        assert d["is_conflict"] is False
+        assert Pair.from_dict(d) == pair
+
+
+class TestDatasetIO:
+    def test_save_then_load_round_trip(self, tmp_path: Path) -> None:
+        pairs = [
+            _pair("p1", ["t"], ["c"], "x > 1", ["t"], ["c"], "x > 1", is_conflict=False, category="TV"),
+            _pair("p2", ["t"], ["c"], "x > 1", ["t2"], ["c"], "x > 1", is_conflict=True, category="TC"),
+        ]
+        out = tmp_path / "roundtrip.json"
+        save_pairs(out, pairs, metadata={"note": "unit test"})
+        loaded = load_pairs(out)
+        assert loaded == pairs
+
+    def test_save_pairs_creates_parent_directories(self, tmp_path: Path) -> None:
+        pairs = [_pair("p1", ["t"], ["c"], "x", ["t"], ["c"], "x", is_conflict=False)]
+        out = tmp_path / "nested" / "dir" / "dataset.json"
+        save_pairs(out, pairs)
+        assert out.exists()
+        assert load_pairs(out) == pairs
+
+    def test_load_pairs_accepts_bare_list_json(self, tmp_path: Path) -> None:
+        """The on-disk datasets (conflict_dataset_43.json etc.) wrap pairs in
+        an object with a top-level "pairs" key (plus "_metadata") -- but
+        load_pairs also accepts a bare JSON list, for hand-authored fixtures
+        that skip the metadata wrapper."""
+        import json
+
+        pairs = [_pair("p1", ["t"], ["c"], "x", ["t"], ["c"], "x", is_conflict=False)]
+        out = tmp_path / "bare_list.json"
+        out.write_text(json.dumps([p.to_dict() for p in pairs]))
+        assert load_pairs(out) == pairs
+
+    def test_load_pairs_missing_file_raises_file_not_found(self, tmp_path: Path) -> None:
+        with pytest.raises(FileNotFoundError):
+            load_pairs(tmp_path / "does_not_exist.json")
+
+    def test_load_pairs_rejects_malformed_top_level_json(self, tmp_path: Path) -> None:
+        """Neither a list nor an object with a 'pairs' key -- e.g. a bare
+        number or string -- is a data-authoring mistake that should fail
+        loudly rather than silently produce an empty pair list."""
+        import json
+
+        out = tmp_path / "malformed.json"
+        out.write_text(json.dumps(42))
+        with pytest.raises(ValueError, match="expected a JSON list"):
+            load_pairs(out)
+
+
+# ---------------------------------------------------------------------------
+# D2: Jaccard Filter Similarity
+# ---------------------------------------------------------------------------
+
+
+class TestD2Jaccard:
+    def test_structural_difference_is_always_a_conflict_regardless_of_filter(self) -> None:
+        """When tables or columns differ, D2 flags a conflict unconditionally
+        -- it never reaches the Jaccard-similarity branch."""
+        pair = _pair("p", ["t1"], ["c"], "same logic", ["t2"], ["c"], "same logic", is_conflict=True)
+        assert d2_jaccard(pair) is True
+
+    def test_identical_filter_logic_is_not_a_conflict(self) -> None:
+        pair = _pair("p", ["t"], ["c"], "x > 5 AND y < 3", ["t"], ["c"], "x > 5 AND y < 3", is_conflict=False)
+        assert d2_jaccard(pair) is False
+
+    def test_low_token_overlap_below_threshold_is_a_conflict(self) -> None:
+        pair = _pair(
+            "p",
+            ["t"],
+            ["c"],
+            "region equals north america",
+            ["t"],
+            ["c"],
+            "status equals active flag",
+            is_conflict=True,
+        )
+        assert d2_jaccard(pair, threshold=0.70) is True
+
+    def test_both_filter_logic_strings_empty_is_treated_as_identical(self) -> None:
+        """_token_jaccard's ta/tb-both-empty special case (returns 1.0
+        similarity, i.e. not a conflict) reached when tables/columns match
+        and both filter_logic strings tokenize to nothing."""
+        pair = _pair("p", ["t"], ["c"], "", ["t"], ["c"], "   ", is_conflict=False)
+        assert d2_jaccard(pair) is False

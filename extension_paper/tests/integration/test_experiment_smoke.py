@@ -103,12 +103,24 @@ class TestGroupBSmoke:
 
 
 class TestGroupCSmoke:
-    def test_conformance_tiny_via_cli_entrypoint(self) -> None:
-        """The one script we call end-to-end, via its real --n-seeds flag."""
+    def test_conformance_tiny_via_cli_entrypoint(self, tmp_path, monkeypatch) -> None:
+        """The one script we call end-to-end, via its real --n-seeds flag.
+
+        ``main()`` writes a real results/<run_id>/ folder via
+        ``_common.make_run_dir`` -- redirect ``_common.RESULTS_ROOT`` to a
+        pytest tmp_path first, so this (which runs on every ``pytest``
+        invocation, unlike the other Group C/A/B smoke tests here) doesn't
+        litter the real results/c1_conformance/ with a 2-seed run on every
+        CI build, the same pollution this module's docstring says the other
+        tests were written to avoid.
+        """
+        import _common
         import run_c1_conformance
 
+        monkeypatch.setattr(_common, "RESULTS_ROOT", tmp_path)
         rc = run_c1_conformance.main(["--n-seeds", "2"])
         assert rc == 0
+        assert (tmp_path / "c1_conformance").exists()
 
     def test_storage_overhead_tiny(self) -> None:
         import storage_overhead_measurement as som
