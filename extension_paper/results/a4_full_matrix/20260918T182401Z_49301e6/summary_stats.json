@@ -1,0 +1,379 @@
+{
+  "n_pairs": 53,
+  "category_counts": {
+    "AO": 10,
+    "CS": 5,
+    "LO": 8,
+    "TC": 15,
+    "TV": 15
+  },
+  "detectors": {
+    "D1_exact_hash": {
+      "overall": {
+        "TP": 29,
+        "FP": 16,
+        "TN": 2,
+        "FN": 6,
+        "precision": 0.6444,
+        "recall": 0.8286,
+        "f1": 0.725
+      },
+      "f1_bootstrap_ci": {
+        "mean": 0.7233,
+        "ci_lo": 0.6053,
+        "ci_hi": 0.8276,
+        "confidence": 0.95,
+        "n_resamples": 10000
+      },
+      "by_category": {
+        "AO": {
+          "TP": 1,
+          "FP": 1,
+          "TN": 2,
+          "FN": 6,
+          "precision": 0.5,
+          "recall": 0.1429,
+          "f1": 0.2222,
+          "n": 10
+        },
+        "CS": {
+          "TP": 5,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "n": 5
+        },
+        "LO": {
+          "TP": 8,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "n": 8
+        },
+        "TC": {
+          "TP": 15,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "n": 15
+        },
+        "TV": {
+          "TP": 0,
+          "FP": 15,
+          "TN": 0,
+          "FN": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "n": 15
+        }
+      }
+    },
+    "D2_jaccard": {
+      "overall": {
+        "TP": 24,
+        "FP": 12,
+        "TN": 6,
+        "FN": 11,
+        "precision": 0.6667,
+        "recall": 0.6857,
+        "f1": 0.6761
+      },
+      "f1_bootstrap_ci": {
+        "mean": 0.674,
+        "ci_lo": 0.5373,
+        "ci_hi": 0.7895,
+        "confidence": 0.95,
+        "n_resamples": 10000
+      },
+      "by_category": {
+        "AO": {
+          "TP": 1,
+          "FP": 1,
+          "TN": 2,
+          "FN": 6,
+          "precision": 0.5,
+          "recall": 0.1429,
+          "f1": 0.2222,
+          "n": 10
+        },
+        "CS": {
+          "TP": 5,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "n": 5
+        },
+        "LO": {
+          "TP": 3,
+          "FP": 0,
+          "TN": 0,
+          "FN": 5,
+          "precision": 1.0,
+          "recall": 0.375,
+          "f1": 0.5455,
+          "n": 8
+        },
+        "TC": {
+          "TP": 15,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "n": 15
+        },
+        "TV": {
+          "TP": 0,
+          "FP": 11,
+          "TN": 4,
+          "FN": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "n": 15
+        }
+      }
+    },
+    "D3_column_graph": {
+      "overall": {
+        "TP": 20,
+        "FP": 0,
+        "TN": 18,
+        "FN": 15,
+        "precision": 1.0,
+        "recall": 0.5714,
+        "f1": 0.7273
+      },
+      "f1_bootstrap_ci": {
+        "mean": 0.7241,
+        "ci_lo": 0.5714,
+        "ci_hi": 0.8475,
+        "confidence": 0.95,
+        "n_resamples": 10000
+      },
+      "by_category": {
+        "AO": {
+          "TP": 0,
+          "FP": 0,
+          "TN": 3,
+          "FN": 7,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "n": 10
+        },
+        "CS": {
+          "TP": 5,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "n": 5
+        },
+        "LO": {
+          "TP": 0,
+          "FP": 0,
+          "TN": 0,
+          "FN": 8,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "n": 8
+        },
+        "TC": {
+          "TP": 15,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "n": 15
+        },
+        "TV": {
+          "TP": 0,
+          "FP": 0,
+          "TN": 15,
+          "FN": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "n": 15
+        }
+      }
+    },
+    "D4_structural_topology": {
+      "overall": {
+        "TP": 29,
+        "FP": 0,
+        "TN": 18,
+        "FN": 6,
+        "precision": 1.0,
+        "recall": 0.8286,
+        "f1": 0.9062
+      },
+      "f1_bootstrap_ci": {
+        "mean": 0.9053,
+        "ci_lo": 0.8214,
+        "ci_hi": 0.9714,
+        "confidence": 0.95,
+        "n_resamples": 10000
+      },
+      "by_category": {
+        "AO": {
+          "TP": 1,
+          "FP": 0,
+          "TN": 3,
+          "FN": 6,
+          "precision": 1.0,
+          "recall": 0.1429,
+          "f1": 0.25,
+          "n": 10
+        },
+        "CS": {
+          "TP": 5,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "n": 5
+        },
+        "LO": {
+          "TP": 8,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "n": 8
+        },
+        "TC": {
+          "TP": 15,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "n": 15
+        },
+        "TV": {
+          "TP": 0,
+          "FP": 0,
+          "TN": 15,
+          "FN": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "n": 15
+        }
+      }
+    },
+    "D5_with_aggregation": {
+      "overall": {
+        "TP": 35,
+        "FP": 0,
+        "TN": 18,
+        "FN": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "f1_bootstrap_ci": {
+        "mean": 1.0,
+        "ci_lo": 1.0,
+        "ci_hi": 1.0,
+        "confidence": 0.95,
+        "n_resamples": 10000
+      },
+      "by_category": {
+        "AO": {
+          "TP": 7,
+          "FP": 0,
+          "TN": 3,
+          "FN": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "n": 10
+        },
+        "CS": {
+          "TP": 5,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "n": 5
+        },
+        "LO": {
+          "TP": 8,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "n": 8
+        },
+        "TC": {
+          "TP": 15,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "n": 15
+        },
+        "TV": {
+          "TP": 0,
+          "FP": 0,
+          "TN": 15,
+          "FN": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "n": 15
+        }
+      }
+    }
+  },
+  "mcnemar_D4_vs_D5_AO_category": {
+    "n_discordant": 6,
+    "b_a_flags_not_b": 0,
+    "c_b_flags_not_a": 6,
+    "statistic": 0.0,
+    "p_value": 0.03125,
+    "exact": true,
+    "n_ao_pairs": 10
+  },
+  "mcnemar_D4_vs_D5_full_dataset": {
+    "n_discordant": 6,
+    "b_a_flags_not_b": 0,
+    "c_b_flags_not_a": 6,
+    "statistic": 0.0,
+    "p_value": 0.03125,
+    "exact": true
+  }
+}

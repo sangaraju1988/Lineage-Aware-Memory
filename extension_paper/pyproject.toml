@@ -1,0 +1,72 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "amu-ext"
+version = "0.1.0"
+description = "Extension-paper experiments for Lineage-Aware Memory Governance: D4/D5 fuzzy conflict detectors, aggregation-operator schema, generalized materialization-boundary closure, and SQL-extraction regression coverage."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [
+    { name = "Venkata Sangaraju" },
+]
+dependencies = [
+    "numpy>=1.24",
+    "scipy>=1.10",
+    "matplotlib>=3.7",
+    "sqlglot>=20.0.0",
+    "amu-governance>=0.1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.1",
+    "mypy>=1.5",
+    "ruff>=0.1",
+    "black>=23.0",
+    "hypothesis>=6.80",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "slow: full-statistical-power runs, excluded from the default test tier (see Makefile's `test` vs `experiments` targets)",
+]
+addopts = "-m 'not slow'"
+
+[tool.black]
+line-length = 110
+target-version = ["py39"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py39"
+
+[tool.ruff.lint]
+# UP (pyupgrade) is deliberately excluded: the root repo's own modules
+# (model.py, systems.py, real_agent/) consistently use typing.List/Dict/
+# Set/Tuple/Optional rather than builtin-generic/PEP604 syntax, and Group
+# A1's "match their existing conventions" instruction means this codebase
+# follows suit rather than modernizing past it.
+select = ["E", "F", "I", "B"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+mypy_path = "src"
+explicit_package_bases = true
+namespace_packages = true
+# The root repo's model.py / systems.py / real_agent / simulate.py are
+# loose modules, not a typed package -- see extension_paper/README.md
+# "Why mypy ignores the root repo" for why this scope is deliberate.
+files = ["src/amu_ext"]
+
+[[tool.mypy.overrides]]
+module = ["amu_governance.*", "sqlglot.*", "scipy.*", "real_agent.*"]
+ignore_missing_imports = true

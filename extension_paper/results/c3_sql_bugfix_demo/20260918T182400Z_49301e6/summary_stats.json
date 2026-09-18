@@ -1,0 +1,12 @@
+{
+  "requester_department": "Operations",
+  "n_queries": 12,
+  "n_queries_with_exploitable_sensitive_column": 11,
+  "pre_fix_leak_count": 9,
+  "pre_fix_leak_rate_pct": 75.0,
+  "post_fix_leak_count": 0,
+  "post_fix_leak_rate_pct": 0.0,
+  "pre_fix_leak_rate_of_exploitable_pct": 81.82,
+  "post_fix_leak_rate_of_exploitable_pct": 0.0,
+  "note": "Leak rate is reported both over the full query set (including negative controls, by design -- a realistic query mix includes queries that don't touch restricted data) and over just the n_queries_with_exploitable_sensitive_column subset, which is the rate a reviewer will actually want for the fail-open/fail-closed argument."
+}

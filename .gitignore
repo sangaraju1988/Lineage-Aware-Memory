@@ -29,5 +29,13 @@ env/
 *.db
 *.db-journal
 
+# extension_paper/ tool caches
+extension_paper/.mypy_cache/
+extension_paper/.ruff_cache/
+extension_paper/.pytest_cache/
+extension_paper/.hypothesis/
+extension_paper/.coverage
+extension_paper/htmlcov/
+
 # Stray archives / scratch files
 *.zip

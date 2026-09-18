@@ -1,0 +1,1564 @@
+{
+  "per_seed": [
+    {
+      "seed": 0,
+      "old_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 22,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 100,
+          "blocked": 22,
+          "cross": 120
+        }
+      },
+      "new_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 22,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 100,
+          "blocked": 22,
+          "cross": 120
+        }
+      },
+      "old_flagged": 47,
+      "new_flagged": 47,
+      "mismatches": []
+    },
+    {
+      "seed": 1,
+      "old_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 29,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 92,
+          "blocked": 29,
+          "cross": 120
+        }
+      },
+      "new_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 29,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 92,
+          "blocked": 29,
+          "cross": 120
+        }
+      },
+      "old_flagged": 41,
+      "new_flagged": 41,
+      "mismatches": []
+    },
+    {
+      "seed": 2,
+      "old_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 21,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 102,
+          "blocked": 21,
+          "cross": 120
+        }
+      },
+      "new_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 21,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 102,
+          "blocked": 21,
+          "cross": 120
+        }
+      },
+      "old_flagged": 38,
+      "new_flagged": 38,
+      "mismatches": []
+    },
+    {
+      "seed": 3,
+      "old_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 29,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 96,
+          "blocked": 29,
+          "cross": 120
+        }
+      },
+      "new_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 29,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 96,
+          "blocked": 29,
+          "cross": 120
+        }
+      },
+      "old_flagged": 36,
+      "new_flagged": 36,
+      "mismatches": []
+    },
+    {
+      "seed": 4,
+      "old_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 21,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 101,
+          "blocked": 21,
+          "cross": 120
+        }
+      },
+      "new_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 21,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 101,
+          "blocked": 21,
+          "cross": 120
+        }
+      },
+      "old_flagged": 45,
+      "new_flagged": 45,
+      "mismatches": []
+    },
+    {
+      "seed": 5,
+      "old_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 28,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 94,
+          "blocked": 28,
+          "cross": 120
+        }
+      },
+      "new_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 28,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 94,
+          "blocked": 28,
+          "cross": 120
+        }
+      },
+      "old_flagged": 39,
+      "new_flagged": 39,
+      "mismatches": []
+    },
+    {
+      "seed": 6,
+      "old_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 23,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 103,
+          "blocked": 23,
+          "cross": 120
+        }
+      },
+      "new_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 23,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 103,
+          "blocked": 23,
+          "cross": 120
+        }
+      },
+      "old_flagged": 45,
+      "new_flagged": 45,
+      "mismatches": []
+    },
+    {
+      "seed": 7,
+      "old_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 24,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 96,
+          "blocked": 24,
+          "cross": 120
+        }
+      },
+      "new_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 24,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 96,
+          "blocked": 24,
+          "cross": 120
+        }
+      },
+      "old_flagged": 46,
+      "new_flagged": 46,
+      "mismatches": []
+    },
+    {
+      "seed": 8,
+      "old_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 24,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 102,
+          "blocked": 24,
+          "cross": 120
+        }
+      },
+      "new_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 24,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 102,
+          "blocked": 24,
+          "cross": 120
+        }
+      },
+      "old_flagged": 45,
+      "new_flagged": 45,
+      "mismatches": []
+    },
+    {
+      "seed": 9,
+      "old_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 19,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 100,
+          "blocked": 19,
+          "cross": 120
+        }
+      },
+      "new_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 19,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 100,
+          "blocked": 19,
+          "cross": 120
+        }
+      },
+      "old_flagged": 34,
+      "new_flagged": 34,
+      "mismatches": []
+    },
+    {
+      "seed": 10,
+      "old_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 22,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 97,
+          "blocked": 22,
+          "cross": 120
+        }
+      },
+      "new_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 22,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 97,
+          "blocked": 22,
+          "cross": 120
+        }
+      },
+      "old_flagged": 42,
+      "new_flagged": 42,
+      "mismatches": []
+    },
+    {
+      "seed": 11,
+      "old_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 29,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 95,
+          "blocked": 29,
+          "cross": 120
+        }
+      },
+      "new_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 29,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 95,
+          "blocked": 29,
+          "cross": 120
+        }
+      },
+      "old_flagged": 43,
+      "new_flagged": 43,
+      "mismatches": []
+    },
+    {
+      "seed": 12,
+      "old_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 28,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 96,
+          "blocked": 28,
+          "cross": 120
+        }
+      },
+      "new_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 28,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 96,
+          "blocked": 28,
+          "cross": 120
+        }
+      },
+      "old_flagged": 35,
+      "new_flagged": 35,
+      "mismatches": []
+    },
+    {
+      "seed": 13,
+      "old_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 19,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 101,
+          "blocked": 19,
+          "cross": 120
+        }
+      },
+      "new_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 19,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 101,
+          "blocked": 19,
+          "cross": 120
+        }
+      },
+      "old_flagged": 43,
+      "new_flagged": 43,
+      "mismatches": []
+    },
+    {
+      "seed": 14,
+      "old_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 25,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 96,
+          "blocked": 25,
+          "cross": 120
+        }
+      },
+      "new_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 25,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 96,
+          "blocked": 25,
+          "cross": 120
+        }
+      },
+      "old_flagged": 40,
+      "new_flagged": 40,
+      "mismatches": []
+    },
+    {
+      "seed": 15,
+      "old_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 21,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 101,
+          "blocked": 21,
+          "cross": 120
+        }
+      },
+      "new_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 21,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 101,
+          "blocked": 21,
+          "cross": 120
+        }
+      },
+      "old_flagged": 36,
+      "new_flagged": 36,
+      "mismatches": []
+    },
+    {
+      "seed": 16,
+      "old_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 19,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 100,
+          "blocked": 19,
+          "cross": 120
+        }
+      },
+      "new_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 19,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 100,
+          "blocked": 19,
+          "cross": 120
+        }
+      },
+      "old_flagged": 33,
+      "new_flagged": 33,
+      "mismatches": []
+    },
+    {
+      "seed": 17,
+      "old_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 22,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 100,
+          "blocked": 22,
+          "cross": 120
+        }
+      },
+      "new_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 22,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 100,
+          "blocked": 22,
+          "cross": 120
+        }
+      },
+      "old_flagged": 38,
+      "new_flagged": 38,
+      "mismatches": []
+    },
+    {
+      "seed": 18,
+      "old_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 24,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 93,
+          "blocked": 24,
+          "cross": 120
+        }
+      },
+      "new_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 24,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 93,
+          "blocked": 24,
+          "cross": 120
+        }
+      },
+      "old_flagged": 40,
+      "new_flagged": 40,
+      "mismatches": []
+    },
+    {
+      "seed": 19,
+      "old_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 22,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 99,
+          "blocked": 22,
+          "cross": 120
+        }
+      },
+      "new_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 22,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 99,
+          "blocked": 22,
+          "cross": 120
+        }
+      },
+      "old_flagged": 36,
+      "new_flagged": 36,
+      "mismatches": []
+    },
+    {
+      "seed": 20,
+      "old_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 19,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 101,
+          "blocked": 19,
+          "cross": 120
+        }
+      },
+      "new_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 19,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 101,
+          "blocked": 19,
+          "cross": 120
+        }
+      },
+      "old_flagged": 47,
+      "new_flagged": 47,
+      "mismatches": []
+    },
+    {
+      "seed": 21,
+      "old_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 23,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 96,
+          "blocked": 23,
+          "cross": 120
+        }
+      },
+      "new_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 23,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 96,
+          "blocked": 23,
+          "cross": 120
+        }
+      },
+      "old_flagged": 43,
+      "new_flagged": 43,
+      "mismatches": []
+    },
+    {
+      "seed": 22,
+      "old_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 19,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 102,
+          "blocked": 19,
+          "cross": 120
+        }
+      },
+      "new_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 19,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 102,
+          "blocked": 19,
+          "cross": 120
+        }
+      },
+      "old_flagged": 40,
+      "new_flagged": 40,
+      "mismatches": []
+    },
+    {
+      "seed": 23,
+      "old_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 21,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 103,
+          "blocked": 21,
+          "cross": 120
+        }
+      },
+      "new_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 21,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 103,
+          "blocked": 21,
+          "cross": 120
+        }
+      },
+      "old_flagged": 45,
+      "new_flagged": 45,
+      "mismatches": []
+    },
+    {
+      "seed": 24,
+      "old_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 23,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 100,
+          "blocked": 23,
+          "cross": 120
+        }
+      },
+      "new_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 23,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 100,
+          "blocked": 23,
+          "cross": 120
+        }
+      },
+      "old_flagged": 45,
+      "new_flagged": 45,
+      "mismatches": []
+    },
+    {
+      "seed": 25,
+      "old_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 21,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 102,
+          "blocked": 21,
+          "cross": 120
+        }
+      },
+      "new_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 21,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 102,
+          "blocked": 21,
+          "cross": 120
+        }
+      },
+      "old_flagged": 48,
+      "new_flagged": 48,
+      "mismatches": []
+    },
+    {
+      "seed": 26,
+      "old_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 25,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 101,
+          "blocked": 25,
+          "cross": 120
+        }
+      },
+      "new_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 25,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 101,
+          "blocked": 25,
+          "cross": 120
+        }
+      },
+      "old_flagged": 37,
+      "new_flagged": 37,
+      "mismatches": []
+    },
+    {
+      "seed": 27,
+      "old_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 24,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 100,
+          "blocked": 24,
+          "cross": 120
+        }
+      },
+      "new_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 24,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 100,
+          "blocked": 24,
+          "cross": 120
+        }
+      },
+      "old_flagged": 47,
+      "new_flagged": 47,
+      "mismatches": []
+    },
+    {
+      "seed": 28,
+      "old_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 24,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 94,
+          "blocked": 24,
+          "cross": 120
+        }
+      },
+      "new_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 24,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 94,
+          "blocked": 24,
+          "cross": 120
+        }
+      },
+      "old_flagged": 35,
+      "new_flagged": 35,
+      "mismatches": []
+    },
+    {
+      "seed": 29,
+      "old_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 28,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 95,
+          "blocked": 28,
+          "cross": 120
+        }
+      },
+      "new_stats": {
+        "no_memory": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 0,
+          "blocked": 0,
+          "cross": 0
+        },
+        "naive": {
+          "served": 120,
+          "leaked": 28,
+          "reused": 115,
+          "blocked": 0,
+          "cross": 120
+        },
+        "lineage_aware": {
+          "served": 120,
+          "leaked": 0,
+          "reused": 95,
+          "blocked": 28,
+          "cross": 120
+        }
+      },
+      "old_flagged": 52,
+      "new_flagged": 52,
+      "mismatches": []
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "n_seeds": 30,
+  "n_mismatches": 0,
+  "mismatches": [],
+  "elapsed_seconds": 0.236,
+  "note": "This check compares the amu_governance package against the root repo's model.py/systems.py -- the frozen artifact behind the published paper's numbers -- on the identical seeded workload simulate.py uses. A failure here is a real finding to report, not something to silently reconcile (see test_package_conformance.py)."
+}

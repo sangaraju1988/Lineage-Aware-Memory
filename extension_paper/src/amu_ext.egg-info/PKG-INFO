@@ -1,0 +1,20 @@
+Metadata-Version: 2.4
+Name: amu-ext
+Version: 0.1.0
+Summary: Extension-paper experiments for Lineage-Aware Memory Governance: D4/D5 fuzzy conflict detectors, aggregation-operator schema, generalized materialization-boundary closure, and SQL-extraction regression coverage.
+Author: Venkata Sangaraju
+License: MIT
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: numpy>=1.24
+Requires-Dist: scipy>=1.10
+Requires-Dist: matplotlib>=3.7
+Requires-Dist: sqlglot>=20.0.0
+Requires-Dist: amu-governance>=0.1.0
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0; extra == "dev"
+Requires-Dist: pytest-cov>=4.1; extra == "dev"
+Requires-Dist: mypy>=1.5; extra == "dev"
+Requires-Dist: ruff>=0.1; extra == "dev"
+Requires-Dist: black>=23.0; extra == "dev"
+Requires-Dist: hypothesis>=6.80; extra == "dev"
