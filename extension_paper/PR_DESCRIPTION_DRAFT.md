@@ -125,18 +125,6 @@ caveats: `extension_paper/docs/limitations.md`.
   `make experiments && make figures` regenerates the entire results
   package end-to-end with no manual intervention.
 
-## ⚠️ Open decision — not resolved in this PR
-
-**Sudhir Vissa's co-authorship on the extension/follow-on paper.** Sudhir
-is a co-author on the published IEEE Access paper and the author of PR #1
-(the materialization-boundary threat experiment and the SQL bugfix this
-PR builds directly on top of). Whether he should be a co-author on the
-*extension* paper this code supports is a genuine judgment call about
-research contribution and collaboration — not something I resolved or
-assumed an answer to while building this. Flagging it here explicitly, as
-the one item in this PR that needs a human decision before the paper draft
-lists authors.
-
 ## Testing
 
 ```bash
