@@ -53,15 +53,12 @@ Lineage-Aware-Memory/
 │   ├── demo.py                 # End-to-end walkthrough: SQLite DB + two agent functions
 │   └── transcript.md           # Auto-generated readable case-study transcript
 │
-├── Lineage-Aware-Memory-paper/
-│   ├── lineage_aware_memory.tex   # Full LaTeX source (article style, arXiv-ready)
-│   ├── references.bib             # 15 verified BibTeX entries
-│   ├── lineage_aware_memory.pdf   # Compiled paper (15 pages)
-│   ├── fig1_comparison_bars.png   # Figure 1 — per-metric bar chart
-│   ├── fig2_architecture.png      # Figure 2 — AMU architecture diagram
-│   ├── fig3_tradeoff.png          # Figure 3 — governance/efficiency scatter
-│   ├── fig4_tpch_comparison.png   # Figure 4 — TPC-H vs synthetic comparison
-│   └── fig5_degradation.png       # Figure 5 — leak rate vs. lineage completeness
+├── figures/                     # Output of gen_figures.py — reproducibility
+│   ├── fig1_comparison_bars.png/.pdf   # Per-metric bar chart
+│   ├── fig2_architecture.png/.pdf      # AMU architecture diagram
+│   ├── fig3_tradeoff.png/.pdf          # Governance/efficiency scatter
+│   ├── fig4_tpch_comparison.png/.pdf   # TPC-H vs synthetic comparison
+│   └── fig5_degradation.png/.pdf       # Leak rate vs. lineage completeness
 │
 └── extension_paper/             # Follow-on paper: new experiments, not in the
                                   # published IEEE Access paper — see below and
@@ -271,16 +268,13 @@ breakdown.
 
 ## Paper
 
-The compiled PDF and full LaTeX source are in `Lineage-Aware-Memory-paper/`.
-To recompile from source (requires a TeX Live installation):
-
-```bash
-cd Lineage-Aware-Memory-paper
-pdflatex lineage_aware_memory.tex
-bibtex lineage_aware_memory
-pdflatex lineage_aware_memory.tex
-pdflatex lineage_aware_memory.tex
-```
+This repository holds the code, data, and reproducible experiments behind
+the paper — not the manuscript itself. Read the published version via the
+links at the top of this README (open access on IEEE Access / IEEE
+Xplore). `figures/` contains the exact result figures the code here
+produces (regenerate with `python gen_figures.py`); `Lineage-Aware-Memory-paper/`
+was previously tracked here but has been removed in favor of keeping this
+repo focused on runnable code and reproducible results.
 
 ---
 
@@ -302,12 +296,7 @@ pdflatex lineage_aware_memory.tex
 
 ## License
 
-**Code (`.py` files):** MIT — see `LICENSE-CODE` for details. This covers all
-Python source files in the repository root and `agent_demo/`.
-
-**Paper text and figures** (`Lineage-Aware-Memory-paper/` directory, including
-`lineage_aware_memory.tex`, `lineage_aware_memory.pdf`, and all `.png`/`.pdf`
-figures): These are under the authors' copyright and are **not** covered by the
-MIT license. They are provided for academic reference purposes only. Reuse,
-redistribution, or derivative works of the paper text require explicit written
-permission from the authors.
+MIT — see [`LICENSE`](LICENSE). This repository contains code, data, and
+experiment results only; the paper manuscript itself is published
+separately (see the link at the top of this README) and is not part of
+this repository.
