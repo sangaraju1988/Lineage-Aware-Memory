@@ -39,3 +39,10 @@ extension_paper/htmlcov/
 
 # Stray archives / scratch files
 *.zip
+*.bundle
+
+# Paper manuscript, blog drafts, and submission-process working files --
+# kept locally, intentionally not part of this public code/results repo
+Lineage-Aware-Memory-paper/
+amu-governance/
+LICENSE-CODE

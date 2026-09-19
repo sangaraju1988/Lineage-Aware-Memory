@@ -1,6 +1,11 @@
 """
-Generate publication-quality figures for the Lineage-Aware Memory Governance paper.
+Generate the result figures for the Lineage-Aware Memory Governance
+experiments. Writes into figures/ (created if missing) -- this directory
+holds reproducibility-evidence output only; the paper manuscript itself is
+not part of this repository.
 """
+
+import os
 
 import matplotlib
 matplotlib.use("Agg")
@@ -8,6 +13,8 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import matplotlib.gridspec as gridspec
 import numpy as np
+
+os.makedirs("figures", exist_ok=True)
 
 # ── Style ──────────────────────────────────────────────────────────────────
 plt.rcParams.update({
@@ -82,9 +89,9 @@ for key, ylabel, subtitle, ax in panels:
 fig.suptitle("Lineage-Aware vs. Existing Memory Systems\n(30-seed synthetic workload, mean ± std dev)",
              fontsize=11, fontweight="bold", y=1.01)
 plt.tight_layout()
-plt.savefig("Lineage-Aware-Memory-paper/fig1_comparison_bars.pdf",
+plt.savefig("figures/fig1_comparison_bars.pdf",
             bbox_inches="tight", format="pdf")
-plt.savefig("Lineage-Aware-Memory-paper/fig1_comparison_bars.png",
+plt.savefig("figures/fig1_comparison_bars.png",
             bbox_inches="tight", dpi=200)
 plt.close()
 print("Saved fig1_comparison_bars")
@@ -157,9 +164,9 @@ ax.text(8.9, 3.35, "write\nnew AMU", fontsize=7.5, color=GRAY, ha="center")
 ax.set_title("AMU Architecture — Lineage-Gated Retrieval and Conflict Detection",
              fontsize=11, fontweight="bold", pad=8)
 plt.tight_layout()
-plt.savefig("Lineage-Aware-Memory-paper/fig2_architecture.pdf",
+plt.savefig("figures/fig2_architecture.pdf",
             bbox_inches="tight", format="pdf")
-plt.savefig("Lineage-Aware-Memory-paper/fig2_architecture.png",
+plt.savefig("figures/fig2_architecture.png",
             bbox_inches="tight", dpi=200)
 plt.close()
 print("Saved fig2_architecture")
@@ -194,9 +201,9 @@ ax.annotate("Ideal:\nhigh reuse +\nzero leakage",
             fontsize=8.5, color=GREEN)
 
 plt.tight_layout()
-plt.savefig("Lineage-Aware-Memory-paper/fig3_tradeoff.pdf",
+plt.savefig("figures/fig3_tradeoff.pdf",
             bbox_inches="tight", format="pdf")
-plt.savefig("Lineage-Aware-Memory-paper/fig3_tradeoff.png",
+plt.savefig("figures/fig3_tradeoff.png",
             bbox_inches="tight", dpi=200)
 plt.close()
 print("Saved fig3_tradeoff")
@@ -247,9 +254,9 @@ for bar, v in zip(list(b3) + list(b4), naive_reuse + la_reuse):
 fig.suptitle("Synthetic vs. TPC-H Schema Comparison (30 seeds each)",
              fontsize=11, fontweight="bold", y=1.01)
 plt.tight_layout()
-plt.savefig("Lineage-Aware-Memory-paper/fig4_tpch_comparison.pdf",
+plt.savefig("figures/fig4_tpch_comparison.pdf",
             bbox_inches="tight", format="pdf")
-plt.savefig("Lineage-Aware-Memory-paper/fig4_tpch_comparison.png",
+plt.savefig("figures/fig4_tpch_comparison.png",
             bbox_inches="tight", dpi=200)
 plt.close()
 print("Saved fig4_tpch_comparison")
@@ -298,8 +305,8 @@ if _os.path.exists(_deg_path):
     ax.legend(fontsize=9)
 
     plt.tight_layout()
-    plt.savefig("Lineage-Aware-Memory-paper/fig5_degradation.pdf", bbox_inches="tight", format="pdf")
-    plt.savefig("Lineage-Aware-Memory-paper/fig5_degradation.png", bbox_inches="tight", dpi=200)
+    plt.savefig("figures/fig5_degradation.pdf", bbox_inches="tight", format="pdf")
+    plt.savefig("figures/fig5_degradation.png", bbox_inches="tight", dpi=200)
     plt.close()
     print("Saved fig5_degradation")
 else:
