@@ -53,15 +53,28 @@ Lineage-Aware-Memory/
 │   ├── demo.py                 # End-to-end walkthrough: SQLite DB + two agent functions
 │   └── transcript.md           # Auto-generated readable case-study transcript
 │
-└── Lineage-Aware-Memory-paper/
-    ├── lineage_aware_memory.tex   # Full LaTeX source (article style, arXiv-ready)
-    ├── references.bib             # 15 verified BibTeX entries
-    ├── lineage_aware_memory.pdf   # Compiled paper (15 pages)
-    ├── fig1_comparison_bars.png   # Figure 1 — per-metric bar chart
-    ├── fig2_architecture.png      # Figure 2 — AMU architecture diagram
-    ├── fig3_tradeoff.png          # Figure 3 — governance/efficiency scatter
-    ├── fig4_tpch_comparison.png   # Figure 4 — TPC-H vs synthetic comparison
-    └── fig5_degradation.png       # Figure 5 — leak rate vs. lineage completeness
+├── Lineage-Aware-Memory-paper/
+│   ├── lineage_aware_memory.tex   # Full LaTeX source (article style, arXiv-ready)
+│   ├── references.bib             # 15 verified BibTeX entries
+│   ├── lineage_aware_memory.pdf   # Compiled paper (15 pages)
+│   ├── fig1_comparison_bars.png   # Figure 1 — per-metric bar chart
+│   ├── fig2_architecture.png      # Figure 2 — AMU architecture diagram
+│   ├── fig3_tradeoff.png          # Figure 3 — governance/efficiency scatter
+│   ├── fig4_tpch_comparison.png   # Figure 4 — TPC-H vs synthetic comparison
+│   └── fig5_degradation.png       # Figure 5 — leak rate vs. lineage completeness
+│
+└── extension_paper/             # Follow-on paper: new experiments, not in the
+                                  # published IEEE Access paper — see below and
+                                  # extension_paper/README.md for full detail
+    ├── src/amu_ext/              # Library code: D4/D5 detectors, aggregation
+    │                             #  schema, materialization closure, SQL
+    │                             #  extraction, stats helpers
+    ├── data/                     # conflict_dataset_43.json (ported),
+    │                             #  conflict_dataset_ao_10.json (new AO category)
+    ├── experiments/              # run_*.py — full-statistical-power scripts
+    ├── tests/                    # unit / integration / regression tiers
+    ├── docs/                     # threat_model_extension.md, limitations.md
+    └── results/                  # RESULTS.md + timestamped run folders
 ```
 
 ---
@@ -221,6 +234,38 @@ The safety guarantee requires completeness=1.0 (Assumption 1 in the paper).
 
 O(n) worst-case scaling confirmed empirically. At n ≤ 5 (realistic production), retrieve
 worst-case is < 2 µs — negligible against any real analytics query (typically ms–seconds).
+
+---
+
+## Follow-on Work: Extension Paper (PeerJ Computer Science / arXiv)
+
+[`extension_paper/`](extension_paper/) contains a second, in-progress paper
+built on top of the published IEEE Access work — new experiments only,
+nothing here changes the published paper's LaTeX/PDF. See
+[`extension_paper/README.md`](extension_paper/README.md) and
+[`extension_paper/results/RESULTS.md`](extension_paper/results/RESULTS.md)
+for the full detail; in short, three groups of new work:
+
+- **Group A — detector evaluation.** The original paper proposed a fourth
+  conflict detector, D4 (structural gate + filter-logic operator-topology
+  diff), but never evaluated it. This adds D4 and D5 (D4 + an
+  aggregation-equality check), evaluated against the original 43-pair
+  dataset plus a new Aggregation-Operator (AO) category, with bootstrap 95%
+  CIs and a paired McNemar test.
+- **Group B — materialization-boundary threat.** Formalizes and generalizes
+  the transitive-lineage-closure threat (see the adversarial addendum
+  above) across multiple chain/topology configurations, with a regression
+  test proving the closure fix does *not* silently over-claim on an
+  unregistered materialization edge.
+- **Group C — reproducibility and correctness hardening.** Wires the
+  package-conformance check into CI, re-measures storage overhead, adds a
+  before/after demonstration of the SQL unqualified-column bugfix, and
+  fixes a diagnostic-flag bug in Algorithm 1's retrieval gate (root repo
+  and `amu-governance` package).
+
+Reproduce with `cd extension_paper && make setup && make all` — see that
+directory's README for the full command reference and test-tier
+breakdown.
 
 ---
 

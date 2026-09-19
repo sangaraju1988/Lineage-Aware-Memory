@@ -1,0 +1,32 @@
+{
+  "n_iter": 2000,
+  "n_warmup": 200,
+  "per_pair": {
+    "smallest": {
+      "complexity": 6,
+      "D4_mean_us": 4.5811,
+      "D5_mean_us": 4.8588,
+      "regression_pct": 6.06
+    },
+    "median": {
+      "complexity": 10,
+      "D4_mean_us": 6.6735,
+      "D5_mean_us": 7.158,
+      "regression_pct": 7.26
+    },
+    "largest": {
+      "complexity": 22,
+      "D4_mean_us": 7.6626,
+      "D5_mean_us": 7.9608,
+      "regression_pct": 3.89
+    }
+  },
+  "max_regression_pct_any_pair": 7.26,
+  "measurable_regression": false,
+  "conclusion": "D5's extra aggregation-equality check adds at most 7.3% mean latency vs. D4 across the tested pairs, at microsecond scale in both cases -- not a measurable regression in absolute terms for any realistic deployment (the aggregation check is a single set of two string comparisons, dominated by the same operator-topology regex work D4 already pays for).",
+  "full_dataset_sweep": {
+    "n_pairs": 68,
+    "D4_mean_us": 336.4249480032413,
+    "D5_mean_us": 346.20153800369735
+  }
+}

@@ -8,10 +8,17 @@ this Group explicitly asks for (see ``amu_ext.stats.benchmark_callable``'s
 docstring for exactly what's inherited vs. added relative to the original).
 
 Benchmarks both detectors on three representative pairs from the combined
-53-pair dataset (smallest / median / largest by table+column count, the
+dataset (smallest / median / largest by table+column count, the
 same complexity-bucketing idea ``benchmark_runtime.py`` uses for its (k, c)
 groups) and reports whether D5's extra aggregation-equality check causes
 any measurable latency regression vs. D4.
+
+Updated for the peer-review revision to load the full 68-pair combined
+dataset (43 original + 25 AO, i.e. + the 15-pair AO domain-diversity
+extension added alongside Group A6/A7/A8) rather than the original
+53-pair (43 + 10) set, so the "full-dataset sweep" throughput number is
+computed over the same 68-pair set reported everywhere else in this
+revision rather than a now-superseded 53-pair one.
 """
 
 from __future__ import annotations
@@ -50,8 +57,9 @@ def main() -> int:
     logger = setup_logging(run_dir, "run_a5_runtime_benchmark")
 
     original = load_pairs(DATA_DIR / "conflict_dataset_43.json")
-    ao = load_pairs(DATA_DIR / "conflict_dataset_ao_10.json")
-    all_pairs = original + ao
+    ao_10 = load_pairs(DATA_DIR / "conflict_dataset_ao_10.json")
+    ao_15_new = load_pairs(DATA_DIR / "conflict_dataset_ao_15_new.json")
+    all_pairs = original + ao_10 + ao_15_new
 
     representative = _pick_representative_pairs(all_pairs)
     logger.info(
@@ -101,7 +109,7 @@ def main() -> int:
             "D5_vs_D4_mean_regression_pct": regression_pct,
         }
 
-    # Also benchmark full-dataset throughput: evaluate all 53 pairs once,
+    # Also benchmark full-dataset throughput: evaluate all 68 pairs once,
     # timed as a single unit, repeated -- a more end-to-end "how long does a
     # full evaluation matrix run take" number for the paper's runtime table.
     def _run_all_d4():
@@ -114,7 +122,7 @@ def main() -> int:
 
     full_d4 = benchmark_callable(_run_all_d4, n_iter=500, n_warmup=50)
     full_d5 = benchmark_callable(_run_all_d5, n_iter=500, n_warmup=50)
-    logger.info("Full 53-pair sweep: D4 mean=%.1fus  D5 mean=%.1fus", full_d4.mean_us, full_d5.mean_us)
+    logger.info("Full 68-pair sweep: D4 mean=%.1fus  D5 mean=%.1fus", full_d4.mean_us, full_d5.mean_us)
 
     all_regressions = [results[k]["D5_vs_D4_mean_regression_pct"] for k in results]
     max_regression = max(all_regressions)

@@ -1,0 +1,232 @@
+{
+  "closure_vs_depth": [
+    {
+      "depth": 1,
+      "n_steps_after_closure": 2,
+      "mean_us": 0.867,
+      "median_us": 0.827,
+      "p95_us": 0.894,
+      "sd_us": 0.4147,
+      "min_us": 0.77,
+      "max_us": 14.532,
+      "n_iter": 2000,
+      "n_warmup": 200
+    },
+    {
+      "depth": 2,
+      "n_steps_after_closure": 3,
+      "mean_us": 1.3912,
+      "median_us": 1.352,
+      "p95_us": 1.425,
+      "sd_us": 0.493,
+      "min_us": 1.288,
+      "max_us": 15.884,
+      "n_iter": 2000,
+      "n_warmup": 200
+    },
+    {
+      "depth": 4,
+      "n_steps_after_closure": 5,
+      "mean_us": 2.6251,
+      "median_us": 2.471,
+      "p95_us": 3.375,
+      "sd_us": 1.1377,
+      "min_us": 2.351,
+      "max_us": 26.986,
+      "n_iter": 2000,
+      "n_warmup": 200
+    },
+    {
+      "depth": 8,
+      "n_steps_after_closure": 9,
+      "mean_us": 4.7545,
+      "median_us": 4.563,
+      "p95_us": 4.931,
+      "sd_us": 1.2825,
+      "min_us": 4.38,
+      "max_us": 27.96,
+      "n_iter": 2000,
+      "n_warmup": 200
+    },
+    {
+      "depth": 16,
+      "n_steps_after_closure": 17,
+      "mean_us": 9.6421,
+      "median_us": 8.931,
+      "p95_us": 11.876,
+      "sd_us": 2.3726,
+      "min_us": 8.527,
+      "max_us": 44.104,
+      "n_iter": 2000,
+      "n_warmup": 200
+    },
+    {
+      "depth": 32,
+      "n_steps_after_closure": 33,
+      "mean_us": 19.9459,
+      "median_us": 18.399,
+      "p95_us": 26.554,
+      "sd_us": 4.0913,
+      "min_us": 17.699,
+      "max_us": 84.709,
+      "n_iter": 2000,
+      "n_warmup": 200
+    },
+    {
+      "depth": 64,
+      "n_steps_after_closure": 65,
+      "mean_us": 43.3892,
+      "median_us": 39.806,
+      "p95_us": 57.795,
+      "sd_us": 6.7181,
+      "min_us": 38.287,
+      "max_us": 86.499,
+      "n_iter": 2000,
+      "n_warmup": 200
+    }
+  ],
+  "default_max_depth_guard": {
+    "value": 8,
+    "tested_chain_depth": 16,
+    "chain_truncated_by_default_guard": true,
+    "note": "close_lineage()'s _max_depth parameter defaults to 8 in materialization.py. A 16-tier chain closed WITHOUT explicitly overriding _max_depth is silently truncated at 8 registered hops -- steps beyond the guard are not unioned in. This benchmark is what surfaced this as a real, previously undocumented boundary of the closure defense, distinct from the registered/unregistered edge boundary already reported."
+  },
+  "detector_runtime_vs_input_size": {
+    "D4_structural_topology": [
+      {
+        "n_tables_columns": 1,
+        "mean_us": 3.2749,
+        "median_us": 2.9325,
+        "p95_us": 4.8,
+        "sd_us": 1.3513,
+        "min_us": 2.741,
+        "max_us": 28.5,
+        "n_iter": 2000,
+        "n_warmup": 200
+      },
+      {
+        "n_tables_columns": 2,
+        "mean_us": 5.9982,
+        "median_us": 6.0585,
+        "p95_us": 6.375,
+        "sd_us": 1.5288,
+        "min_us": 5.043,
+        "max_us": 28.574,
+        "n_iter": 2000,
+        "n_warmup": 200
+      },
+      {
+        "n_tables_columns": 4,
+        "mean_us": 12.0371,
+        "median_us": 11.511,
+        "p95_us": 13.302,
+        "sd_us": 2.8959,
+        "min_us": 11.161,
+        "max_us": 64.072,
+        "n_iter": 2000,
+        "n_warmup": 200
+      },
+      {
+        "n_tables_columns": 8,
+        "mean_us": 23.1538,
+        "median_us": 22.018,
+        "p95_us": 29.276,
+        "sd_us": 4.3358,
+        "min_us": 21.429,
+        "max_us": 87.662,
+        "n_iter": 2000,
+        "n_warmup": 200
+      },
+      {
+        "n_tables_columns": 16,
+        "mean_us": 45.116,
+        "median_us": 43.405,
+        "p95_us": 63.105,
+        "sd_us": 8.3211,
+        "min_us": 36.02,
+        "max_us": 120.939,
+        "n_iter": 2000,
+        "n_warmup": 200
+      },
+      {
+        "n_tables_columns": 32,
+        "mean_us": 90.3276,
+        "median_us": 87.291,
+        "p95_us": 113.973,
+        "sd_us": 11.4406,
+        "min_us": 72.259,
+        "max_us": 234.326,
+        "n_iter": 2000,
+        "n_warmup": 200
+      }
+    ],
+    "D5_with_aggregation": [
+      {
+        "n_tables_columns": 1,
+        "mean_us": 3.7981,
+        "median_us": 3.668,
+        "p95_us": 3.903,
+        "sd_us": 1.3701,
+        "min_us": 3.003,
+        "max_us": 28.025,
+        "n_iter": 2000,
+        "n_warmup": 200
+      },
+      {
+        "n_tables_columns": 2,
+        "mean_us": 5.8811,
+        "median_us": 5.563,
+        "p95_us": 6.615,
+        "sd_us": 1.6652,
+        "min_us": 5.306,
+        "max_us": 42.191,
+        "n_iter": 2000,
+        "n_warmup": 200
+      },
+      {
+        "n_tables_columns": 4,
+        "mean_us": 12.4704,
+        "median_us": 11.961,
+        "p95_us": 15.908,
+        "sd_us": 2.5799,
+        "min_us": 11.505,
+        "max_us": 43.609,
+        "n_iter": 2000,
+        "n_warmup": 200
+      },
+      {
+        "n_tables_columns": 8,
+        "mean_us": 23.6575,
+        "median_us": 22.551,
+        "p95_us": 33.07,
+        "sd_us": 4.6126,
+        "min_us": 19.05,
+        "max_us": 91.411,
+        "n_iter": 2000,
+        "n_warmup": 200
+      },
+      {
+        "n_tables_columns": 16,
+        "mean_us": 45.5945,
+        "median_us": 43.7155,
+        "p95_us": 59.662,
+        "sd_us": 6.5573,
+        "min_us": 36.389,
+        "max_us": 123.618,
+        "n_iter": 2000,
+        "n_warmup": 200
+      },
+      {
+        "n_tables_columns": 32,
+        "mean_us": 95.3635,
+        "median_us": 87.754,
+        "p95_us": 145.499,
+        "sd_us": 21.9049,
+        "min_us": 72.345,
+        "max_us": 294.639,
+        "n_iter": 2000,
+        "n_warmup": 200
+      }
+    ]
+  }
+}

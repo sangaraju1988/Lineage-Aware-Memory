@@ -1,0 +1,131 @@
+{
+  "_metadata": {
+    "description": "15 additional Aggregation-Operator (AO) pairs, constructed for the peer-review revision to broaden the AO category's domain diversity beyond the original 10 TPC-H-flavored pairs (data/conflict_dataset_ao_10.json). Combined with the original 10, this gives a 25-pair AO-25 set (data/conflict_dataset_ao_25.json is the two files concatenated by experiments/run_a6_ao25_eval.py at load time). Each pair still holds tables, columns, and filter-logic operator topology fixed across both sides and varies only the aggregation function (or, for one pair, aggregation plus topology together, mirroring the original set's one double-conflict pair), so D3 and D4 cannot distinguish either side of any pair by construction.",
+    "labeling_methodology": "Single-pass, single-labeler (same author as the original 10-pair AO set), same construction discipline: every pair's ground-truth label was fixed at construction time, not assigned after the fact to an ambiguous real pair. IMPORTANT, and disclosed here rather than only in the paper's Limitations: these 15 pairs are, like the original 10, constructed examples spanning a deliberately wider set of business domains (SaaS, HR, logistics, ad-tech, retail, finance, education, energy, manufacturing, telecom, gaming) to reduce over-fitting to one schema family -- they are NOT sourced from real enterprise metric definitions or any production semantic layer. No second labeler or inter-rater agreement statistic exists for this dataset either. Sourcing real (even anonymized) enterprise metric-definition pairs was identified as a follow-up during peer review and is named explicitly as unresolved future work, not silently addressed by broadening domains alone.",
+    "n_pairs": 15,
+    "category": "AO",
+    "created_for": "extension_paper peer-review revision, Group A3 extension (broadening AO domain diversity)"
+  },
+  "pairs": [
+    {
+      "name": "mrr: SUM vs COUNT over identical scope (SaaS)",
+      "category": "AO",
+      "a": {"tables": ["subscriptions", "accounts"], "columns": ["subscription_id", "account_id", "mrr_amount"], "filter_logic": "status = active", "aggregation_fn": "SUM"},
+      "b": {"tables": ["subscriptions", "accounts"], "columns": ["subscription_id", "account_id", "mrr_amount"], "filter_logic": "status = active", "aggregation_fn": "COUNT"},
+      "is_conflict": true,
+      "rationale": "Monthly recurring revenue (SUM of mrr_amount) and active-subscription count (COUNT) are different SaaS KPIs that happen to share the exact same lineage and filter."
+    },
+    {
+      "name": "headcount: COUNT vs SUM(fte_fraction) over identical scope (HR)",
+      "category": "AO",
+      "a": {"tables": ["employees", "departments"], "columns": ["employee_id", "department_id", "fte_fraction"], "filter_logic": "employment_status = active", "aggregation_fn": "COUNT"},
+      "b": {"tables": ["employees", "departments"], "columns": ["employee_id", "department_id", "fte_fraction"], "filter_logic": "employment_status = active", "aggregation_fn": "SUM"},
+      "is_conflict": true,
+      "rationale": "Headcount (COUNT of employees) and full-time-equivalent headcount (SUM of fte_fraction) diverge whenever any employee is part-time, despite identical lineage."
+    },
+    {
+      "name": "shipment_weight: SUM vs AVG over identical scope (logistics)",
+      "category": "AO",
+      "a": {"tables": ["shipments", "routes"], "columns": ["shipment_id", "route_id", "weight_kg"], "filter_logic": "route_region = northeast", "aggregation_fn": "SUM"},
+      "b": {"tables": ["shipments", "routes"], "columns": ["shipment_id", "route_id", "weight_kg"], "filter_logic": "route_region = northeast", "aggregation_fn": "AVG"},
+      "is_conflict": true,
+      "rationale": "Total shipped weight (SUM) and average shipment weight (AVG) are distinct logistics metrics over an identical join and filter."
+    },
+    {
+      "name": "campaign_spend_total: SUM vs MAX over identical scope (ad-tech)",
+      "category": "AO",
+      "a": {"tables": ["ad_campaigns", "ad_spend_events"], "columns": ["campaign_id", "spend_usd", "event_date"], "filter_logic": "channel = paid_search", "aggregation_fn": "SUM"},
+      "b": {"tables": ["ad_campaigns", "ad_spend_events"], "columns": ["campaign_id", "spend_usd", "event_date"], "filter_logic": "channel = paid_search", "aggregation_fn": "MAX"},
+      "is_conflict": true,
+      "rationale": "Total campaign spend (SUM) and the single largest spend event (MAX) are not interchangeable, despite an identical lineage and channel filter."
+    },
+    {
+      "name": "basket_value: AVG vs SUM over identical scope (retail)",
+      "category": "AO",
+      "a": {"tables": ["orders", "order_items"], "columns": ["order_id", "item_id", "line_total"], "filter_logic": "order_channel = online", "aggregation_fn": "AVG"},
+      "b": {"tables": ["orders", "order_items"], "columns": ["order_id", "item_id", "line_total"], "filter_logic": "order_channel = online", "aggregation_fn": "SUM"},
+      "is_conflict": true,
+      "rationale": "Average basket value (AVG) and total online revenue (SUM) are different retail metrics over the same order/order_items join and channel filter."
+    },
+    {
+      "name": "approved_expense: SUM vs MIN over identical scope (finance)",
+      "category": "AO",
+      "a": {"tables": ["expense_reports", "approvals"], "columns": ["report_id", "approval_id", "amount_usd"], "filter_logic": "approval_status = approved", "aggregation_fn": "SUM"},
+      "b": {"tables": ["expense_reports", "approvals"], "columns": ["report_id", "approval_id", "amount_usd"], "filter_logic": "approval_status = approved", "aggregation_fn": "MIN"},
+      "is_conflict": true,
+      "rationale": "Total approved expense (SUM) and the smallest single approved expense (MIN) are unrelated quantities that share a lineage and status filter."
+    },
+    {
+      "name": "attendance: COUNT vs SUM(days_present) over identical scope (education)",
+      "category": "AO",
+      "a": {"tables": ["students", "attendance_records"], "columns": ["student_id", "record_id", "days_present"], "filter_logic": "term = fall_2026", "aggregation_fn": "COUNT"},
+      "b": {"tables": ["students", "attendance_records"], "columns": ["student_id", "record_id", "days_present"], "filter_logic": "term = fall_2026", "aggregation_fn": "SUM"},
+      "is_conflict": true,
+      "rationale": "Number of attendance records (COUNT) and total days present (SUM of days_present) diverge whenever a record can represent more than one day."
+    },
+    {
+      "name": "energy_usage: SUM vs AVG over identical scope (energy/utilities)",
+      "category": "AO",
+      "a": {"tables": ["meters", "usage_readings"], "columns": ["meter_id", "reading_id", "usage_kwh"], "filter_logic": "meter_type = residential", "aggregation_fn": "SUM"},
+      "b": {"tables": ["meters", "usage_readings"], "columns": ["meter_id", "reading_id", "usage_kwh"], "filter_logic": "meter_type = residential", "aggregation_fn": "AVG"},
+      "is_conflict": true,
+      "rationale": "Total energy consumption (SUM) and average per-reading consumption (AVG) are distinct utility metrics over an identical meter/reading join and filter."
+    },
+    {
+      "name": "defect_count: COUNT vs SUM(defect_qty) over identical scope (manufacturing)",
+      "category": "AO",
+      "a": {"tables": ["production_runs", "defect_events"], "columns": ["run_id", "event_id", "defect_qty"], "filter_logic": "line_id = line_3", "aggregation_fn": "COUNT"},
+      "b": {"tables": ["production_runs", "defect_events"], "columns": ["run_id", "event_id", "defect_qty"], "filter_logic": "line_id = line_3", "aggregation_fn": "SUM"},
+      "is_conflict": true,
+      "rationale": "Number of defect events (COUNT) and total defective units (SUM of defect_qty) diverge whenever an event can report more than one unit."
+    },
+    {
+      "name": "call_duration: SUM vs AVG over identical scope (telecom)",
+      "category": "AO",
+      "a": {"tables": ["subscribers", "call_records"], "columns": ["subscriber_id", "call_id", "duration_sec"], "filter_logic": "call_type = outbound", "aggregation_fn": "SUM"},
+      "b": {"tables": ["subscribers", "call_records"], "columns": ["subscriber_id", "call_id", "duration_sec"], "filter_logic": "call_type = outbound", "aggregation_fn": "AVG"},
+      "is_conflict": true,
+      "rationale": "Total outbound call minutes (SUM) and average outbound call duration (AVG) are different telecom KPIs over an identical lineage and filter."
+    },
+    {
+      "name": "session_length: AVG vs SUM over identical scope (gaming)",
+      "category": "AO",
+      "a": {"tables": ["players", "sessions"], "columns": ["player_id", "session_id", "length_min"], "filter_logic": "platform = mobile", "aggregation_fn": "AVG"},
+      "b": {"tables": ["players", "sessions"], "columns": ["player_id", "session_id", "length_min"], "filter_logic": "platform = mobile", "aggregation_fn": "SUM"},
+      "is_conflict": true,
+      "rationale": "Average session length (AVG) and total playtime (SUM) are distinct engagement metrics over the same player/session join and platform filter."
+    },
+    {
+      "name": "conversions: COUNT vs SUM(conversion_value) plus AND-to-OR filter change (double conflict, marketing)",
+      "category": "AO",
+      "a": {"tables": ["ad_campaigns", "conversion_events"], "columns": ["campaign_id", "event_id", "conversion_value"], "filter_logic": "channel = email AND device = mobile", "aggregation_fn": "COUNT"},
+      "b": {"tables": ["ad_campaigns", "conversion_events"], "columns": ["campaign_id", "event_id", "conversion_value"], "filter_logic": "channel = email OR device = mobile", "aggregation_fn": "SUM"},
+      "is_conflict": true,
+      "rationale": "Two independent conflict signals at once (AND-to-OR filter-topology change and a different aggregation function) -- D4 alone already flags this via the topology diff; D5 must continue to flag it too, mirroring the original AO set's one double-conflict pair."
+    },
+    {
+      "name": "conversions_count: COUNT vs COUNT identical (negative control, marketing)",
+      "category": "AO",
+      "a": {"tables": ["ad_campaigns", "conversion_events"], "columns": ["campaign_id", "event_id"], "filter_logic": "channel = email", "aggregation_fn": "COUNT"},
+      "b": {"tables": ["ad_campaigns", "conversion_events"], "columns": ["campaign_id", "event_id"], "filter_logic": "channel = email", "aggregation_fn": "COUNT"},
+      "is_conflict": false,
+      "rationale": "Negative control: tables, columns, filter logic, and aggregation function are all identical -- must not be flagged."
+    },
+    {
+      "name": "churn_mrr: sum vs SUM case-normalization (negative control, SaaS)",
+      "category": "AO",
+      "a": {"tables": ["subscriptions", "cancellations"], "columns": ["subscription_id", "cancellation_id", "mrr_amount"], "filter_logic": "cancellation_reason = voluntary", "aggregation_fn": "sum"},
+      "b": {"tables": ["subscriptions", "cancellations"], "columns": ["subscription_id", "cancellation_id", "mrr_amount"], "filter_logic": "cancellation_reason = voluntary", "aggregation_fn": "SUM"},
+      "is_conflict": false,
+      "rationale": "Negative control for aggregation_fn normalization: \"sum\" and \"SUM\" must normalize to the same canonical value and not be flagged."
+    },
+    {
+      "name": "shipment_count: SUM vs SUM, threshold-only variant (negative control, logistics)",
+      "category": "AO",
+      "a": {"tables": ["shipments", "routes"], "columns": ["shipment_id", "route_id", "weight_kg"], "filter_logic": "weight_kg > 100", "aggregation_fn": "SUM"},
+      "b": {"tables": ["shipments", "routes"], "columns": ["shipment_id", "route_id", "weight_kg"], "filter_logic": "weight_kg > 150", "aggregation_fn": "SUM"},
+      "is_conflict": false,
+      "rationale": "Both sides sum the same column over the same join path; only the weight threshold changed (same shape as the original dataset's TV category). A matching aggregation_fn with a threshold-only filter change must not be flagged."
+    }
+  ]
+}
