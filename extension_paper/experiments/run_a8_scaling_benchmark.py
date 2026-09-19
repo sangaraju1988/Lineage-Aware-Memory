@@ -35,10 +35,11 @@ from _common import ensure_repo_on_path, make_run_dir, setup_logging, write_json
 
 ensure_repo_on_path()
 
+from amu_governance import Lineage, LineageStep  # noqa: E402
+
 from amu_ext.detectors import LineageSpec, Pair, d4_structural_topology, d5_with_aggregation  # noqa: E402
 from amu_ext.materialization import MaterializationRegistry, close_lineage  # noqa: E402
 from amu_ext.stats import benchmark_callable  # noqa: E402
-from amu_governance import Lineage, LineageStep  # noqa: E402
 
 DEPTHS = [1, 2, 4, 8, 16, 32, 64]
 SIZES = [1, 2, 4, 8, 16, 32]
@@ -57,7 +58,9 @@ def build_chain(depth: int) -> tuple[Lineage, MaterializationRegistry]:
     materialized column, one hop removed from the sensitive source).
     """
     registry = MaterializationRegistry()
-    upstream = Lineage(steps=(LineageStep("customer_pii", ("customer_id", "income")),), filter_logic="tier_0 base")
+    upstream = Lineage(
+        steps=(LineageStep("customer_pii", ("customer_id", "income")),), filter_logic="tier_0 base"
+    )
     for k in range(1, depth + 1):
         table, col = f"derived_{k}", f"feature_{k}"
         registry.register(table, col, upstream)
@@ -75,7 +78,9 @@ def build_pair(n: int) -> Pair:
     filt = " AND ".join(f"c{i} > {i}" for i in range(n)) or "1=1"
     a = LineageSpec(tables=tables, columns=columns, filter_logic=filt, aggregation_fn="SUM")
     b = LineageSpec(tables=tables, columns=columns, filter_logic=filt, aggregation_fn="AVG")
-    return Pair(name=f"scaling_n{n}", category="AO", a=a, b=b, is_conflict=True, rationale="scaling benchmark")
+    return Pair(
+        name=f"scaling_n{n}", category="AO", a=a, b=b, is_conflict=True, rationale="scaling benchmark"
+    )
 
 
 def main() -> int:
@@ -85,10 +90,20 @@ def main() -> int:
     closure_results = []
     for depth in DEPTHS:
         lineage, registry = build_chain(depth)
-        result = benchmark_callable(lambda: close_lineage(lineage, registry, _max_depth=depth + 2), n_iter=2000, n_warmup=200)
+        result = benchmark_callable(
+            lambda lineage=lineage, registry=registry, depth=depth: close_lineage(
+                lineage, registry, _max_depth=depth + 2
+            ),
+            n_iter=2000,
+            n_warmup=200,
+        )
         closed = close_lineage(lineage, registry, _max_depth=depth + 2)
-        closure_results.append({"depth": depth, "n_steps_after_closure": len(closed.steps), **result.as_dict()})
-        logger.info("closure depth=%3d  mean=%.3f us  n_steps_after=%d", depth, result.mean_us, len(closed.steps))
+        closure_results.append(
+            {"depth": depth, "n_steps_after_closure": len(closed.steps), **result.as_dict()}
+        )
+        logger.info(
+            "closure depth=%3d  mean=%.3f us  n_steps_after=%d", depth, result.mean_us, len(closed.steps)
+        )
 
     default_guard_lineage, default_guard_registry = build_chain(16)
     closed_default = close_lineage(default_guard_lineage, default_guard_registry)  # _max_depth defaults to 8
@@ -97,7 +112,10 @@ def main() -> int:
     detector_results: dict[str, list] = {"D4_structural_topology": [], "D5_with_aggregation": []}
     for n in SIZES:
         pair = build_pair(n)
-        for name, fn in (("D4_structural_topology", d4_structural_topology), ("D5_with_aggregation", d5_with_aggregation)):
+        for name, fn in (
+            ("D4_structural_topology", d4_structural_topology),
+            ("D5_with_aggregation", d5_with_aggregation),
+        ):
             result = benchmark_callable(lambda p=pair, f=fn: f(p), n_iter=2000, n_warmup=200)
             detector_results[name].append({"n_tables_columns": n, **result.as_dict()})
             logger.info("%s n=%3d  mean=%.3f us", name, n, result.mean_us)

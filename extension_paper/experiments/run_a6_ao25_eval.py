@@ -70,11 +70,18 @@ def main() -> int:
 
         logger.info(
             "%-25s overall P=%.3f R=%.3f F1=%.3f [%.3f, %.3f]",
-            name, overall.precision, overall.recall, overall.f1, ci.ci_lo, ci.ci_hi,
+            name,
+            overall.precision,
+            overall.recall,
+            overall.f1,
+            ci.ci_lo,
+            ci.ci_hi,
         )
         for cat in categories:
             c = by_category[cat]
-            logger.info("  %-4s n=%2d P=%.3f R=%.3f F1=%.3f", cat, c["n"], c["precision"], c["recall"], c["f1"])
+            logger.info(
+                "  %-4s n=%2d P=%.3f R=%.3f F1=%.3f", cat, c["n"], c["precision"], c["recall"], c["f1"]
+            )
 
         per_detector_summary[name] = {
             "overall": overall.as_dict(),
@@ -88,7 +95,10 @@ def main() -> int:
     mcnemar_ao25 = mcnemar_test(d4_ao, d5_ao)
     logger.info(
         "McNemar D4 vs D5 (AO-25 category, n=%d): statistic=%.3f p=%.6f n_discordant=%d",
-        len(ao_idx), mcnemar_ao25.statistic, mcnemar_ao25.p_value, mcnemar_ao25.n_discordant,
+        len(ao_idx),
+        mcnemar_ao25.statistic,
+        mcnemar_ao25.p_value,
+        mcnemar_ao25.n_discordant,
     )
 
     write_json(

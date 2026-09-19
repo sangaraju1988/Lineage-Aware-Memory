@@ -46,8 +46,12 @@ def d1_ext_hash(pair: Pair) -> bool:
     dedicated aggregation-equality check -- this isolates the effect of
     extending the hash alone.
     """
-    ha = definition_hash_with_aggregation(pair.a.tables, pair.a.columns, pair.a.filter_logic, pair.a.aggregation_fn)
-    hb = definition_hash_with_aggregation(pair.b.tables, pair.b.columns, pair.b.filter_logic, pair.b.aggregation_fn)
+    ha = definition_hash_with_aggregation(
+        pair.a.tables, pair.a.columns, pair.a.filter_logic, pair.a.aggregation_fn
+    )
+    hb = definition_hash_with_aggregation(
+        pair.b.tables, pair.b.columns, pair.b.filter_logic, pair.b.aggregation_fn
+    )
     return ha != hb
 
 
@@ -88,7 +92,9 @@ def main() -> int:
         )
         for cat in categories:
             c = by_category[cat]
-            logger.info("  %-4s n=%2d P=%.3f R=%.3f F1=%.3f", cat, c["n"], c["precision"], c["recall"], c["f1"])
+            logger.info(
+                "  %-4s n=%2d P=%.3f R=%.3f F1=%.3f", cat, c["n"], c["precision"], c["recall"], c["f1"]
+            )
         per_detector_summary[name] = {"overall": overall.as_dict(), "by_category": by_category}
 
     write_json(

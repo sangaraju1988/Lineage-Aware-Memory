@@ -10,7 +10,6 @@ separate script so the original eight figures' generation is untouched.
 from __future__ import annotations
 
 import json
-import sys
 from pathlib import Path
 from typing import Any, Dict, Optional
 
@@ -87,7 +86,15 @@ def fig_ao25_full_matrix() -> None:
     for i, (name, s) in enumerate(zip(names, short)):
         f1s = [detectors[name]["by_category"][c]["f1"] for c in categories]
         offset = (i - (n_det - 1) / 2) * w
-        ax.bar(x + offset, f1s, width=w, label=s, color=DETECTOR_COLORS.get(s, GRAY), edgecolor="white", linewidth=0.6)
+        ax.bar(
+            x + offset,
+            f1s,
+            width=w,
+            label=s,
+            color=DETECTOR_COLORS.get(s, GRAY),
+            edgecolor="white",
+            linewidth=0.6,
+        )
     ax.set_xticks(x)
     ax.set_xticklabels([f"{c}\n(n={stats['category_counts'][c]})" for c in categories])
     ax.set_ylabel("F1 score")
@@ -111,7 +118,12 @@ def fig_hash_ablation() -> None:
     stats = _load(run_dir, "summary_stats.json")
     detectors = stats["detectors"]
     order = ["D1_exact_hash", "D1ext_hash_with_aggregation", "D4_structural_topology", "D5_with_aggregation"]
-    labels = ["D1\n(exact hash)", "D1-ext\n(hash + agg.,\nno topology)", "D4\n(structural +\ntopology)", "D5\n(D4 + agg.\nequality)"]
+    labels = [
+        "D1\n(exact hash)",
+        "D1-ext\n(hash + agg.,\nno topology)",
+        "D4\n(structural +\ntopology)",
+        "D5\n(D4 + agg.\nequality)",
+    ]
     colors = [GRAY, BLUE, AMBER, GREEN]
 
     fig, axes = plt.subplots(1, 2, figsize=(10, 4.2))
@@ -140,7 +152,11 @@ def fig_hash_ablation() -> None:
         ax.text(xi - w / 2, t + 0.03, f"{t:.2f}", ha="center", fontsize=7.5)
         ax.text(xi + w / 2, o + 0.03, f"{o:.2f}", ha="center", fontsize=7.5)
 
-    fig.suptitle("Ablation: hash-payload extension alone vs. D5's structural+topology+aggregation design", fontsize=10, y=1.04)
+    fig.suptitle(
+        "Ablation: hash-payload extension alone vs. D5's structural+topology+aggregation design",
+        fontsize=10,
+        y=1.04,
+    )
     _save(fig, run_dir, "hash_ablation")
 
 
@@ -160,7 +176,10 @@ def fig_scaling_benchmark() -> None:
     ax.set_yscale("log", base=2)
     ax.set_xlabel("Materialization-chain depth (registered hops)")
     ax.set_ylabel("Mean closure latency (microseconds)")
-    ax.set_title("close_lineage() runtime vs. chain depth\n(linear in depth; default guard caps at depth 8)", fontsize=9.5)
+    ax.set_title(
+        "close_lineage() runtime vs. chain depth\n(linear in depth; default guard caps at depth 8)",
+        fontsize=9.5,
+    )
     ax.axvline(8, color=GRAY, linestyle=":", linewidth=1.2)
     ax.text(8.3, means[0], "default\n_max_depth=8", fontsize=7.5, color=GRAY)
 
@@ -177,7 +196,9 @@ def fig_scaling_benchmark() -> None:
     ax.set_xlabel("Tables/columns touched (n)")
     ax.set_ylabel("Mean detector latency (microseconds)")
     ax.legend(fontsize=8.5)
-    ax.set_title("D4/D5 runtime vs. lineage size\n(D5's overhead over D4 stays small at every size)", fontsize=9.5)
+    ax.set_title(
+        "D4/D5 runtime vs. lineage size\n(D5's overhead over D4 stays small at every size)", fontsize=9.5
+    )
 
     _save(fig, run_dir, "scaling_benchmark")
 
