@@ -1,0 +1,18 @@
+{
+  "git_commit": "d4a2562",
+  "git_commit_full": "d4a2562146a4966d45cbeda4ef8b21659cfb5787",
+  "utc_timestamp": "2026-09-19T03:16:01.958214+00:00",
+  "seeds": [],
+  "n_seeds": 0,
+  "package_versions": {
+    "python": "3.11.15",
+    "numpy": "2.4.4",
+    "scipy": "1.17.1",
+    "matplotlib": "3.10.9",
+    "sqlglot": "30.18.0",
+    "amu-governance": "0.1.1",
+    "hypothesis": "6.168.0"
+  },
+  "command": "python experiments/run_a5_runtime_benchmark.py",
+  "note": "Deterministic timing methodology -- no data-generation randomness, no seeds."
+}
