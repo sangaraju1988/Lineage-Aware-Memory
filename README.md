@@ -36,6 +36,7 @@ Lineage-Aware-Memory/
 │
 ├── results.csv                 # Single seed=42 simulation results
 ├── sweep_summary.csv           # 30-seed sweep summary (means ± std dev)
+├── sweep_raw.json              # 30-seed sweep, full per-seed raw values (feeds stats_analysis.py)
 ├── tpch_results.json           # TPC-H experiment: per-seed raw data + summary
 ├── fuzzy_results.json          # Original 10-pair fuzzy detection results
 ├── fuzzy_results_extended.json # Extended 43-pair fuzzy study with bootstrap CI
